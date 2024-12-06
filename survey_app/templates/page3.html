@@ -1,0 +1,248 @@
+{% comment %} <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Next</button>
+</form>
+
+
+ {% endcomment %}
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Donor Survey Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #dbe3e3;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            background: #d4ebf1;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border: 1px solid #ddd;
+            max-width: 800px;
+            margin-top:5px;
+            overflow: hidden;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 300px;
+            background-image: url('https://cnectgpo.com/wp-content/uploads/2023/04/Blog-Image_AI_-600-x-400_-01.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .form-container {
+            padding: 30px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-container label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-container input, .form-container select, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-container input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .image-container {
+                height: 200px;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Image Div -->
+        <div class="image-container"></div>
+
+        <!-- Form Div -->
+        <div class="form-container">
+            <h2>Donor Survey Form</h2>
+            <form method="post" novalidate>
+                {% csrf_token %}
+                <div class="mb-2">
+                    <label for="id_hair_loss" class="form-label">Do you experience hair loss?</label>
+                    
+                    {{ form.hair_loss }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_vision_problems" class="form-label">Do you have any vision problems?</label>
+                    {{ form.vision_problems }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_blood_donation" class="form-label">Have you ever donated blood?</label>
+                    {{ form.blood_donation }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_body_fat_percentage" class="form-label">Body Fat Percentage</label>
+                    {{ form.body_fat_percentage }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_birth_type" class="form-label">What was your birth type?</label>
+                    {{ form.birth_type }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_birth_state" class="form-label">State of birth</label>
+                    {{ form.birth_state }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_pin_code" class="form-label">Pin Code</label>
+                    {{ form.pin_code }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_current_city" class="form-label">Current City</label>
+                    {{ form.current_city }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_exercise_hours_per_day" class="form-label">How many hours do you exercise per day?</label>
+                    {{ form.exercise_hours_per_day }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_exercise_days_per_week" class="form-label">How many days per week do you exercise?</label>
+                    {{ form.exercise_days_per_week }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_physical_activities" class="form-label">Do you engage in physical activities?</label>
+                    {{ form.physical_activities }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_proficiency_level" class="form-label">Proficiency level in physical activities</label>
+                    {{ form.proficiency_level }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_upbringing" class="form-label">What was your upbringing like?</label>
+                    {{ form.upbringing }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_blood_group" class="form-label">What is your blood group?</label>
+                    {{ form.blood_group }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_smoking" class="form-label">Do you smoke?</label>
+                    {{ form.smoking }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_alcohol_consumption" class="form-label">Do you consume alcohol?</label>
+                    {{ form.alcohol_consumption }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_breastfeeding" class="form-label">Are you currently breastfeeding?</label>
+                    {{ form.breastfeeding }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_bowel_movements" class="form-label">Are your bowel movements regular?</label>
+                    {{ form.bowel_movements }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_bloating_acidity" class="form-label">Do you experience bloating or acidity?</label>
+                    {{ form.bloating_acidity }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_digestive_issues" class="form-label">Do you have any digestive issues?</label>
+                    {{ form.digestive_issues }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_food_intolerances" class="form-label">Do you have any food intolerances?</label>
+                    {{ form.food_intolerances }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_meals_per_day" class="form-label">How many meals do you eat per day?</label>
+                    {{ form.meals_per_day }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_snacks_per_day" class="form-label">How many snacks do you eat per day?</label>
+                    {{ form.snacks_per_day }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_home_cooked_meals" class="form-label">How often do you eat home-cooked meals?</label>
+                    {{ form.home_cooked_meals }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_dairy_consumption" class="form-label">Do you consume dairy products?</label>
+                    {{ form.dairy_consumption }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_diet_type" class="form-label">What type of diet do you follow?</label>
+                    {{ form.diet_type }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_meat_type" class="form-label">What type of meat do you consume?</label>
+                    {{ form.meat_type }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_meat_frequency" class="form-label">How often do you eat meat?</label>
+                    {{ form.meat_frequency }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_local_cuisine" class="form-label">Do you prefer local cuisine?</label>
+                    {{ form.local_cuisine }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_medications_taken" class="form-label">Are you currently taking any medications?</label>
+                    {{ form.medications_taken }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_covid_vaccination" class="form-label">Have you been vaccinated for COVID-19?</label>
+                    {{ form.covid_vaccination }}
+                </div>
+                <div class="mb-2">
+                    <label for="id_covid_vaccine" class="form-label">Which COVID-19 vaccine did you receive?</label>
+                    {{ form.covid_vaccine }}
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

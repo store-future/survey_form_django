@@ -1,0 +1,201 @@
+{% comment %} <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Next</button>
+</form>
+ {% endcomment %}
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+     <title>Donor Survey Form</title>
+     <style>
+         body {
+             margin: 0;
+             padding: 0;
+             font-family: Arial, sans-serif;
+             background: #dbe3e3;
+         }
+ 
+         .container {
+             display: flex;
+             flex-direction: column;
+             align-items: stretch;
+             background: #d4ebf1;
+             border-radius: 10px;
+             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+             border: 1px solid #ddd;
+             max-width: 800px;
+             margin-top: 5px;
+             overflow: hidden;
+         }
+ 
+         .image-container {
+             width: 100%;
+             height: 300px;
+             background-image: url('https://cnectgpo.com/wp-content/uploads/2023/04/Blog-Image_AI_-600-x-400_-01.jpg');
+             background-size: cover;
+             background-repeat: no-repeat;
+             background-position: center;
+         }
+ 
+         .form-container {
+             padding: 30px;
+         }
+ 
+         .form-container h2 {
+             margin-bottom: 20px;
+             text-align: center;
+         }
+ 
+         .form-container label {
+             font-weight: bold;
+             display: block;
+             margin-bottom: 5px;
+         }
+ 
+         .form-container input, .form-container select, .form-container textarea {
+             width: 100%;
+             padding: 10px;
+             margin-bottom: 20px;
+             border: 1px solid #ccc;
+             border-radius: 5px;
+             box-sizing: border-box;
+         }
+ 
+         .form-container button {
+             width: 100%;
+             padding: 10px;
+             font-size: 16px;
+             background-color: #007bff;
+             color: #fff;
+             border: none;
+             border-radius: 5px;
+             cursor: pointer;
+         }
+ 
+         .form-container button:hover {
+             background-color: #0056b3;
+         }
+ 
+         .form-container input[type="radio"] {
+             margin-right: 10px;
+         }
+ 
+         @media (max-width: 768px) {
+             .image-container {
+                 height: 200px;
+             }
+ 
+             .form-container {
+                 padding: 20px;
+             }
+         }
+     </style>
+ </head>
+ <body>
+     <div class="container">
+         <!-- Image Div -->
+         <div class="image-container"></div>
+ 
+         <!-- Form Div -->
+         <div class="form-container">
+             <h2>Donor Survey Form</h2>
+             <form method="post" novalidate>
+                 {% csrf_token %}
+                 <div class="mb-2">
+                     <label for="id_infections_diagnosed" class="form-label">Infections Diagnosed</label>
+                     {{ form.infections_diagnosed }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_autoimmune_condition" class="form-label">Autoimmune Condition</label>
+                     {{ form.autoimmune_condition }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_reproductive_urinary_conditions" class="form-label">Reproductive/Urinary Conditions</label>
+                     {{ form.reproductive_urinary_conditions }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_cardiovascular_conditions" class="form-label">Cardiovascular Conditions</label>
+                     {{ form.cardiovascular_conditions }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_nervous_bone_muscle_conditions" class="form-label">Nervous/Bone/Muscle Conditions</label>
+                     {{ form.nervous_bone_muscle_conditions }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_sleep_disorder_medications" class="form-label">Sleep Disorder Medications</label>
+                     {{ form.sleep_disorder_medications }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_allergies_asthma" class="form-label">Allergies/Asthma</label>
+                     {{ form.allergies_asthma }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_skin_conditions" class="form-label">Skin Conditions</label>
+                     {{ form.skin_conditions }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_acne_history" class="form-label">Acne History</label>
+                     {{ form.acne_history }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_mental_health_conditions" class="form-label">Mental Health Conditions</label>
+                     {{ form.mental_health_conditions }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_blood_transfusion" class="form-label">Blood Transfusion</label>
+                     {{ form.blood_transfusion }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_high_risk_yellow_fever" class="form-label">High Risk Yellow Fever</label>
+                     {{ form.high_risk_yellow_fever }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_hospitalization_surgery" class="form-label">Hospitalization/Surgery</label>
+                     {{ form.hospitalization_surgery }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_contagious_diseases" class="form-label">Contagious Diseases</label>
+                     {{ form.contagious_diseases }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_multi_drug_resistant_organisms" class="form-label">Multi-Drug Resistant Organisms</label>
+                     {{ form.multi_drug_resistant_organisms }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_heart_blood_pressure_diabetes_medication" class="form-label">Heart/Blood Pressure/Diabetes Medication</label>
+                     {{ form.heart_blood_pressure_diabetes_medication }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_mold_exposure" class="form-label">Mold Exposure</label>
+                     {{ form.mold_exposure }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_genetic_conditions" class="form-label">Genetic Conditions</label>
+                     {{ form.genetic_conditions }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_antibiotics_taken" class="form-label">Antibiotics Taken</label>
+                     {{ form.antibiotics_taken }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_most_recent_antibiotic_treatment" class="form-label">Most Recent Antibiotic Treatment</label>
+                     {{ form.most_recent_antibiotic_treatment }}
+                 </div>
+                 <div class="mb-2">
+                     <label for="id_covid_tested_positive" class="form-label">Covid Tested Positive</label>
+                     {{ form.covid_tested_positive }}
+                 </div>
+ 
+                 <button type="submit" class="btn btn-primary">Next</button>
+             </form>
+         </div>
+     </div>
+ </body>
+ </html>
+ 

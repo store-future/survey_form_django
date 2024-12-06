@@ -1,0 +1,16 @@
+<!-- survey/templates/survey/message.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Survey Message</title>
+</head>
+<body>
+    <h1>{{ message }}</h1>
+    {% if message == "Congratulations! You are two steps away." %}
+        <a href="{% url 'page2' %}">Go to Step 2</a>
+    {% elif message == "Congratulations! You are one step away." %}
+        <a href="{% url 'page3' %}">Go to Step 3</a>
+    {% endif %}
+</body>
+</html>
