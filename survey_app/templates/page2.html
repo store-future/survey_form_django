@@ -112,8 +112,8 @@
             <form method="post" novalidate>
                 {% csrf_token %}
 
-                <div class="mb-2">
-                    <label for="id_infections_diagnosed" class="form-label">Infections Diagnosed</label>
+                <div class="mb-1">
+                    <label for="id_infections_diagnosed" class="form-label">Have you ever been diagnosed with, or exposed to, any serious infections like HIV, hepatitis, tuberculosis, or Cancer?</label>
                     {{ form.infections_diagnosed }}
                     {% if form.infections_diagnosed.errors %}
                     <div class="error">
@@ -125,8 +125,8 @@
                 </div>
 
 
-                <div class="mb-2">
-                    <label for="id_autoimmune_condition" class="form-label">Autoimmune Condition</label>
+                <div class="mb-1">
+                    <label for="id_autoimmune_condition" class="form-label">Do you have any autoimmune conditions that you are aware of?</label>
                     {{ form.autoimmune_condition }}
                     {% if form.autoimmune_condition.errors %}
                     <div class="error">
@@ -140,8 +140,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_reproductive_urinary_conditions" class="form-label mb-2">Reproductive/Urinary
-                        Conditions :</label>
+                    <label for="id_reproductive_urinary_conditions" class="form-label mb-2">Do you have any known diseases of the reproductive or urinary system? Eg: UTIs, Kidney Stones, Bladder stones, Ovarian Cysts etc.</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <!-- Render the "Yes" radio button using Django form field -->
@@ -176,7 +175,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_cardiovascular_conditions" class="form-label mb-2">Cardiovascular Conditions:</label>
+                    <label for="id_cardiovascular_conditions" class="form-label mb-2">Do you have any known cardiovascular conditions (related to the heart or blood vessels)?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <!-- Render the "Yes" radio button for cardiovascular_conditions -->
@@ -210,8 +209,7 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="id_nervous_bone_muscle_conditions" class="form-label mb-2">Nervous/Bone/Muscle
-                        Conditions:</label>
+                    <label for="id_nervous_bone_muscle_conditions" class="form-label mb-2">Do you have any known diseases of the nervous system, bones, or muscles?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <!-- Render the "Yes" radio button for nervous_bone_muscle_conditions -->
@@ -246,7 +244,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_sleep_disorder_medications" class="form-label">Sleep Disorder Medications:</label>
+                    <label for="id_sleep_disorder_medications" class="form-label">Do you take medication for sleep disorders like insomnia, apnea, or others?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="sleep_disorder_medications"
@@ -279,7 +277,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_allergies_asthma" class="form-label">Allergies/Asthma:</label>
+                    <label for="id_allergies_asthma" class="form-label">Do you have any allergies or asthma?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="allergies_asthma" id="allergies_yes"
@@ -310,7 +308,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_skin_conditions" class="form-label">Skin Conditions:</label>
+                    <label for="id_skin_conditions" class="form-label">Do you suffer from any skin conditions that require you to take medication?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="skin_conditions" id="skin_yes"
@@ -341,7 +339,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_acne_history" class="form-label">Acne History:</label>
+                    <label for="id_acne_history" class="form-label">Do you experience acne or have a history of acne?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="acne_history" id="acne_yes" value="True"
@@ -372,7 +370,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_mental_health_conditions" class="form-label">Mental Health Conditions:</label>
+                    <label for="id_mental_health_conditions" class="form-label">Have you been diagnosed with any psychiatric or mental health conditions?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="mental_health_conditions"
@@ -405,7 +403,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_blood_transfusion" class="form-label">Blood Transfusion:</label>
+                    <label for="id_blood_transfusion" class="form-label">Have you ever received a blood transfusion or blood products? Eg: Blood, Platelets, Plasma etc.</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="blood_transfusion"
@@ -438,7 +436,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_high_risk_yellow_fever" class="form-label">High Risk Yellow Fever:</label>
+                    <label for="id_high_risk_yellow_fever" class="form-label">Have you travelled to a high risk country for yellow fever in the last 6 months? (Countries like: Cameroon, Chad, Congo, Democratic Republic of Congo (DRC), Guinea, Niger, Nigeria, and South Sudan)</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="high_risk_yellow_fever"
@@ -470,7 +468,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_hospitalization_surgery" class="form-label">Hospitalization/Surgery:</label>
+                    <label for="id_hospitalization_surgery" class="form-label">Have you been hospitalized or undergone surgery in the last 6 months?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="hospitalization_surgery"
@@ -503,7 +501,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_contagious_diseases" class="form-label">Contagious Diseases:</label>
+                    <label for="id_contagious_diseases" class="form-label">Are you currently suffering from or have recently had any contagious diseases (within the last 2 weeks)? (Eg: flu, colds, or strep throat)</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="contagious_diseases" id="contagious_yes"
@@ -534,8 +532,8 @@
 
 
                 <div class="mb-2">
-                    <label for="id_multi_drug_resistant_organisms" class="form-label">Multi-Drug Resistant
-                        Organisms</label>
+                    <label for="id_multi_drug_resistant_organisms" class="form-label">Have you ever been diagnosed with multi-drug resistant organisms?
+                        </label>
                     {{ form.multi_drug_resistant_organisms }}
                     {% if form.multi_drug_resistant_organisms.errors %}
                     <div class="error">
@@ -548,8 +546,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_heart_blood_pressure_diabetes_medication" class="form-label">Heart/Blood
-                        Pressure/Diabetes Medication</label>
+                    <label for="id_heart_blood_pressure_diabetes_medication" class="form-label">Are you currently taking any medications for heart issues, blood pressure, or diabetes?</label>
                     {{ form.heart_blood_pressure_diabetes_medication }}
                     {% if form.heart_blood_pressure_diabetes_medication.errors %}
                     <div class="error">
@@ -562,7 +559,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_mold_exposure" class="form-label">Mold Exposure:</label>
+                    <label for="id_mold_exposure" class="form-label">Have you been exposed to mold in your living or working space?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="mold_exposure" id="mold_exposure_yes"
@@ -593,7 +590,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_genetic_conditions" class="form-label">Genetic Conditions:</label>
+                    <label for="id_genetic_conditions" class="form-label">Do you or any of your immediate family members have congenital or genetic conditions? Eg. heart defects, neural tube defects, Down’s syndrome, hemophilia, sickle cell anemia, color blindness</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="genetic_conditions" id="genetic_yes"
@@ -624,7 +621,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_antibiotics_taken" class="form-label">Antibiotics Taken</label>
+                    <label for="id_antibiotics_taken" class="form-label">How many times have you taken antibiotics...?</label>
                     {{ form.antibiotics_taken }}
                     {% if form.antibiotics_taken.errors %}
                     <div class="error">
@@ -637,8 +634,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_most_recent_antibiotic_treatment" class="form-label">Most Recent Antibiotic
-                        Treatment</label>
+                    <label for="id_most_recent_antibiotic_treatment" class="form-label">When was your most recent antibiotic treatment?</label>
                     {{ form.most_recent_antibiotic_treatment }}
                     {% if form.most_recent_antibiotic_treatment.errors %}
                     <div class="error">
@@ -651,7 +647,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_covid_tested_positive" class="form-label">Covid Tested Positive:</label>
+                    <label for="id_covid_tested_positive" class="form-label">Have you tested positive for COVID-19 in the past month?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="covid_tested_positive"

@@ -115,7 +115,7 @@
             <form method="post" >
                 {% csrf_token %}
                 <div class="mb-2">
-                    <label for="id_hair_loss" class="form-label">Hair Loss:</label>
+                    <label for="id_hair_loss" class="form-label">Do you experience hair loss or balding?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="hair_loss" id="hair_loss_yes"
@@ -138,7 +138,7 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="id_vision_problems" class="form-label">Vision Problems:</label>
+                    <label for="id_vision_problems" class="form-label">Do you have any vision problems (glasses, contact lenses, etc.)?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="vision_problems" id="vision_problems_yes"
@@ -161,7 +161,7 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="id_blood_donation" class="form-label">Blood Donation:</label>
+                    <label for="id_blood_donation" class="form-label">Have you ever donated blood before?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="blood_donation" id="blood_donation_yes"
@@ -183,46 +183,43 @@
                     </div>
                 </div>
                 <div class="mb-2">
-                    <label for="id_body_fat_percentage" class="form-label">Body Fat Percentage</label>
+                    <label for="id_body_fat_percentage" class="form-label">Can you guess your body fat percentage...?</label>
                     {{ form.body_fat_percentage }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_birth_type" class="form-label">What was your birth type?</label>
+                    <label for="id_birth_type" class="form-label">How were you born?</label>
                     {{ form.birth_type }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_birth_state" class="form-label">State of birth</label>
+                    <label for="id_birth_state" class="form-label">Your Birth State</label>
                     {{ form.birth_state }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_pin_code" class="form-label">Pin Code</label>
+                    <label for="id_pin_code" class="form-label">What’s the pin code of your current location?</label>
                     {{ form.pin_code }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_current_city" class="form-label">Current City</label>
+                    <label for="id_current_city" class="form-label">What city do you live in currently?</label>
                     {{ form.current_city }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_exercise_hours_per_day" class="form-label">How many hours do you exercise per
-                        day?</label>
+                    <label for="id_exercise_hours_per_day" class="form-label">How many hours a day do you usually exercise?</label>
                     {{ form.exercise_hours_per_day }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_exercise_days_per_week" class="form-label">How many days per week do you
-                        exercise?</label>
+                    <label for="id_exercise_days_per_week" class="form-label">How many days a week do you usually exercise?</label>
                     {{ form.exercise_days_per_week }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_physical_activities" class="form-label">Do you engage in physical activities?</label>
+                    <label for="id_physical_activities" class="form-label">What kind of physical activities do you participate in?</label>
                     {{ form.physical_activities }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_proficiency_level" class="form-label">Proficiency level in physical
-                        activities</label>
+                    <label for="id_proficiency_level" class="form-label">How would you rate your sports or exercise proficiency?</label>
                     {{ form.proficiency_level }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_upbringing" class="form-label">What was your upbringing like?</label>
+                    <label for="id_upbringing" class="form-label">How would you describe your upbringing?</label>
                     {{ form.upbringing }}
                 </div>
                 <div class="mb-2">
@@ -238,24 +235,24 @@
                     {{ form.alcohol_consumption }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_breastfeeding" class="form-label">Are you currently breastfeeding?</label>
+                    <label for="id_breastfeeding" class="form-label">Were you breastfed as a child?</label>
                     {{ form.breastfeeding }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_bowel_movements" class="form-label">Are your bowel movements regular?</label>
+                    <label for="id_bowel_movements" class="form-label">How would you describe your daily bowel movements?</label>
                     {{ form.bowel_movements }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_bloating_acidity" class="form-label">Do you experience bloating or acidity?</label>
+                    <label for="id_bloating_acidity" class="form-label">How often do you experience bloating or acidity?</label>
                     {{ form.bloating_acidity }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_digestive_issues" class="form-label">Do you have any digestive issues?</label>
+                    <label for="id_digestive_issues" class="form-label">Have you had constipation or diarrhea...?</label>
                     {{ form.digestive_issues }}
                 </div>
 
                 <div class="mb-2">
-                    <label for="id_food_intolerances" class="form-label">Food Intolerances:</label>
+                    <label for="id_food_intolerances" class="form-label">Do you have any food intolerances?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="food_intolerances"
@@ -278,20 +275,22 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="mb-2">
-                    <label for="id_meals_per_day" class="form-label">How many meals do you eat per day?</label>
+                    <label for="id_meals_per_day" class="form-label">How many meals do you eat in a day?</label>
                     {{ form.meals_per_day }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_snacks_per_day" class="form-label">How many snacks do you eat per day?</label>
+                    <label for="id_snacks_per_day" class="form-label">How many snacks do you eat in a day?</label>
                     {{ form.snacks_per_day }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_home_cooked_meals" class="form-label">How often do you eat home-cooked meals?</label>
+                    <label for="id_home_cooked_meals" class="form-label">How many home-cooked meals...?</label>
                     {{ form.home_cooked_meals }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_dairy_consumption" class="form-label">Dairy Consumption:</label>
+                    <label for="id_dairy_consumption" class="form-label">Do you regularly consume dairy products?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="dairy_consumption"
@@ -324,15 +323,15 @@
                     {{ form.meat_type }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_meat_frequency" class="form-label">How often do you eat meat?</label>
+                    <label for="id_meat_frequency" class="form-label">How often do you eat meat in a week?</label>
                     {{ form.meat_frequency }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_local_cuisine" class="form-label">Do you prefer local cuisine?</label>
+                    <label for="id_local_cuisine" class="form-label">What type of local cuisine do you usually eat at home?</label>
                     {{ form.local_cuisine }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_medications_taken" class="form-label">Medications Taken:</label>
+                    <label for="id_medications_taken" class="form-label">What type of local cuisine do you usually eat at home?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="medications_taken"
@@ -356,11 +355,11 @@
                     </div>
                 </div>
                 <div class="mb-2">
-                    <label for="id_covid_vaccination" class="form-label">Have you been vaccinated for COVID-19?</label>
+                    <label for="id_covid_vaccination" class="form-label">Have you received a COVID-19 vaccination?</label>
                     {{ form.covid_vaccination }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_covid_vaccine" class="form-label">Which COVID-19 vaccine did you receive?</label>
+                    <label for="id_covid_vaccine" class="form-label">Which COVID-19 vaccine(s) did you receive?</label>
                     {{ form.covid_vaccine }}
                 </div>
                 <button type="submit">Submit</button>
