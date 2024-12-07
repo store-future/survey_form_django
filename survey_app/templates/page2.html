@@ -3,199 +3,690 @@
     {{ form.as_p }}
     <button type="submit">Next</button>
 </form>
- {% endcomment %}
+{% endcomment %}
 
 
- <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-     <title>Donor Survey Form</title>
-     <style>
-         body {
-             margin: 0;
-             padding: 0;
-             font-family: Arial, sans-serif;
-             background: #dbe3e3;
-         }
- 
-         .container {
-             display: flex;
-             flex-direction: column;
-             align-items: stretch;
-             background: #d4ebf1;
-             border-radius: 10px;
-             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-             border: 1px solid #ddd;
-             max-width: 800px;
-             margin-top: 5px;
-             overflow: hidden;
-         }
- 
-         .image-container {
-             width: 100%;
-             height: 300px;
-             background-image: url('https://cnectgpo.com/wp-content/uploads/2023/04/Blog-Image_AI_-600-x-400_-01.jpg');
-             background-size: cover;
-             background-repeat: no-repeat;
-             background-position: center;
-         }
- 
-         .form-container {
-             padding: 30px;
-         }
- 
-         .form-container h2 {
-             margin-bottom: 20px;
-             text-align: center;
-         }
- 
-         .form-container label {
-             font-weight: bold;
-             display: block;
-             margin-bottom: 5px;
-         }
- 
-         .form-container input, .form-container select, .form-container textarea {
-             width: 100%;
-             padding: 10px;
-             margin-bottom: 20px;
-             border: 1px solid #ccc;
-             border-radius: 5px;
-             box-sizing: border-box;
-         }
- 
-         .form-container button {
-             width: 100%;
-             padding: 10px;
-             font-size: 16px;
-             background-color: #007bff;
-             color: #fff;
-             border: none;
-             border-radius: 5px;
-             cursor: pointer;
-         }
- 
-         .form-container button:hover {
-             background-color: #0056b3;
-         }
- 
-         .form-container input[type="radio"] {
-             margin-right: 10px;
-         }
- 
-         @media (max-width: 768px) {
-             .image-container {
-                 height: 200px;
-             }
- 
-             .form-container {
-                 padding: 20px;
-             }
-         }
-     </style>
- </head>
- <body>
-     <div class="container">
-         <!-- Image Div -->
-         <div class="image-container"></div>
- 
-         <!-- Form Div -->
-         <div class="form-container">
-             <h2>Donor Survey Form</h2>
-             <form method="post" novalidate>
-                 {% csrf_token %}
-                 <div class="mb-2">
-                     <label for="id_infections_diagnosed" class="form-label">Infections Diagnosed</label>
-                     {{ form.infections_diagnosed }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_autoimmune_condition" class="form-label">Autoimmune Condition</label>
-                     {{ form.autoimmune_condition }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_reproductive_urinary_conditions" class="form-label">Reproductive/Urinary Conditions</label>
-                     {{ form.reproductive_urinary_conditions }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_cardiovascular_conditions" class="form-label">Cardiovascular Conditions</label>
-                     {{ form.cardiovascular_conditions }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_nervous_bone_muscle_conditions" class="form-label">Nervous/Bone/Muscle Conditions</label>
-                     {{ form.nervous_bone_muscle_conditions }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_sleep_disorder_medications" class="form-label">Sleep Disorder Medications</label>
-                     {{ form.sleep_disorder_medications }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_allergies_asthma" class="form-label">Allergies/Asthma</label>
-                     {{ form.allergies_asthma }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_skin_conditions" class="form-label">Skin Conditions</label>
-                     {{ form.skin_conditions }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_acne_history" class="form-label">Acne History</label>
-                     {{ form.acne_history }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_mental_health_conditions" class="form-label">Mental Health Conditions</label>
-                     {{ form.mental_health_conditions }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_blood_transfusion" class="form-label">Blood Transfusion</label>
-                     {{ form.blood_transfusion }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_high_risk_yellow_fever" class="form-label">High Risk Yellow Fever</label>
-                     {{ form.high_risk_yellow_fever }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_hospitalization_surgery" class="form-label">Hospitalization/Surgery</label>
-                     {{ form.hospitalization_surgery }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_contagious_diseases" class="form-label">Contagious Diseases</label>
-                     {{ form.contagious_diseases }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_multi_drug_resistant_organisms" class="form-label">Multi-Drug Resistant Organisms</label>
-                     {{ form.multi_drug_resistant_organisms }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_heart_blood_pressure_diabetes_medication" class="form-label">Heart/Blood Pressure/Diabetes Medication</label>
-                     {{ form.heart_blood_pressure_diabetes_medication }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_mold_exposure" class="form-label">Mold Exposure</label>
-                     {{ form.mold_exposure }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_genetic_conditions" class="form-label">Genetic Conditions</label>
-                     {{ form.genetic_conditions }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_antibiotics_taken" class="form-label">Antibiotics Taken</label>
-                     {{ form.antibiotics_taken }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_most_recent_antibiotic_treatment" class="form-label">Most Recent Antibiotic Treatment</label>
-                     {{ form.most_recent_antibiotic_treatment }}
-                 </div>
-                 <div class="mb-2">
-                     <label for="id_covid_tested_positive" class="form-label">Covid Tested Positive</label>
-                     {{ form.covid_tested_positive }}
-                 </div>
- 
-                 <button type="submit" class="btn btn-primary">Next</button>
-             </form>
-         </div>
-     </div>
- </body>
- </html>
- 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Donor Survey Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #dbe3e3;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            background: #d4ebf1;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border: 1px solid #ddd;
+            max-width: 800px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 300px;
+            background-image: url('https://cnectgpo.com/wp-content/uploads/2023/04/Blog-Image_AI_-600-x-400_-01.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .form-container {
+            padding: 30px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-container label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-container input,
+        .form-container select,
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-container input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .image-container {
+                height: 200px;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Image Div -->
+        <div class="image-container"></div>
+
+        <!-- Form Div -->
+        <div class="form-container">
+            <h2>Donor Survey Form</h2>
+            <form method="post" novalidate>
+                {% csrf_token %}
+
+                <div class="mb-2">
+                    <label for="id_infections_diagnosed" class="form-label">Infections Diagnosed</label>
+                    {{ form.infections_diagnosed }}
+                    {% if form.infections_diagnosed.errors %}
+                    <div class="error">
+                        {% for error in form.infections_diagnosed.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_autoimmune_condition" class="form-label">Autoimmune Condition</label>
+                    {{ form.autoimmune_condition }}
+                    {% if form.autoimmune_condition.errors %}
+                    <div class="error">
+                        {% for error in form.autoimmune_condition.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+
+                <div class="mb-2">
+                    <label for="id_reproductive_urinary_conditions" class="form-label mb-2">Reproductive/Urinary
+                        Conditions :</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <!-- Render the "Yes" radio button using Django form field -->
+                            <input class="form-check-input" type="radio" name="reproductive_urinary_conditions"
+                                id="reproductive_yes" value="True"
+                                {% if form.reproductive_urinary_conditions.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="reproductive_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <!-- Render the "No" radio button using Django form field -->
+                            <input class="form-check-input" type="radio" name="reproductive_urinary_conditions"
+                                id="reproductive_no" value="False"
+                                {% if form.reproductive_urinary_conditions.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="reproductive_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.reproductive_urinary_conditions.errors %}
+                    <div class="error">
+                        {% for error in form.reproductive_urinary_conditions.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_cardiovascular_conditions" class="form-label mb-2">Cardiovascular Conditions:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <!-- Render the "Yes" radio button for cardiovascular_conditions -->
+                            <input class="form-check-input" type="radio" name="cardiovascular_conditions"
+                                id="cardio_yes" value="True"
+                                {% if form.cardiovascular_conditions.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="cardio_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <!-- Render the "No" radio button for cardiovascular_conditions -->
+                            <input class="form-check-input" type="radio" name="cardiovascular_conditions" id="cardio_no"
+                                value="False"
+                                {% if form.cardiovascular_conditions.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="cardio_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.cardiovascular_conditions.errors %}
+                    <div class="error">
+                        {% for error in form.cardiovascular_conditions.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-2">
+                    <label for="id_nervous_bone_muscle_conditions" class="form-label mb-2">Nervous/Bone/Muscle
+                        Conditions:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <!-- Render the "Yes" radio button for nervous_bone_muscle_conditions -->
+                            <input class="form-check-input" type="radio" name="nervous_bone_muscle_conditions"
+                                id="nervous_yes" value="True"
+                                {% if form.nervous_bone_muscle_conditions.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="nervous_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <!-- Render the "No" radio button for nervous_bone_muscle_conditions -->
+                            <input class="form-check-input" type="radio" name="nervous_bone_muscle_conditions"
+                                id="nervous_no" value="False"
+                                {% if form.nervous_bone_muscle_conditions.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="nervous_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.nervous_bone_muscle_conditions.errors %}
+                    <div class="error">
+                        {% for error in form.nervous_bone_muscle_conditions.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_sleep_disorder_medications" class="form-label">Sleep Disorder Medications:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sleep_disorder_medications"
+                                id="sleep_disorder_yes" value="True"
+                                {% if form.sleep_disorder_medications.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="sleep_disorder_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sleep_disorder_medications"
+                                id="sleep_disorder_no" value="False"
+                                {% if form.sleep_disorder_medications.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="sleep_disorder_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.sleep_disorder_medications.errors %}
+                    <div class="error">
+                        {% for error in form.sleep_disorder_medications.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_allergies_asthma" class="form-label">Allergies/Asthma:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="allergies_asthma" id="allergies_yes"
+                                value="True" {% if form.allergies_asthma.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="allergies_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="allergies_asthma" id="allergies_no"
+                                value="False" {% if form.allergies_asthma.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="allergies_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.allergies_asthma.errors %}
+                    <div class="error">
+                        {% for error in form.allergies_asthma.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_skin_conditions" class="form-label">Skin Conditions:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="skin_conditions" id="skin_yes"
+                                value="True" {% if form.skin_conditions.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="skin_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="skin_conditions" id="skin_no"
+                                value="False" {% if form.skin_conditions.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="skin_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.skin_conditions.errors %}
+                    <div class="error">
+                        {% for error in form.skin_conditions.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_acne_history" class="form-label">Acne History:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="acne_history" id="acne_yes" value="True"
+                                {% if form.acne_history.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="acne_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="acne_history" id="acne_no" value="False"
+                                {% if form.acne_history.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="acne_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.acne_history.errors %}
+                    <div class="error">
+                        {% for error in form.acne_history.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_mental_health_conditions" class="form-label">Mental Health Conditions:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="mental_health_conditions"
+                                id="mental_health_yes" value="True"
+                                {% if form.mental_health_conditions.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="mental_health_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="mental_health_conditions"
+                                id="mental_health_no" value="False"
+                                {% if form.mental_health_conditions.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="mental_health_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.mental_health_conditions.errors %}
+                    <div class="error">
+                        {% for error in form.mental_health_conditions.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_blood_transfusion" class="form-label">Blood Transfusion:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="blood_transfusion"
+                                id="blood_transfusion_yes" value="True"
+                                {% if form.blood_transfusion.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="blood_transfusion_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="blood_transfusion"
+                                id="blood_transfusion_no" value="False"
+                                {% if form.blood_transfusion.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="blood_transfusion_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.blood_transfusion.errors %}
+                    <div class="error">
+                        {% for error in form.blood_transfusion.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_high_risk_yellow_fever" class="form-label">High Risk Yellow Fever:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="high_risk_yellow_fever"
+                                id="high_risk_yes" value="True"
+                                {% if form.high_risk_yellow_fever.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="high_risk_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="high_risk_yellow_fever" id="high_risk_no"
+                                value="False" {% if form.high_risk_yellow_fever.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="high_risk_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.high_risk_yellow_fever.errors %}
+                    <div class="error">
+                        {% for error in form.high_risk_yellow_fever.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_hospitalization_surgery" class="form-label">Hospitalization/Surgery:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="hospitalization_surgery"
+                                id="hospitalization_yes" value="True"
+                                {% if form.hospitalization_surgery.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="hospitalization_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="hospitalization_surgery"
+                                id="hospitalization_no" value="False"
+                                {% if form.hospitalization_surgery.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="hospitalization_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.hospitalization_surgery.errors %}
+                    <div class="error">
+                        {% for error in form.hospitalization_surgery.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_contagious_diseases" class="form-label">Contagious Diseases:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="contagious_diseases" id="contagious_yes"
+                                value="True" {% if form.contagious_diseases.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="contagious_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="contagious_diseases" id="contagious_no"
+                                value="False" {% if form.contagious_diseases.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="contagious_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.contagious_diseases.errors %}
+                    <div class="error">
+                        {% for error in form.contagious_diseases.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_multi_drug_resistant_organisms" class="form-label">Multi-Drug Resistant
+                        Organisms</label>
+                    {{ form.multi_drug_resistant_organisms }}
+                    {% if form.multi_drug_resistant_organisms.errors %}
+                    <div class="error">
+                        {% for error in form.multi_drug_resistant_organisms.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_heart_blood_pressure_diabetes_medication" class="form-label">Heart/Blood
+                        Pressure/Diabetes Medication</label>
+                    {{ form.heart_blood_pressure_diabetes_medication }}
+                    {% if form.heart_blood_pressure_diabetes_medication.errors %}
+                    <div class="error">
+                        {% for error in form.heart_blood_pressure_diabetes_medication.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_mold_exposure" class="form-label">Mold Exposure:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="mold_exposure" id="mold_exposure_yes"
+                                value="True" {% if form.mold_exposure.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="mold_exposure_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="mold_exposure" id="mold_exposure_no"
+                                value="False" {% if form.mold_exposure.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="mold_exposure_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.mold_exposure.errors %}
+                    <div class="error">
+                        {% for error in form.mold_exposure.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_genetic_conditions" class="form-label">Genetic Conditions:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="genetic_conditions" id="genetic_yes"
+                                value="True" {% if form.genetic_conditions.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="genetic_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="genetic_conditions" id="genetic_no"
+                                value="False" {% if form.genetic_conditions.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="genetic_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.genetic_conditions.errors %}
+                    <div class="error">
+                        {% for error in form.genetic_conditions.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_antibiotics_taken" class="form-label">Antibiotics Taken</label>
+                    {{ form.antibiotics_taken }}
+                    {% if form.antibiotics_taken.errors %}
+                    <div class="error">
+                        {% for error in form.antibiotics_taken.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_most_recent_antibiotic_treatment" class="form-label">Most Recent Antibiotic
+                        Treatment</label>
+                    {{ form.most_recent_antibiotic_treatment }}
+                    {% if form.most_recent_antibiotic_treatment.errors %}
+                    <div class="error">
+                        {% for error in form.most_recent_antibiotic_treatment.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_covid_tested_positive" class="form-label">Covid Tested Positive:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="covid_tested_positive"
+                                id="covid_tested_yes" value="True"
+                                {% if form.covid_tested_positive.value == 'True'   %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="covid_tested_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="covid_tested_positive"
+                                id="covid_tested_no" value="False"
+                                {% if form.covid_tested_positive.value == 'False'   %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="covid_tested_no">No</label>
+                        </div>
+                    </div>
+                    {% if form.covid_tested_positive.errors %}
+                    <div class="error">
+                        {% for error in form.covid_tested_positive.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Next</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

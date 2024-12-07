@@ -146,25 +146,15 @@ class SurveyResponse(models.Model):
 # ----------------------------------------------------------------------Third Section---------------------------------------------------------------------------------------------------------
 
     # Question 1: Hair loss or balding
-    hair_loss_choices = [
-        ('No', 'No'),
-        ('Yes', 'Yes')
-    ]
-    hair_loss = models.CharField(max_length=3, choices=hair_loss_choices)
-
+    
+    hair_loss = models.BooleanField(default=False)  # False for No, True for Yes
     # Question 2: Vision problems
-    vision_problems_choices = [
-        ('No', 'No'),
-        ('Yes', 'Yes')
-    ]
-    vision_problems = models.CharField(max_length=3, choices=vision_problems_choices)
+    
+    vision_problems = models.BooleanField(default=False)  # False for No, True for Yes
 
     # Question 3: Ever donated blood
-    blood_donation_choices = [
-        ('No', 'No'),
-        ('Yes', 'Yes')
-    ]
-    blood_donation = models.CharField(max_length=3, choices=blood_donation_choices)
+    
+    blood_donation = models.BooleanField(default=False)  # False for No, True for Yes
 
     # Question 4: Body fat percentage
     body_fat_choices = [
@@ -384,11 +374,8 @@ class SurveyResponse(models.Model):
     home_cooked_meals = models.CharField(max_length=8, choices=home_cooked_meals_choices)
 
     # Question 25: Regular dairy consumption
-    dairy_consumption_choices = [
-        ('Yes', 'Yes'),
-        ('No', 'No')
-    ]
-    dairy_consumption = models.CharField(max_length=3, choices=dairy_consumption_choices)
+    
+    dairy_consumption = models.BooleanField(default=False) 
 
     # Question 26: Type of diet
     diet_choices = [
@@ -420,8 +407,7 @@ class SurveyResponse(models.Model):
     meat_frequency = models.CharField(max_length=12, choices=meat_frequency_choices)
 
     # Question 29: Type of local cuisine consumed
-    local_cuisine = models.TextField()
-
+    local_cuisine = models.CharField(max_length=100)
     # Question 30: Medications or supplements taken in the last week
     medications_taken = models.BooleanField(default=False)
 

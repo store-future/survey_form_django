@@ -1,3 +1,4 @@
+
 {% comment %} <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
@@ -5,11 +6,12 @@
 </form>
 
 
- {% endcomment %}
+{% endcomment %}
 
 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +34,7 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             border: 1px solid #ddd;
             max-width: 800px;
-            margin-top:5px;
+            margin-top: 5px;
             overflow: hidden;
         }
 
@@ -60,7 +62,9 @@
             margin-bottom: 5px;
         }
 
-        .form-container input, .form-container select, .form-container textarea {
+        .form-container input,
+        .form-container select,
+        .form-container textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -99,6 +103,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <!-- Image Div -->
@@ -107,20 +112,75 @@
         <!-- Form Div -->
         <div class="form-container">
             <h2>Donor Survey Form</h2>
-            <form method="post" novalidate>
+            <form method="post" >
                 {% csrf_token %}
                 <div class="mb-2">
-                    <label for="id_hair_loss" class="form-label">Do you experience hair loss?</label>
-                    
-                    {{ form.hair_loss }}
+                    <label for="id_hair_loss" class="form-label">Hair Loss:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="hair_loss" id="hair_loss_yes"
+                                value="True" {% if form.hair_loss.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="hair_loss_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="hair_loss" id="hair_loss_no"
+                                value="False" {% if form.hair_loss.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="hair_loss_no">No</label>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="mb-2">
-                    <label for="id_vision_problems" class="form-label">Do you have any vision problems?</label>
-                    {{ form.vision_problems }}
+                    <label for="id_vision_problems" class="form-label">Vision Problems:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="vision_problems" id="vision_problems_yes"
+                                value="True" {% if form.vision_problems.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="vision_problems_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="vision_problems" id="vision_problems_no"
+                                value="False" {% if form.vision_problems.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="vision_problems_no">No</label>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="mb-2">
-                    <label for="id_blood_donation" class="form-label">Have you ever donated blood?</label>
-                    {{ form.blood_donation }}
+                    <label for="id_blood_donation" class="form-label">Blood Donation:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="blood_donation" id="blood_donation_yes"
+                                value="True" {% if form.blood_donation.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="blood_donation_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="blood_donation" id="blood_donation_no"
+                                value="False" {% if form.blood_donation.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="blood_donation_no">No</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-2">
                     <label for="id_body_fat_percentage" class="form-label">Body Fat Percentage</label>
@@ -143,11 +203,13 @@
                     {{ form.current_city }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_exercise_hours_per_day" class="form-label">How many hours do you exercise per day?</label>
+                    <label for="id_exercise_hours_per_day" class="form-label">How many hours do you exercise per
+                        day?</label>
                     {{ form.exercise_hours_per_day }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_exercise_days_per_week" class="form-label">How many days per week do you exercise?</label>
+                    <label for="id_exercise_days_per_week" class="form-label">How many days per week do you
+                        exercise?</label>
                     {{ form.exercise_days_per_week }}
                 </div>
                 <div class="mb-2">
@@ -155,7 +217,8 @@
                     {{ form.physical_activities }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_proficiency_level" class="form-label">Proficiency level in physical activities</label>
+                    <label for="id_proficiency_level" class="form-label">Proficiency level in physical
+                        activities</label>
                     {{ form.proficiency_level }}
                 </div>
                 <div class="mb-2">
@@ -190,9 +253,30 @@
                     <label for="id_digestive_issues" class="form-label">Do you have any digestive issues?</label>
                     {{ form.digestive_issues }}
                 </div>
+
                 <div class="mb-2">
-                    <label for="id_food_intolerances" class="form-label">Do you have any food intolerances?</label>
-                    {{ form.food_intolerances }}
+                    <label for="id_food_intolerances" class="form-label">Food Intolerances:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="food_intolerances"
+                                id="food_intolerances_yes" value="True"
+                                {% if form.food_intolerances.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="food_intolerances_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="food_intolerances"
+                                id="food_intolerances_no" value="False"
+                                {% if form.food_intolerances.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="food_intolerances_no">No</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-2">
                     <label for="id_meals_per_day" class="form-label">How many meals do you eat per day?</label>
@@ -207,9 +291,30 @@
                     {{ form.home_cooked_meals }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_dairy_consumption" class="form-label">Do you consume dairy products?</label>
-                    {{ form.dairy_consumption }}
+                    <label for="id_dairy_consumption" class="form-label">Dairy Consumption:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="dairy_consumption"
+                                id="dairy_consumption_yes" value="True"
+                                {% if form.dairy_consumption.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="dairy_consumption_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="dairy_consumption"
+                                id="dairy_consumption_no" value="False"
+                                {% if form.dairy_consumption.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="dairy_consumption_no">No</label>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="mb-2">
                     <label for="id_diet_type" class="form-label">What type of diet do you follow?</label>
                     {{ form.diet_type }}
@@ -227,8 +332,28 @@
                     {{ form.local_cuisine }}
                 </div>
                 <div class="mb-2">
-                    <label for="id_medications_taken" class="form-label">Are you currently taking any medications?</label>
-                    {{ form.medications_taken }}
+                    <label for="id_medications_taken" class="form-label">Medications Taken:</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="medications_taken"
+                                id="medications_taken_yes" value="True"
+                                {% if form.medications_taken.value == 'True' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="medications_taken_yes">Yes</label>
+                        </div>
+
+                        <div class="mx-3"></div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="medications_taken"
+                                id="medications_taken_no" value="False"
+                                {% if form.medications_taken.value == 'False' %}checked{% endif %}>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="medications_taken_no">No</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-2">
                     <label for="id_covid_vaccination" class="form-label">Have you been vaccinated for COVID-19?</label>
@@ -245,4 +370,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

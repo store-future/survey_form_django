@@ -65,47 +65,47 @@
             <h2 class="mb-4 text-center">Athlete Registration Form</h2>
             <form method="post" novalidate>
                 {% csrf_token %}
-                <div class="mb-2">
+                <div class="mb-1">
                     <label for="id_full_name" class="form-label">Full Name</label>
                     {{ form.full_name }}
                 </div>
-                <div class="mb-2">
+                <div class="mb-1">
                     <label for="id_gender" class="form-label">Gender</label>
                     {{ form.gender }}
                 </div>
-                <div class="mb-2">
+                <div class="mb-1">
                     <label for="id_mobile_number" class="form-label">Mobile Number</label>
                     {{ form.mobile_number }}
                 </div>
-                <div class="mb-2">
+                <div class="mb-1">
                     <label for="id_email" class="form-label">Email</label>
                     {{ form.email }}
                 </div>
-                <div class="mb-2">
+                <div class="mb-1">
                     <label for="id_date_of_birth" class="form-label">Date of Birth</label>
                     {{ form.date_of_birth }}
                 </div>
-                <div class="mb-2">
+                <div class="mb-1">
                     <label for="id_height_feet" class="form-label">Height (Feet)</label>
                     {{ form.height_feet }}
                 </div>
-                <div class="mb-2">
+                <div class="mb-1">
                     <label for="id_height_inches" class="form-label">Height (Inches)</label>
                     {{ form.height_inches }}
                 </div>
-                <div class="mb-2">
+                <div class="mb-1">
                     <label for="id_weight" class="form-label">Weight</label>
                     {{ form.weight }}
                 </div>
-                <div class="mb-2">
+                <div class="mb-1">
                     <label for="id_description" class="form-label">Description</label>
                     {{ form.description }}
                 </div>
-                <div class="mb-2">
+                <div class="mb-1">
                     <label for="id_category" class="form-label">Category</label>
                     {{ form.category }}
                 </div>
-                <div class="mb-2">
+                <div class="mb-1">
                     <label for="id_coach_name" class="form-label">Coach Name</label>
                     {{ form.coach_name }}
                 </div>
@@ -223,58 +223,148 @@
             <h2>Donor Survey Form</h2>
             <form method="post" novalidate>
                 {% csrf_token %}
-                <div class="mb-2">
+
+                <div class="mb-1">
                     <label for="id_full_name" class="form-label">What's your full name?</label>
                     {{ form.full_name }}
+                    {% if form.full_name.errors %}
+                        <div class="error">
+                            {% for error in form.full_name.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
-                <div class="mb-2">
+                
+                
+                <div class="mb-1">
                     <label for="id_gender" class="form-label">What is your gender?</label>
                     {{ form.gender }}
+                    {% if form.gender.errors %}
+                        <div class="error">
+                            {% for error in form.gender.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
-                <div class="mb-2">
-                    <label for="id_mobile_number" class="form-label">Mobile Number</label>
+
+                <div class="mb-1">
+                    <label for="id_mobile_number" class="form-label">Your Mobile No</label>
                     {{ form.mobile_number }}
+                    {% if form.mobile_number.errors %}
+                    <div class="error">
+                        {% for error in form.mobile_number.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="mb-2">
+
+                <div class="mb-1">
                     <label for="id_email" class="form-label">What's your email address?</label>
                     {{ form.email }}
+                    {% if form.email.errors %}
+                    <div class="error">
+                        {% for error in form.email.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
                 </div>
-                <div class="mb-2">
+
+                <div class="mb-1">
                     <label for="id_date_of_birth" class="form-label">Date of Birth</label>
                     {{ form.date_of_birth }}
+                    {% if form.date_of_birth.errors %}
+                    <div class="error">
+                        {% for error in form.date_of_birth.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="mb-2">
+
+                <div class="mb-1">
                     <label for="id_height_feet" class="form-label">Height (Feet)</label>
                     {{ form.height_feet }}
+                    {% if form.height_feet.errors %}
+                    <div class="error">
+                        {% for error in form.height_feet.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="mb-2">
+
+                <div class="mb-1">
                     <label for="id_height_inches" class="form-label">Height (Inches)</label>
                     {{ form.height_inches }}
+                    {% if form.height_inches.errors %}
+                    <div class="error">
+                        {% for error in form.height_inches.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="mb-2">
+
+                <div class="mb-1">
                     <label for="id_weight" class="form-label">What is your current weight? (in kg)</label>
                     {{ form.weight }}
+                    {% if form.weight.errors %}
+                    <div class="error">
+                        {% for error in form.weight.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="mb-2">
+
+                <div class="mb-1">
                     <label for="id_description" class="form-label">What best describes you?</label>
                     {{ form.description }}
+                    {% if form.description.errors %}
+                    <div class="error">
+                        {% for error in form.description.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="mb-2">
+
+                <div class="mb-1">
                     <label for="id_category" class="form-label">Select your Category</label>
                     {{ form.category }}
+                    {% if form.category.errors %}
+                    <div class="error">
+                        {% for error in form.category.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="mb-2">
+
+                <div class="mb-1">
                     <label for="id_coach_name" class="form-label">Name of your Coach/Trainer</label>
                     {{ form.coach_name }}
+                    {% if form.coach_name.errors %}
+                    <div class="error">
+                        {% for error in form.coach_name.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
     <!-- Custom Gender Input (Displayed if 'Other' is selected) -->
-    <!-- <div class="mb-2" id="gender_other_input" style="display: none;">
+    <!-- <div class="mb-1" id="gender_other_input" style="display: none;">
         <label for="id_other_gender" class="form-label">Specify Gender</label>
         {{ form.other_gender }}
     </div>
 
     <!-- Custom Category Input (Displayed if 'Other' is selected) -->
-    <div class="mb-2" id="category_other_input" style="display: none;">
+    <div class="mb-1" id="category_other_input" style="display: none;">
         <label for="id_other_category" class="form-label">Specify Category</label>
         {{ form.other_category }}
     </div> 
