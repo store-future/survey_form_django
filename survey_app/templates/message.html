@@ -13,11 +13,11 @@
         <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%;">
             <h1 class="text-center mb-4 text-primary">{{ message }}</h1>
             <div class="text-center">
-                {% if message == "Congratulations! You are two steps away." %}
+                {% if message == "Great! You are two steps away." %}
                     <a href="{% url 'page2' %}" class="btn btn-primary btn-lg">
                         Go to Step 2
                     </a>
-                {% elif message == "Congratulations! You are one step away." %}
+                {% elif message == "Great! You are one step away." %}
                     <a href="{% url 'page3' %}" class="btn btn-success btn-lg">
                         Go to Step 3
                     </a>

@@ -68,11 +68,19 @@ def page1(request):
         form = Page1Form(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            data['date_of_birth'] = data['date_of_birth'].strftime('%Y-%m-%d')  # Serialize date
-            request.session['page1'] = form.cleaned_data
+            
+            # if data['category'] == 'Other Sports' and data['other_category']:
+            #     data['category'] = data['other_category']
+            
+            # if data['description'] == 'Other' and data['other_description']:
+            #     data['description'] = data['other_description']
 
+
+            data['date_of_birth'] = data['date_of_birth'].strftime('%Y-%m-%d')  # Serialize date
+            
+            request.session['page1'] = form.cleaned_data
             print(f"sending to second page this data{data}")
-            return render(request, "message.html", {"message": "Congratulations! You are two steps away."})
+            return render(request, "message.html", {"message": "Great! You are two steps away."})
         else:
             # If form is invalid, re-render the form with error messages
             return render(request, 'page1.html', {'form': form})
@@ -89,10 +97,15 @@ def page2(request):
     if request.method == "POST":
         form = Page2Form(request.POST)
         if form.is_valid():
-            request.session['page2'] = form.cleaned_data
+            data = form.cleaned_data
+
+            # if data['multi_drug_resistant_organisms'] == 'Other' and data['multi_drug_resistant_organisms']:
+            #     data['multi_drug_resistant_organisms'] = data['other_multi_drug_resistant_organisms']
             
+            request.session['page2'] = form.cleaned_data
+
             print(f"sending to third page this data{request.session['page2']}")
-            return render(request, "message.html", {"message": "Congratulations! You are one step away."})
+            return render(request, "message.html", {"message": "Great! You are one step away."})
         else:
             # If form is invalid, re-render the form with error messages
             return render(request, 'page2.html', {'form': form})
@@ -101,25 +114,30 @@ def page2(request):
     return render(request, "page2.html", {"form": form})
 
 def page3(request):
-    if 'page1' not in request.session or 'page2' not in request.session:
-        return redirect('page1')  # Redirect to page 1 if session data doesn't exist
+    # if 'page1' not in request.session or 'page2' not in request.session:
+    #     return redirect('page1')  # Redirect to page 1 if session data doesn't exist
 
     if request.method == "POST":
         form = Page3Form(request.POST)
         if form.is_valid():
             request.session['page3'] = form.cleaned_data
+            # print(f"last view before submitting\n:{request.session['page3']}")
+
+
 
             # Combine data from all pages and save it to the database
             data = {**request.session['page1'], 
                     **request.session['page2'], 
                     **request.session['page3']
                 }
+            print(f"last view before submitting\n:{data}")
+
             SurveyResponse.objects.create(**data)
 
              # Clear session after submission
             request.session.flush()     # clearing session
 
-            return render(request, "message.html", {"message": "Survey completed. Thank you!"})
+            return render(request, "message.html", {"message": "Congratultions!. You have become a potential Super Donor.Thank you!"})
         else:
             # If form is invalid, re-render the form with error messages
             return render(request, 'page3.html', {'form': form})
