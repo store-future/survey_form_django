@@ -37,35 +37,18 @@ class SurveyResponse(models.Model):
         ('Other Sports', 'Other Sports'),
 
     ]
-    
-    DESCRIPTION_CHOICES = [
-        ('sportsperson', 'Sportsperson/Athlete'),
-        ('army_aspirant', 'Army Aspirant'),
-        ('nutritionist', 'Nutritionist'),
-        ('trainer', 'Trainer'),
-        ('coach', 'Coach'),
-        ('Other', 'Other'),
-    ]
 
-   
     full_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
     mobile_number = models.CharField(max_length=10)
     email = models.EmailField()
     date_of_birth = models.DateField()
     height_feet = models.CharField(max_length=10)
-    # height_inches = models.CharField(max_length=10)
+    height_inches = models.CharField(max_length=10)
     weight = models.CharField(max_length=10)
-    description = models.CharField(max_length=100 , choices=DESCRIPTION_CHOICES)
-    # Other description
-    other_description = models.CharField(max_length=100, blank=True, null=True)
-
+    description = models.CharField(max_length=100)
     category = models.CharField(max_length=30, choices=CATEGORY_CHOICES)
-    # other category
-    other_category = models.CharField(max_length=100, blank=True, null=True)
-
     coach_name = models.CharField(max_length=100)
-
 
 # --------------------------------------------Second Section----------------------------------------------------------------------------------------------------------
 
@@ -83,6 +66,7 @@ class SurveyResponse(models.Model):
 
     # Question 2: Autoimmune conditions
     autoimmune_choices = [
+        ('None', 'None'),
         ('Crohn\'s disease', 'Crohn\'s disease'),
         ('Ulcerative Colitis', 'Ulcerative Colitis'),
         ('Rheumatoid arthritis', 'Rheumatoid arthritis'),
@@ -142,10 +126,6 @@ class SurveyResponse(models.Model):
     ]
     multi_drug_resistant_organisms = models.CharField(max_length=5, choices=multi_drug_resistant_organisms_choices)
 
-    # Other fields (Add these fields if necessary)
-    other_multi_drug_resistant_organisms = models.CharField(max_length=100, blank=True, null=True)
-    
-    
     # Question 16: Medications for heart, blood pressure, or diabetes
     heart_blood_pressure_diabetes_medication_choices = [
         ('None', 'None'),
@@ -192,7 +172,7 @@ class SurveyResponse(models.Model):
     blood_donation = models.BooleanField(default=False)  # False for No, True for Yes
 
     # Question 4: Body fat percentage
-    BODY_FAT_PERCENTAGE = [
+    body_fat_choices = [
         ('10-12%', '10-12%'),
         ('15-17%', '15-17%'),
         ('20-22%', '20-22%'),
@@ -212,18 +192,18 @@ class SurveyResponse(models.Model):
         ('35%', '35%'),
         ('40%', '40%')
     ]
-    body_fat_percentage = models.CharField(max_length=15, choices=BODY_FAT_PERCENTAGE)
+    body_fat_percentage = models.CharField(max_length=15, choices=body_fat_choices)
 
     # Question 5: Birth type
-    BIRTH_TYPE = [
+    birth_choices = [
         ('Normal', 'Normal'),
         ('C-Section', 'C-Section'),
         ('Don\'t know', 'Don\'t know')
     ]
-    birth_type = models.CharField(max_length=10, choices=BIRTH_TYPE)
+    birth_type = models.CharField(max_length=10, choices=birth_choices)
 
     # Question 6: Birth state
-    BIRTH_STATE = [
+    birth_state_choices = [
         ('Andhra Pradesh', 'Andhra Pradesh'),
         ('Arunachal Pradesh', 'Arunachal Pradesh'),
         ('Assam', 'Assam'),
@@ -253,7 +233,7 @@ class SurveyResponse(models.Model):
         ('Uttarakhand', 'Uttarakhand'),
         ('West Bengal', 'West Bengal')
     ]
-    birth_state = models.CharField(max_length=30, choices=BIRTH_STATE)
+    birth_state = models.CharField(max_length=30, choices=birth_state_choices)
 
     # Question 7: Pin code of current location
     pin_code = models.CharField(max_length=6)
@@ -262,25 +242,25 @@ class SurveyResponse(models.Model):
     current_city = models.CharField(max_length=100)
 
     # Question 9: Hours of exercise per day
-    EXERCISE_HOURS_PER_DAY = [
+    exercise_hours_choices = [
         ('0-1', '0-1'),
         ('1-2', '1-2'),
         ('2-3', '2-3'),
         ('3+', '3+')
     ]
-    exercise_hours_per_day = models.CharField(max_length=3, choices=EXERCISE_HOURS_PER_DAY)
+    exercise_hours_per_day = models.CharField(max_length=3, choices=exercise_hours_choices)
 
     # Question 10: Days of exercise per week
-    EXERCISE_DAYS_PER_WEEK = [
+    exercise_days_choices = [
         ('0-1', '0-1'),
         ('2-3', '2-3'),
         ('4-5', '4-5'),
         ('6-7', '6-7')
     ]
-    exercise_days_per_week = models.CharField(max_length=3, choices=EXERCISE_DAYS_PER_WEEK)
+    exercise_days_per_week = models.CharField(max_length=3, choices=exercise_days_choices)
 
     # Question 11: Types of physical activities
-    PHYSICAL_ACTIVITIES = [
+    physical_activities_choices = [
         ('Gym', 'Gym'),
         ('Running', 'Running'),
         ('Yoga', 'Yoga'),
@@ -291,26 +271,26 @@ class SurveyResponse(models.Model):
         ('Badminton', 'Badminton'),
         ('Others', 'Others')
     ]
-    physical_activities = models.CharField(max_length=50, choices=PHYSICAL_ACTIVITIES)
+    physical_activities = models.CharField(max_length=50, choices=physical_activities_choices)
 
     # Question 12: Sports or exercise proficiency
-    PROFICIENCY_LEVEL = [
+    proficiency_choices = [
         ('Beginner', 'Beginner'),
         ('Intermediate', 'Intermediate'),
         ('Advanced', 'Advanced')
     ]
-    proficiency_level = models.CharField(max_length=15, choices=PROFICIENCY_LEVEL)
+    proficiency_level = models.CharField(max_length=15, choices=proficiency_choices)
 
     # Question 13: Upbringing (Rural, Urban, Suburban)
-    UPBRINGING = [
+    upbringing_choices = [
         ('Rural', 'Rural'),
         ('Urban', 'Urban'),
         ('Suburban', 'Suburban')
     ]
-    upbringing = models.CharField(max_length=10, choices=UPBRINGING)
+    upbringing = models.CharField(max_length=10, choices=upbringing_choices)
 
     # Question 14: Blood group
-    BLOOD_GROUP = [
+    blood_group_choices = [
         ('A+', 'A+'),
         ('A-', 'A-'),
         ('B+', 'B+'),
@@ -321,64 +301,64 @@ class SurveyResponse(models.Model):
         ('O-', 'O-'),
         ('Don\'t know', 'Don\'t know')
     ]
-    blood_group = models.CharField(max_length=15, choices=BLOOD_GROUP)
+    blood_group = models.CharField(max_length=15, choices=blood_group_choices)
 
     # Question 15: Do you smoke
-    SMOKING = [
+    smoking_choices = [
         ('No', 'No'),
         ('Occasionally', 'Occasionally'),
         ('Regularly', 'Regularly'),
         ('Former Smoker', 'Former Smoker')
     ]
-    smoking = models.CharField(max_length=20, choices=SMOKING)
+    smoking = models.CharField(max_length=20, choices=smoking_choices)
 
     # Question 16: Alcohol consumption
-    ALCOHOL_CONSUMPTION = [
+    alcohol_choices = [
         ('No', 'No'),
         ('Occasionally', 'Occasionally'),
         ('Regularly', 'Regularly')
     ]
-    alcohol_consumption = models.CharField(max_length=12, choices=ALCOHOL_CONSUMPTION)
+    alcohol_consumption = models.CharField(max_length=12, choices=alcohol_choices)
 
     # Question 17: Breastfeeding history
-    BREASTFEEDING = [
+    breastfeeding_choices = [
         ('Not breastfed', 'Not breastfed'),
         ('0-3 months', '0-3 months'),
         ('3-6 months', '3-6 months'),
         ('6+ months', '6+ months'),
         ('Don\'t know', 'Don\'t know')
     ]
-    breastfeeding = models.CharField(max_length=20, choices=BREASTFEEDING)
+    breastfeeding = models.CharField(max_length=20, choices=breastfeeding_choices)
 
     # Question 18: Bowel movements
-    BOWEL_MOVEMENTS = [
+    bowel_movements_choices = [
         ('Regular', 'Regular'),
         ('Irregular', 'Irregular'),
         ('Varies', 'Varies')
     ]
-    bowel_movements = models.CharField(max_length=15, choices=BOWEL_MOVEMENTS)
+    bowel_movements = models.CharField(max_length=15, choices=bowel_movements_choices)
 
     # Question 19: Frequency of bloating or acidity
-    BLOATING_ACIDITY = [
+    bloating_acidity_choices = [
         ('Rarely', 'Rarely'),
         ('Sometimes', 'Sometimes'),
         ('Often', 'Often')
     ]
-    bloating_acidity = models.CharField(max_length=10, choices=BLOATING_ACIDITY)
+    bloating_acidity = models.CharField(max_length=10, choices=bloating_acidity_choices)
 
     # Question 20: Constipation or diarrhea history
-    DIGESTIVE_ISSUES = [
+    digestive_issues_choices = [
         ('Constipation', 'Constipation'),
         ('Diarrhea', 'Diarrhea'),
         ('Neither', 'Neither')
     ]
-    digestive_issues = models.CharField(max_length=12, choices=DIGESTIVE_ISSUES)
+    digestive_issues = models.CharField(max_length=12, choices=digestive_issues_choices)
 
     # Question 21: Food intolerances
     food_intolerances = models.BooleanField(default=False)  # Yes=True, No=False
 
     # Question 22: Meals per day
-    MEALS_PER_DAY = [
+    meals_per_day_choices = [
         ('1', '1'),
         ('2', '2'),
         ('3', '3'),
@@ -386,10 +366,10 @@ class SurveyResponse(models.Model):
         ('5', '5'),
         ('6+', '6+')
     ]
-    meals_per_day = models.CharField(max_length=3, choices=MEALS_PER_DAY)
+    meals_per_day = models.CharField(max_length=3, choices=meals_per_day_choices)
 
     # Question 23: Snacks per day
-    SNAKS_PER_DAY = [
+    snacks_per_day_choices = [
         ('1', '1'),
         ('2', '2'),
         ('3', '3'),
@@ -397,31 +377,31 @@ class SurveyResponse(models.Model):
         ('5', '5'),
         ('6+', '6+')
     ]
-    snacks_per_day = models.CharField(max_length=3, choices=SNAKS_PER_DAY)
+    snacks_per_day = models.CharField(max_length=3, choices=snacks_per_day_choices)
 
     # Question 24: Home-cooked meals
-    HOME_COOCKED_MEALS = [
+    home_cooked_meals_choices = [
         ('None', 'None'),
         ('1', '1'),
         ('2', '2'),
         ('3+', '3+')
     ]
-    home_cooked_meals = models.CharField(max_length=8, choices=HOME_COOCKED_MEALS)
+    home_cooked_meals = models.CharField(max_length=8, choices=home_cooked_meals_choices)
 
     # Question 25: Regular dairy consumption
     
     dairy_consumption = models.BooleanField(default=False) 
 
     # Question 26: Type of diet
-    DIET_TYPE = [
+    diet_choices = [
         ('Vegetarian', 'Vegetarian'),
         ('Non-vegetarian', 'Non-vegetarian'),
         ('Eggetarian', 'Eggetarian')
     ]
-    diet_type = models.CharField(max_length=20, choices=DIET_TYPE)
+    diet_type = models.CharField(max_length=20, choices=diet_choices)
 
     # Question 27: Types of meat consumed
-    MEAT_TYPE = [
+    meat_choices = [
         ('Chicken', 'Chicken'),
         ('Fish', 'Fish'),
         ('Beef', 'Beef'),
@@ -429,18 +409,22 @@ class SurveyResponse(models.Model):
         ('Lamb', 'Lamb'),
         ('Other', 'Other')
     ]
+<<<<<<< HEAD
     meat_type = models.CharField(max_length=100, choices=MEAT_TYPE , null =True , blank = True )
     # meat_type = models.ManyToManyField(MeatType, null=True, blank=True)
+=======
+    meat_type = models.CharField(max_length=10, choices=meat_choices)
+>>>>>>> parent of 629f059 (add validations)
 
     # Question 28: Frequency of meat consumption
-    MEAT_FREQUENCY = [
+    meat_frequency_choices = [
         ('None', 'None'),
         ('1-2 times', '1-2 times'),
         ('3-4 times', '3-4 times'),
         ('5-6 times', '5-6 times'),
         ('Daily', 'Daily')
     ]
-    meat_frequency = models.CharField(max_length=12, choices=MEAT_FREQUENCY , null =True , blank = True)
+    meat_frequency = models.CharField(max_length=12, choices=meat_frequency_choices)
 
     # Question 29: Type of local cuisine consumed
     local_cuisine = models.CharField(max_length=100)
@@ -448,21 +432,21 @@ class SurveyResponse(models.Model):
     medications_taken = models.BooleanField(default=False)
 
     # Question 31: COVID-19 vaccination status
-    COVID_VACCINNATION = [
+    covid_vaccinated_choices = [
         ('Yes', 'Yes'),
         ('No', 'No')
     ]
-    covid_vaccination = models.CharField(max_length=3, choices=COVID_VACCINNATION)
+    covid_vaccination = models.CharField(max_length=3, choices=covid_vaccinated_choices)
 
     # Question 32: Which COVID-19 vaccine(s) received
-    COVID_VACCINE = [
+    covid_vaccine_choices = [
         ('Covaxin', 'Covaxin'),
         ('Covishield', 'Covishield'),
         ('Pfizer', 'Pfizer'),
         ('Moderna', 'Moderna'),
         ('Other', 'Other')
     ]
-    covid_vaccine = models.CharField(max_length=10, choices=COVID_VACCINE , null = True , blank=True)
+    covid_vaccine = models.CharField(max_length=10, choices=covid_vaccine_choices)
 
 
 

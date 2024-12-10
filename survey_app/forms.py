@@ -2,13 +2,10 @@ from django import forms
 from .models import SurveyResponse 
 
 class Page1Form(forms.ModelForm):
-    other_category = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Specify sports Category'}))
-    other_description = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Specify your description '}))
-
     class Meta:
         model = SurveyResponse
         fields = ['full_name', 'gender', 'mobile_number', 'email', 'date_of_birth', 
-                  'height_feet', 'weight', 'description', 'category', 'coach_name','other_category','other_description']
+                  'height_feet', 'height_inches', 'weight', 'description', 'category', 'coach_name']
         widgets = {
             'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
             
@@ -17,44 +14,17 @@ class Page1Form(forms.ModelForm):
     full_name = forms.CharField(required=True, error_messages={'required': '* Full Name field cannot be empty.'})
     gender = forms.ChoiceField(choices=[('', 'Select Gender')] + SurveyResponse.GENDER_CHOICES, required=True, error_messages={'required': '* This field cannot be empty.'})
     mobile_number = forms.CharField(required=True, error_messages={'required': '* Mobile number is required.'})
-    email = forms.EmailField(required=True, error_messages={'required': '* Email address is required.', 'invalid': '* Enter a valid email address.'})
+    email = forms.EmailField(required=True, error_messages={'required': 'Email address is required.', 'invalid': '* Enter a valid email address.'})
     date_of_birth = forms.DateField(required=True, widget=forms.DateInput(attrs={'type': 'date'}), error_messages={'required': '* Date of birth is required.'})
     height_feet = forms.CharField(required=True, error_messages={'required': '* Height in feet is required.'})
+    height_inches = forms.CharField(required=True, error_messages={'required': '* Height in inches is required.'})
     weight = forms.CharField(required=True, error_messages={'required': '* Weight is required.'})
-    description = forms.ChoiceField(required=True, choices=[('', 'Select description')] + SurveyResponse.DESCRIPTION_CHOICES, error_messages={'required': '* Description is required.'})
+    description = forms.CharField(required=True,  error_messages={'required': '* Description is required.'})
     category = forms.ChoiceField(required=True, choices=[('', 'Select Category')] + SurveyResponse.CATEGORY_CHOICES, error_messages={'required': '* Category is required.'})
     coach_name = forms.CharField(required=True, error_messages={'required': '* Coach name is required.'})
 
-
-    def clean_mobile_number(self):
-        mobile = self.cleaned_data.get('mobile_number')
-        if not mobile.isdigit():  # Check if mobile number contains only digits
-            raise forms.ValidationError('* Mobile number must contain only digits.')
-        if len(mobile) != 10:  # Check if mobile number is exactly 10 digits
-            raise forms.ValidationError('* Mobile number must be exactly 10 digits long.')
-        return mobile
-    
-    def clean_weight(self):
-        weight_data = self.cleaned_data.get('weight')
-
-        # Check if the weight is a valid number
-        try:
-            weight_value = int(weight_data)
-        except ValueError:
-            raise forms.ValidationError('* Please enter a valid number for weight.')
-
-        # Check if the weight is less than 100
-        if weight_value > 100:
-            raise forms.ValidationError('* Weight must be less than 100.')
-        
-        return str(weight_value)    
-    
 class Page2Form(forms.ModelForm):
-
-    other_multi_drug_resistant_organisms = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Specify Your multi drug resistant organisms'}))
-
     class Meta:
-        
         model = SurveyResponse
         fields = [
             'infections_diagnosed', 'autoimmune_condition', 'reproductive_urinary_conditions',
@@ -62,8 +32,7 @@ class Page2Form(forms.ModelForm):
             'allergies_asthma', 'skin_conditions', 'acne_history', 'mental_health_conditions', 
             'blood_transfusion', 'high_risk_yellow_fever', 'hospitalization_surgery', 'contagious_diseases',
             'multi_drug_resistant_organisms', 'heart_blood_pressure_diabetes_medication', 'mold_exposure',
-            'genetic_conditions', 'antibiotics_taken', 'most_recent_antibiotic_treatment', 'covid_tested_positive',
-            'other_multi_drug_resistant_organisms'
+            'genetic_conditions', 'antibiotics_taken', 'most_recent_antibiotic_treatment', 'covid_tested_positive'
         ]
         widgets = {
             'reproductive_urinary_conditions': forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')]),
@@ -82,8 +51,29 @@ class Page2Form(forms.ModelForm):
             'genetic_conditions': forms.RadioSelect( choices=[(True, 'Yes'), (False, 'No')]),
             'covid_tested_positive': forms.RadioSelect( choices=[(True, 'Yes'), (False, 'No')]),
         }
-   
-    infections_diagnosed = forms.ChoiceField(choices=[('', 'Select Infection Diagnosed')] + SurveyResponse.infections_choices, required=True, error_messages={'required': '* This field is required.'})
+    # infections_diagnosed = forms.ChoiceField(choices=[('', 'Select Infection Diagnosed')] + SurveyResponse.infections_choices, required=True, error_messages={'required': '* This field is required.'})
+    # autoimmune_condition = forms.ChoiceField(choices=[('', 'Select Autoimmune Condition')] + SurveyResponse.autoimmune_choices, required=True, error_messages={'required': '* This field is required.'})
+    # reproductive_urinary_conditions = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+    # cardiovascular_conditions = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+    # nervous_bone_muscle_conditions = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+    # sleep_disorder_medications = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+    # allergies_asthma = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+    # skin_conditions = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+    # acne_history = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+    # mental_health_conditions = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+    # blood_transfusion = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+    # high_risk_yellow_fever = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+    # hospitalization_surgery = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+    # contagious_diseases = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+    # multi_drug_resistant_organisms = forms.ChoiceField(choices=[('', 'Select Resistant Organisms ')] + SurveyResponse.multi_drug_resistant_organisms_choices, required=True, error_messages={'required': 'This field is required.'})
+    # heart_blood_pressure_diabetes_medication = forms.ChoiceField(choices=[('', 'Select Medications Taken')] + SurveyResponse.heart_blood_pressure_diabetes_medication_choices, required=True, error_messages={'required': 'This field is required.'})
+    # mold_exposure = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+    # genetic_conditions = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+    # antibiotics_taken = forms.ChoiceField(choices=[('', 'Select Options')] + SurveyResponse.antibiotics_taken_choices, required=True, error_messages={'required': '* This field is required.'})
+    # most_recent_antibiotic_treatment = forms.CharField(max_length=30, required=True, error_messages={'required': '* This field is required.'})
+    # covid_tested_positive = forms.BooleanField(required=True, error_messages={'required': '* This field is required.'})
+
+
     autoimmune_condition = forms.ChoiceField(choices=[('', 'Select Autoimmune Condition')] + SurveyResponse.autoimmune_choices, required=True, error_messages={'required': '* This field is required.'})
     reproductive_urinary_conditions = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
     cardiovascular_conditions = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
@@ -101,10 +91,10 @@ class Page2Form(forms.ModelForm):
     heart_blood_pressure_diabetes_medication = forms.ChoiceField(choices=[('', 'Select Medications Taken')] + SurveyResponse.heart_blood_pressure_diabetes_medication_choices, required=True, error_messages={'required': 'This field is required.'})
     mold_exposure = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
     genetic_conditions = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
-    antibiotics_taken = forms.ChoiceField(choices=[('', 'Select Options')] + SurveyResponse.antibiotics_taken_choices)
+    antibiotics_taken = forms.ChoiceField(choices=[('', 'Select Options')] + SurveyResponse.antibiotics_taken_choices, required=True, error_messages={'required': '* This field is required.'})
     covid_tested_positive = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
-    
-    # most_recent_antibiotic_treatment = forms.DateField(required=False,widget=forms.DateInput(attrs={'type': 'month'}, format='%Y-%m'),)
+
+
 
 
 
@@ -112,7 +102,11 @@ class Page2Form(forms.ModelForm):
 
 
 class Page3Form(forms.ModelForm):
-
+    # hair_loss = forms.ChoiceField(
+    #     choices=[('yes', 'Yes'), ('no', 'No')],
+    #     widget=forms.RadioSelect,
+    #     initial='no'
+    # )
     class Meta:
         model = SurveyResponse
         fields = [
@@ -131,6 +125,7 @@ class Page3Form(forms.ModelForm):
             'dairy_consumption' : forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')]),
             'medications_taken' : forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')])
         }       
+<<<<<<< HEAD
 
     # body_fat_percentage = forms.ChoiceField(required=True, choices=[('', 'Select body fat percentage')] + SurveyResponse.BODY_FAT_PERCENTAGE, error_messages={'required': '* Body fat percentage is required.'})
     # birth_type = forms.ChoiceField(required=True, choices=[('', 'Select birth type')] + SurveyResponse.BIRTH_TYPE, error_messages={'required': '* Birth type is required.'})
@@ -164,3 +159,7 @@ class Page3Form(forms.ModelForm):
     # covid_vaccination = forms.ChoiceField(required=True, choices=[('', 'Select COVID-19 vaccination status')] + SurveyResponse.COVID_VACCINNATION, error_messages={'required': '* COVID-19 vaccination status is required.'})
     # covid_vaccine = forms.ChoiceField(required=False, choices=[('', 'Select COVID-19 vaccine received')] + SurveyResponse.COVID_VACCINE, error_messages={'required': '* COVID-19 vaccine is required.'})
     
+=======
+        
+ 
+>>>>>>> parent of 629f059 (add validations)
