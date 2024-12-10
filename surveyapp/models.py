@@ -158,7 +158,7 @@ class SurveyResponse(models.Model):
     antibiotics_taken = models.CharField(max_length=3, choices=antibiotics_taken_choices)
 
     # Question 20: Most recent antibiotic treatment
-    most_recent_antibiotic_treatment = models.CharField(max_length=30)
+    most_recent_antibiotic_treatment = models.CharField(max_length=30,null=True, blank=True)
 
     # Question 21: COVID-19 positive in the past month
     covid_tested_positive = models.BooleanField(default=False)  # Yes=True, No=False
@@ -277,7 +277,8 @@ class SurveyResponse(models.Model):
         ('Others', 'Others')
     ]
     physical_activities = models.CharField(max_length=50, choices=PHYSICAL_ACTIVITIES)
-
+    other_physical_activities = models.CharField(max_length=70 , null=True , blank=True)
+   
     # Question 12: Sports or exercise proficiency
     PROFICIENCY_LEVEL = [
         ('Beginner', 'Beginner'),
@@ -412,9 +413,9 @@ class SurveyResponse(models.Model):
         ('Beef', 'Beef'),
         ('Pork', 'Pork'),
         ('Lamb', 'Lamb'),
-        ('Other', 'Other')
+        # ('Other', 'Other')
     ]
-    meat_type = models.CharField(max_length=10, choices=MEAT_TYPE , null =True , blank = True )
+    meat_type = models.CharField(max_length=255,null =True , blank = True )
 
     # Question 28: Frequency of meat consumption
     MEAT_FREQUENCY = [

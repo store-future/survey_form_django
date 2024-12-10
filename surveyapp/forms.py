@@ -3,8 +3,6 @@ from .models import SurveyResponse
 
 
 class Page1Form(forms.ModelForm):
-    other_category = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Specify sports Category'}))
-    other_description = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Specify your description '}))
 
     class Meta:
         model = SurveyResponse
@@ -20,11 +18,14 @@ class Page1Form(forms.ModelForm):
     mobile_number = forms.CharField(required=True, error_messages={'required': '* Mobile number is required.'})
     email = forms.EmailField(required=True, error_messages={'required': '* Email address is required.', 'invalid': '* Enter a valid email address.'})
     date_of_birth = forms.DateField(required=True, widget=forms.DateInput(attrs={'type': 'date'}), error_messages={'required': '* Date of birth is required.'})
-    height_feet = forms.CharField(required=True, error_messages={'required': '* Height in feet is required.'})
+    height_feet = forms.CharField(required=True,  widget=forms.TextInput(attrs={'placeholder': 'Ex- 5.11   Feet: 0-7, Inches: 0-11 '}), error_messages={'required': '* Height in feet is required.'})
     weight = forms.CharField(required=True, error_messages={'required': '* Weight is required.'})
     description = forms.ChoiceField(required=True, choices=[('', 'Select description')] + SurveyResponse.DESCRIPTION_CHOICES, error_messages={'required': '* Description is required.'})
+    other_description = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Specify your Describes '}))
     category = forms.ChoiceField(required=True, choices=[('', 'Select Category')] + SurveyResponse.CATEGORY_CHOICES, error_messages={'required': '* Category is required.'})
+    other_category = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Specify sports Category'}))
     coach_name = forms.CharField(required=True, error_messages={'required': '* Coach name is required.'})
+
 
 
     def clean_mobile_number(self):
@@ -52,7 +53,6 @@ class Page1Form(forms.ModelForm):
     
 class Page2Form(forms.ModelForm):
 
-    other_multi_drug_resistant_organisms = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Specify Your multi drug resistant organisms'}))
 
     class Meta:
         
@@ -99,15 +99,29 @@ class Page2Form(forms.ModelForm):
     hospitalization_surgery = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
     contagious_diseases = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
     multi_drug_resistant_organisms = forms.ChoiceField(choices=[('', 'Select Resistant Organisms ')] + SurveyResponse.multi_drug_resistant_organisms_choices, required=True, error_messages={'required': 'This field is required.'})
+    other_multi_drug_resistant_organisms = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Specify Your multi drug resistant organisms'}))
+
     heart_blood_pressure_diabetes_medication = forms.ChoiceField(choices=[('', 'Select Medications Taken')] + SurveyResponse.heart_blood_pressure_diabetes_medication_choices, required=True, error_messages={'required': 'This field is required.'})
     mold_exposure = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
     genetic_conditions = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
     antibiotics_taken = forms.ChoiceField(choices=[('', 'Select Options')] + SurveyResponse.antibiotics_taken_choices)
     covid_tested_positive = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
     
-    # most_recent_antibiotic_treatment = forms.DateField(required=False,widget=forms.DateInput(attrs={'type': 'month'}, format='%Y-%m'),)
+    most_recent_antibiotic_treatment = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'month' , }),
+        input_formats=['%Y-%m'],  # Ensure the date is entered as YYYY-MM
+        error_messages={'invalid': 'Enter a valid month and year.'}
+    )
+    def clean_most_recent_antibiotic_treatment(self):
+        # Get the cleaned data
+        date = self.cleaned_data['most_recent_antibiotic_treatment']
+        month_year = f"{date.year}-{date.month:02d}"
 
-
+        # Optionally, print or log the extracted month and year
+        # print("Formatted Month/Year:", month_year)
+        
+        # Force the day to be the 1st of the month
+        return month_year
 
 
 
@@ -119,7 +133,7 @@ class Page3Form(forms.ModelForm):
         fields = [
             'hair_loss', 'vision_problems', 'blood_donation', 'body_fat_percentage', 'birth_type', 'birth_state',
             'pin_code', 'current_city', 'exercise_hours_per_day', 'exercise_days_per_week', 'physical_activities',
-            'proficiency_level', 'upbringing', 'blood_group', 'smoking', 'alcohol_consumption', 'breastfeeding',
+            'other_physical_activities','proficiency_level', 'upbringing', 'blood_group', 'smoking', 'alcohol_consumption', 'breastfeeding',
             'bowel_movements', 'bloating_acidity', 'digestive_issues', 'food_intolerances', 'meals_per_day',
             'snacks_per_day', 'home_cooked_meals', 'dairy_consumption', 'diet_type', 'meat_type', 'meat_frequency',
             'local_cuisine', 'medications_taken', 'covid_vaccination', 'covid_vaccine'
@@ -162,7 +176,19 @@ class Page3Form(forms.ModelForm):
     snacks_per_day = forms.ChoiceField(required=True, choices=[('', 'Select snacks per day')] + SurveyResponse.SNAKS_PER_DAY, error_messages={'required': '* Snacks per day are required.'})
     home_cooked_meals = forms.ChoiceField(required=True, choices=[('', 'Select home-cooked meals frequency')] + SurveyResponse.HOME_COOCKED_MEALS, error_messages={'required': '* Home-cooked meals frequency is required.'})
     diet_type = forms.ChoiceField(required=True, choices=[('', 'Select diet type')] + SurveyResponse.DIET_TYPE, error_messages={'required': '* Diet type is required.'})
-    meat_type = forms.ChoiceField( required=False, choices=[('', 'Select meat type')] + SurveyResponse.MEAT_TYPE, error_messages={'required': '* Meat type is required.'})
+    meat_type = forms.MultipleChoiceField(
+        required=False,
+        choices=SurveyResponse.MEAT_TYPE,
+        widget=forms.CheckboxSelectMultiple,
+        error_messages={'required': '* Please select at least one meat type.'}
+    )
+    
+    def clean_meat_type(self):
+        """Convert the list of selected values into a comma-separated string."""
+        selected = self.cleaned_data.get('meat_type', [])
+        return ",".join(selected)  # Serialize to a string
+
+    
     meat_frequency = forms.ChoiceField( required=False, choices=[('', 'Select meat consumption frequency')] + SurveyResponse.MEAT_FREQUENCY, error_messages={'required': '* Meat consumption frequency is required.'})
     covid_vaccination = forms.ChoiceField(required=True, choices=[('', 'Select COVID-19 vaccination status')] + SurveyResponse.COVID_VACCINNATION, error_messages={'required': '* COVID-19 vaccination status is required.'})
     covid_vaccine = forms.ChoiceField(required=False, choices=[('', 'Select COVID-19 vaccine received')] + SurveyResponse.COVID_VACCINE, error_messages={'required': '* COVID-19 vaccine is required.'})

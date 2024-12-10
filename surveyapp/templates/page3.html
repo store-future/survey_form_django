@@ -226,10 +226,21 @@
                     <label for="id_exercise_days_per_week" class="form-label">10. How many days in a week do you usually exercise?</label>
                     {{ form.exercise_days_per_week }}
                 </div>
+
                 <div class="mb-2">
                     <label for="id_physical_activities" class="form-label">11. What kind of physical activities do you participate in?</label>
                     {{ form.physical_activities }}
                 </div>
+                
+            <!-- -----------------------Displaying only if COVID-19 Vaccination is yes---------------------------- -->
+
+                <div class="mb-2" id="other-physical-activities" style="display:none;">
+                    <label for="id_other_physical_activities" class="form-label">11.a. Specify your other physical activities?</label>
+                    {{ form.other_physical_activities }}
+                </div>
+    
+
+                
                 <div class="mb-2">
                     <label for="id_proficiency_level" class="form-label">12. How would you rate your sports or exercise proficiency?</label>
                     {{ form.proficiency_level }}
@@ -338,7 +349,16 @@
                 <div id="meat-related-fields" style="display: none;">
                     <div class="mb-2">
                         <label for="id_meat_type" class="form-label">26.a. What type of meat do you consume?</label>
-                        {{ form.meat_type }}
+                        {% for checkbox in form.meat_type %}
+                        <div class="d-flex  ">
+                            <div class="form-check">
+                                {{ checkbox.tag }} <!-- Render the checkbox -->
+                            </div>
+                            <div class="ms-2">
+                                <label for="{{ checkbox.id_for_label }}">{{ checkbox.choice_label }}</label>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                 
                     <div class="mb-2">
@@ -393,8 +413,33 @@
         </div>
     </div>
 
+    <!-- --------------------Displaying only if COVID-19 Vaccination is yes------------------------- -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const physical_activities = document.getElementById('id_physical_activities');
+    const other_physical_activities = document.getElementById('other-physical-activities');  // Adjust the ID here
+
+    // Function to toggle visibility of the other_physical_activities section
+    function togglephysical() {
+        // Show or hide the section based on the value of physical_activities
+        if (physical_activities.value === "Others") {  // Adjust the condition as needed
+            other_physical_activities.style.display = 'block';  // Show the section
+        } else {
+            other_physical_activities.style.display = 'none';  // Hide the section
+        }
+    }
+
+    // Initial call to toggle visibility based on the selected value on page load
+    togglephysical();
+
+    // Add event listener to listen for changes on the physical_activities dropdown
+    physical_activities.addEventListener("change", togglephysical);
+    });
+</script>
 
 
+
+    
     <!-- --------------------Displaying only if COVID-19 Vaccination is yes------------------------- -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {

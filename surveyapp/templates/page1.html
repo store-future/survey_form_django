@@ -1,126 +1,3 @@
-{% comment %} <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Next</button>
-</form> {% endcomment %}
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Athlete Registration</title>
-</head>
-<body>
-    <div class="container mt-5">
-        <h2>Athlete Registration Form</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-</body>
-</html> 
-
- -->
-
-
-<!-- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Athlete Registration</title>
-    <style>
-        body {
-            background: url('https://source.unsplash.com/1600x900/?sports') no-repeat center center fixed;
-            background-size: cover;
-        }
-        .form-container {
-            max-width: 600px;
-            background: rgba(255, 255, 255, 0.85);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: auto;
-        }
-        h2 {
-            font-size: 1.5rem;
-            color: #343a40;
-        }
-        label {
-            font-weight: bold;
-        }
-        .form-label {
-            display: block;
-        }
-    </style>
-</head>
-<body>
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="form-container">
-            <h2 class="mb-4 text-center">Athlete Registration Form</h2>
-            <form method="post" novalidate>
-                {% csrf_token %}
-                <div class="mb-1">
-                    <label for="id_full_name" class="form-label">Full Name</label>
-                    {{ form.full_name }}
-                </div>
-                <div class="mb-1">
-                    <label for="id_gender" class="form-label">Gender</label>
-                    {{ form.gender }}
-                </div>
-                <div class="mb-1">
-                    <label for="id_mobile_number" class="form-label">Mobile Number</label>
-                    {{ form.mobile_number }}
-                </div>
-                <div class="mb-1">
-                    <label for="id_email" class="form-label">Email</label>
-                    {{ form.email }}
-                </div>
-                <div class="mb-1">
-                    <label for="id_date_of_birth" class="form-label">Date of Birth</label>
-                    {{ form.date_of_birth }}
-                </div>
-                <div class="mb-1">
-                    <label for="id_height_feet" class="form-label">Height (Feet)</label>
-                    {{ form.height_feet }}
-                </div>
-                <div class="mb-1">
-                    <label for="id_height_inches" class="form-label">Height (Inches)</label>
-                    {{ form.height_inches }}
-                </div>
-                <div class="mb-1">
-                    <label for="id_weight" class="form-label">Weight</label>
-                    {{ form.weight }}
-                </div>
-                <div class="mb-1">
-                    <label for="id_description" class="form-label">Description</label>
-                    {{ form.description }}
-                </div>
-                <div class="mb-1">
-                    <label for="id_category" class="form-label">Category</label>
-                    {{ form.category }}
-                </div>
-                <div class="mb-1">
-                    <label for="id_coach_name" class="form-label">Coach Name</label>
-                    {{ form.coach_name }}
-                </div>
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -197,7 +74,8 @@
         .form-container button:hover {
             background-color: #0056b3;
         }
-                .form-container input[type="radio"] {
+        
+        .form-container input[type="radio"] {
             margin-right: 10px;
         }
 
@@ -331,7 +209,7 @@
 
                 <!-- --------------------change of other description------------------------- -->
                 <div class="mb-1" id="other_description" style="display: none;">
-                    <label for="id_other_category" class="form-label">8.a. Specify Description</label>
+                    <label for="id_other_category" class="form-label">8.a. Specify your describes</label>
                     {{ form.other_description }}
                 </div>                
 
@@ -373,7 +251,7 @@
         </div>
     </div>
 
-
+<!-- JavaScript to render other Description field-->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const descriptionField = document.getElementById('id_description');

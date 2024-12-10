@@ -69,17 +69,10 @@ def page1(request):
         if form.is_valid():
             data = form.cleaned_data
             
-            # if data['category'] == 'Other Sports' and data['other_category']:
-            #     data['category'] = data['other_category']
-            
-            # if data['description'] == 'Other' and data['other_description']:
-            #     data['description'] = data['other_description']
-
-
             data['date_of_birth'] = data['date_of_birth'].strftime('%Y-%m-%d')  # Serialize date
             
             request.session['page1'] = form.cleaned_data
-            print(f"sending to second page this data{data}")
+            print(f"sending to second page this data{request.session['page1']}")
             return render(request, "message.html", {"message": "Great! You are two steps away."})
         else:
             # If form is invalid, re-render the form with error messages
@@ -137,7 +130,7 @@ def page3(request):
              # Clear session after submission
             request.session.flush()     # clearing session
 
-            return render(request, "message.html", {"message": "Congratultions!. You have become a potential Super Donor.Thank you!"})
+            return render(request, "success.html", {"message": "Thank you for completing the form! We appreciate your time and effort."})
         else:
             # If form is invalid, re-render the form with error messages
             return render(request, 'page3.html', {'form': form})
