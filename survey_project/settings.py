@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'survey_app',
+    # 'multiselectfield'
 ]
 
 MIDDLEWARE = [

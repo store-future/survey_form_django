@@ -1,5 +1,20 @@
 from django.db import models
+# from multiselectfield import MultiSelectField
 
+
+# class MeatType(models.Model):
+#     MEAT_CHOICES = [
+#         ('Chicken', 'Chicken'),
+#         ('Fish', 'Fish'),
+#         ('Beef', 'Beef'),
+#         ('Pork', 'Pork'),
+#         ('Lamb', 'Lamb'),
+#         ('Other', 'Other')
+#     ]
+#     name = models.CharField(max_length=10, choices=MEAT_CHOICES)
+
+#     def __str__(self):
+#         return self.name
 class SurveyResponse(models.Model):
     GENDER_CHOICES = [
         ('Male', 'Male'),
@@ -414,7 +429,8 @@ class SurveyResponse(models.Model):
         ('Lamb', 'Lamb'),
         ('Other', 'Other')
     ]
-    meat_type = models.CharField(max_length=10, choices=MEAT_TYPE , null =True , blank = True )
+    meat_type = models.CharField(max_length=100, choices=MEAT_TYPE , null =True , blank = True )
+    # meat_type = models.ManyToManyField(MeatType, null=True, blank=True)
 
     # Question 28: Frequency of meat consumption
     MEAT_FREQUENCY = [

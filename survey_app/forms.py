@@ -1,6 +1,5 @@
 from django import forms
-from .models import SurveyResponse
-
+from .models import SurveyResponse 
 
 class Page1Form(forms.ModelForm):
     other_category = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Specify sports Category'}))
@@ -133,36 +132,35 @@ class Page3Form(forms.ModelForm):
             'medications_taken' : forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')])
         }       
 
-    def clean_pin_code(self):
-        pin_code_data = self.cleaned_data.get('pin_code')
-        if not pin_code_data.isdigit():  # Check if mobile number contains only digits
-            raise forms.ValidationError('* Pin Code must contain only digits.')
-        if len(pin_code_data) != 6:  # Check if mobile number is exactly 10 digits
-            raise forms.ValidationError('* Pin Code must be exactly 6 digits long.')
-        return pin_code_data
-            
-        
+    # body_fat_percentage = forms.ChoiceField(required=True, choices=[('', 'Select body fat percentage')] + SurveyResponse.BODY_FAT_PERCENTAGE, error_messages={'required': '* Body fat percentage is required.'})
+    # birth_type = forms.ChoiceField(required=True, choices=[('', 'Select birth type')] + SurveyResponse.BIRTH_TYPE, error_messages={'required': '* Birth type is required.'})
+    # birth_state = forms.ChoiceField(required=True, choices=[('', 'Select birth state')] + SurveyResponse.BIRTH_STATE, error_messages={'required': '* Birth state is required.'})
+    # exercise_hours_per_day = forms.ChoiceField(required=True, choices=[('', 'Select hours of exercise per day')] + SurveyResponse.EXERCISE_HOURS_PER_DAY, error_messages={'required': '* Exercise hours per day is required.'})
+    # exercise_days_per_week = forms.ChoiceField(required=True, choices=[('', 'Select days of exercise per week')] + SurveyResponse.EXERCISE_DAYS_PER_WEEK, error_messages={'required': '* Exercise days per week is required.'})
+    # physical_activities = forms.ChoiceField(required=True, choices=[('', 'Select physical activities')] + SurveyResponse.PHYSICAL_ACTIVITIES, error_messages={'required': '* Physical activities are required.'})
+    # proficiency_level = forms.ChoiceField(required=True, choices=[('', 'Select proficiency level')] + SurveyResponse.PROFICIENCY_LEVEL, error_messages={'required': '* Proficiency level is required.'})
+    # upbringing = forms.ChoiceField(required=True, choices=[('', 'Select upbringing')] + SurveyResponse.UPBRINGING, error_messages={'required': '* Upbringing is required.'})
+    # blood_group = forms.ChoiceField(required=True, choices=[('', 'Select blood group')] + SurveyResponse.BLOOD_GROUP, error_messages={'required': '* Blood group is required.'})
+    # smoking = forms.ChoiceField(required=True, choices=[('', 'Select smoking habits')] + SurveyResponse.SMOKING, error_messages={'required': '* Smoking habits are required.'})
+    # alcohol_consumption = forms.ChoiceField(required=True, choices=[('', 'Select alcohol consumption')] + SurveyResponse.ALCOHOL_CONSUMPTION, error_messages={'required': '* Alcohol consumption is required.'})
+    # breastfeeding = forms.ChoiceField(required=True, choices=[('', 'Select breastfeeding history')] + SurveyResponse.BREASTFEEDING, error_messages={'required': '* Breastfeeding history is required.'})
+    # bowel_movements = forms.ChoiceField(required=True, choices=[('', 'Select bowel movements')] + SurveyResponse.BOWEL_MOVEMENTS, error_messages={'required': '* Bowel movements are required.'})
+    # bloating_acidity = forms.ChoiceField(required=True, choices=[('', 'Select bloating or acidity frequency')] + SurveyResponse.BLOATING_ACIDITY, error_messages={'required': '* Bloating or acidity frequency is required.'})
+    # digestive_issues = forms.ChoiceField(required=True, choices=[('', 'Select digestive issues')] + SurveyResponse.DIGESTIVE_ISSUES, error_messages={'required': '* Digestive issues are required.'})
+    # meals_per_day = forms.ChoiceField(required=True, choices=[('', 'Select meals per day')] + SurveyResponse.MEALS_PER_DAY, error_messages={'required': '* Meals per day are required.'})
+    # snacks_per_day = forms.ChoiceField(required=True, choices=[('', 'Select snacks per day')] + SurveyResponse.SNAKS_PER_DAY, error_messages={'required': '* Snacks per day are required.'})
+    # home_cooked_meals = forms.ChoiceField(required=True, choices=[('', 'Select home-cooked meals frequency')] + SurveyResponse.HOME_COOCKED_MEALS, error_messages={'required': '* Home-cooked meals frequency is required.'})
+    # diet_type = forms.ChoiceField(required=True, choices=[('', 'Select diet type')] + SurveyResponse.DIET_TYPE, error_messages={'required': '* Diet type is required.'})
+    # meat_type = forms.ChoiceField( required=False, choices=[('', 'Select meat type')] + SurveyResponse.MEAT_TYPE, error_messages={'required': '* Meat type is required.'})    
+    meat_type = forms.MultipleChoiceField(
+        required=False,
+        choices=SurveyResponse.MEAT_TYPE,
+        widget=forms.CheckboxSelectMultiple,
+        error_messages={'required': '* Please select at least one meat type.'}
+    )
 
-    body_fat_percentage = forms.ChoiceField(required=True, choices=[('', 'Select body fat percentage')] + SurveyResponse.BODY_FAT_PERCENTAGE, error_messages={'required': '* Body fat percentage is required.'})
-    birth_type = forms.ChoiceField(required=True, choices=[('', 'Select birth type')] + SurveyResponse.BIRTH_TYPE, error_messages={'required': '* Birth type is required.'})
-    birth_state = forms.ChoiceField(required=True, choices=[('', 'Select birth state')] + SurveyResponse.BIRTH_STATE, error_messages={'required': '* Birth state is required.'})
-    exercise_hours_per_day = forms.ChoiceField(required=True, choices=[('', 'Select hours of exercise per day')] + SurveyResponse.EXERCISE_HOURS_PER_DAY, error_messages={'required': '* Exercise hours per day is required.'})
-    exercise_days_per_week = forms.ChoiceField(required=True, choices=[('', 'Select days of exercise per week')] + SurveyResponse.EXERCISE_DAYS_PER_WEEK, error_messages={'required': '* Exercise days per week is required.'})
-    physical_activities = forms.ChoiceField(required=True, choices=[('', 'Select physical activities')] + SurveyResponse.PHYSICAL_ACTIVITIES, error_messages={'required': '* Physical activities are required.'})
-    proficiency_level = forms.ChoiceField(required=True, choices=[('', 'Select proficiency level')] + SurveyResponse.PROFICIENCY_LEVEL, error_messages={'required': '* Proficiency level is required.'})
-    upbringing = forms.ChoiceField(required=True, choices=[('', 'Select upbringing')] + SurveyResponse.UPBRINGING, error_messages={'required': '* Upbringing is required.'})
-    blood_group = forms.ChoiceField(required=True, choices=[('', 'Select blood group')] + SurveyResponse.BLOOD_GROUP, error_messages={'required': '* Blood group is required.'})
-    smoking = forms.ChoiceField(required=True, choices=[('', 'Select smoking habits')] + SurveyResponse.SMOKING, error_messages={'required': '* Smoking habits are required.'})
-    alcohol_consumption = forms.ChoiceField(required=True, choices=[('', 'Select alcohol consumption')] + SurveyResponse.ALCOHOL_CONSUMPTION, error_messages={'required': '* Alcohol consumption is required.'})
-    breastfeeding = forms.ChoiceField(required=True, choices=[('', 'Select breastfeeding history')] + SurveyResponse.BREASTFEEDING, error_messages={'required': '* Breastfeeding history is required.'})
-    bowel_movements = forms.ChoiceField(required=True, choices=[('', 'Select bowel movements')] + SurveyResponse.BOWEL_MOVEMENTS, error_messages={'required': '* Bowel movements are required.'})
-    bloating_acidity = forms.ChoiceField(required=True, choices=[('', 'Select bloating or acidity frequency')] + SurveyResponse.BLOATING_ACIDITY, error_messages={'required': '* Bloating or acidity frequency is required.'})
-    digestive_issues = forms.ChoiceField(required=True, choices=[('', 'Select digestive issues')] + SurveyResponse.DIGESTIVE_ISSUES, error_messages={'required': '* Digestive issues are required.'})
-    meals_per_day = forms.ChoiceField(required=True, choices=[('', 'Select meals per day')] + SurveyResponse.MEALS_PER_DAY, error_messages={'required': '* Meals per day are required.'})
-    snacks_per_day = forms.ChoiceField(required=True, choices=[('', 'Select snacks per day')] + SurveyResponse.SNAKS_PER_DAY, error_messages={'required': '* Snacks per day are required.'})
-    home_cooked_meals = forms.ChoiceField(required=True, choices=[('', 'Select home-cooked meals frequency')] + SurveyResponse.HOME_COOCKED_MEALS, error_messages={'required': '* Home-cooked meals frequency is required.'})
-    diet_type = forms.ChoiceField(required=True, choices=[('', 'Select diet type')] + SurveyResponse.DIET_TYPE, error_messages={'required': '* Diet type is required.'})
-    meat_type = forms.ChoiceField( required=False, choices=[('', 'Select meat type')] + SurveyResponse.MEAT_TYPE, error_messages={'required': '* Meat type is required.'})
-    meat_frequency = forms.ChoiceField( required=False, choices=[('', 'Select meat consumption frequency')] + SurveyResponse.MEAT_FREQUENCY, error_messages={'required': '* Meat consumption frequency is required.'})
-    covid_vaccination = forms.ChoiceField(required=True, choices=[('', 'Select COVID-19 vaccination status')] + SurveyResponse.COVID_VACCINNATION, error_messages={'required': '* COVID-19 vaccination status is required.'})
-    covid_vaccine = forms.ChoiceField(required=False, choices=[('', 'Select COVID-19 vaccine received')] + SurveyResponse.COVID_VACCINE, error_messages={'required': '* COVID-19 vaccine is required.'})
+    
+    # meat_frequency = forms.ChoiceField( required=False, choices=[('', 'Select meat consumption frequency')] + SurveyResponse.MEAT_FREQUENCY, error_messages={'required': '* Meat consumption frequency is required.'})
+    # covid_vaccination = forms.ChoiceField(required=True, choices=[('', 'Select COVID-19 vaccination status')] + SurveyResponse.COVID_VACCINNATION, error_messages={'required': '* COVID-19 vaccination status is required.'})
+    # covid_vaccine = forms.ChoiceField(required=False, choices=[('', 'Select COVID-19 vaccine received')] + SurveyResponse.COVID_VACCINE, error_messages={'required': '* COVID-19 vaccine is required.'})
+    
