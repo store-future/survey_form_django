@@ -66,7 +66,7 @@
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 8px;
             box-sizing: border-box;
         }
 
@@ -697,6 +697,28 @@
             </form>
         </div>
     </div>
+
+
+
+
+    <!-- Add the Flatpickr CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            flatpickr(".flatpickr-month", {
+                enableTime: false,
+                dateFormat: "Y-m",  // Format as YYYY-MM
+                placeholder: "Select month and year",  // Custom placeholder
+            });
+        });
+    </script>
+    
+
+
+
+
 
 
 <!-- JavaScript to render other category field-->

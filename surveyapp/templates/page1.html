@@ -56,7 +56,7 @@
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 8px;
             box-sizing: border-box;
         }
 
@@ -171,9 +171,22 @@
                     {% endif %}
                 </div>
 
+
                 <div class="mb-1">
                     <label for="id_height_feet" class="form-label">6. How tall are you?</label>
-                    {{ form.height_feet }}
+                    <div class="d-flex">
+                        <!-- Feet input -->
+                        <div class="me-2">
+                            <label for="id_height_feet">Feet</label>
+                            {{ form.height_feet }}
+                        </div>
+                
+                        <!-- Inches input -->
+                        <div>
+                            <label for="id_height_inches">Inches</label>
+                            {{ form.height_inches }}
+                        </div>
+                    </div>
                     {% if form.height_feet.errors %}
                     <div class="error">
                         {% for error in form.height_feet.errors %}
@@ -181,8 +194,17 @@
                         {% endfor %}
                     </div>
                     {% endif %}
+
+                    {% if form.height_inches.errors %}
+                    <div class="error">
+                        {% for error in form.height_inches.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
 
+                
                 <div class="mb-1">
                     <label for="id_weight" class="form-label">7. What is your current weight? (in kg)</label>
                     {{ form.weight }}
@@ -293,6 +315,14 @@
         }
     });
 </script>
+
+
+
+
+<!-- Add Flatpickr CSS and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

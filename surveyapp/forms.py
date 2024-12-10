@@ -7,7 +7,7 @@ class Page1Form(forms.ModelForm):
     class Meta:
         model = SurveyResponse
         fields = ['full_name', 'gender', 'mobile_number', 'email', 'date_of_birth', 
-                  'height_feet', 'weight', 'description', 'category', 'coach_name','other_category','other_description']
+                  'height', 'weight', 'description', 'category', 'coach_name','other_category','other_description']
         widgets = {
             'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
             
@@ -18,7 +18,27 @@ class Page1Form(forms.ModelForm):
     mobile_number = forms.CharField(required=True, error_messages={'required': '* Mobile number is required.'})
     email = forms.EmailField(required=True, error_messages={'required': '* Email address is required.', 'invalid': '* Enter a valid email address.'})
     date_of_birth = forms.DateField(required=True, widget=forms.DateInput(attrs={'type': 'date'}), error_messages={'required': '* Date of birth is required.'})
-    height_feet = forms.CharField(required=True,  widget=forms.TextInput(attrs={'placeholder': 'Ex- 5.11   Feet: 0-7, Inches: 0-11 '}), error_messages={'required': '* Height in feet is required.'})
+    
+    height_feet = forms.IntegerField( required=True , error_messages={'required': '* Feet is required.'})
+    height_inches = forms.IntegerField( required=True, error_messages={'required': '* Inches is required.'})
+    def clean(self):
+        cleaned_data = super().clean()
+
+        feet = cleaned_data.get('height_feet')
+        inches = cleaned_data.get('height_inches')
+
+        if feet is not None and inches is not None:
+            # Combine feet and inches (for example, 5 feet 8 inches to 5.8)
+
+            if feet < 0 or inches < 0:
+                raise forms.ValidationError("Height values cannot be negative.")
+            
+            total_height = f"{feet}.{inches}"
+            cleaned_data['height'] = total_height
+            print(cleaned_data)
+
+        return cleaned_data    
+    
     weight = forms.CharField(required=True, error_messages={'required': '* Weight is required.'})
     description = forms.ChoiceField(required=True, choices=[('', 'Select description')] + SurveyResponse.DESCRIPTION_CHOICES, error_messages={'required': '* Description is required.'})
     other_description = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Specify your Describes '}))
@@ -107,21 +127,30 @@ class Page2Form(forms.ModelForm):
     antibiotics_taken = forms.ChoiceField(choices=[('', 'Select Options')] + SurveyResponse.antibiotics_taken_choices)
     covid_tested_positive = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
     
-    most_recent_antibiotic_treatment = forms.DateField(
-        widget=forms.DateInput(attrs={'type': 'month' , }),
-        input_formats=['%Y-%m'],  # Ensure the date is entered as YYYY-MM
+    # most_recent_antibiotic_treatment = forms.DateField(
+    #     widget=forms.DateInput(attrs={'type': 'month' , }),
+    #     input_formats=['%Y-%m'],  # Ensure the date is entered as YYYY-MM
+    #     error_messages={'invalid': 'Enter a valid month and year.'}
+    # )
+    # def clean_most_recent_antibiotic_treatment(self):
+    #     # Get the cleaned data
+    #     date = self.cleaned_data['most_recent_antibiotic_treatment']
+    #     month_year = f"{date.year}-{date.month:02d}"
+
+    #     # Optionally, print or log the extracted month and year
+    #     # print("Formatted Month/Year:", month_year)
+        
+    #     # Force the day to be the 1st of the month
+    #     return month_year
+    most_recent_antibiotic_treatment = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Select month and year',
+            'class': 'flatpickr-month'  # Add a custom class
+        }),
         error_messages={'invalid': 'Enter a valid month and year.'}
     )
-    def clean_most_recent_antibiotic_treatment(self):
-        # Get the cleaned data
-        date = self.cleaned_data['most_recent_antibiotic_treatment']
-        month_year = f"{date.year}-{date.month:02d}"
 
-        # Optionally, print or log the extracted month and year
-        # print("Formatted Month/Year:", month_year)
-        
-        # Force the day to be the 1st of the month
-        return month_year
+
 
 
 
@@ -135,7 +164,7 @@ class Page3Form(forms.ModelForm):
             'pin_code', 'current_city', 'exercise_hours_per_day', 'exercise_days_per_week', 'physical_activities',
             'other_physical_activities','proficiency_level', 'upbringing', 'blood_group', 'smoking', 'alcohol_consumption', 'breastfeeding',
             'bowel_movements', 'bloating_acidity', 'digestive_issues', 'food_intolerances', 'meals_per_day',
-            'snacks_per_day', 'home_cooked_meals', 'dairy_consumption', 'diet_type', 'meat_type', 'meat_frequency',
+            'snacks_per_day', 'home_cooked_meals', 'dairy_consumption', 'diet_type', 'meat_type', 'other_meat_type','meat_frequency',
             'local_cuisine', 'medications_taken', 'covid_vaccination', 'covid_vaccine'
         ]
         widgets = {

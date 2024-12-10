@@ -69,9 +69,12 @@
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 8px;
             box-sizing: border-box;
-        }
+        } 
+
+
+        
 
         .form-container button {
             width: 100%;
@@ -360,6 +363,12 @@
                         </div>
                         {% endfor %}
                     </div>
+
+                        <!-- Field for custom input -->
+                    <div id="custom-meat-field" class="mb-2" style="display: none;">
+                    <label for="id_custom_meat" class="form-label">26.a.a Please specify:</label>
+                        {{form.other_meat_type}}
+                    </div>
                 
                     <div class="mb-2">
                         <label for="id_meat_frequency" class="form-label">26.b. How often do you eat meat in a week?</label>
@@ -465,7 +474,7 @@
 
 
      <!-- --------------------Displaying only for non-vegiratian choice------------------------- -->
-     <script>
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
             const dietTypeField = document.getElementById("id_diet_type");
             const meatRelatedFields = document.getElementById("meat-related-fields");
@@ -485,9 +494,86 @@
             // Add event listener to the diet type field
             dietTypeField.addEventListener("change", toggleMeatFields);
         });
+    </script> 
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const dietTypeField = document.getElementById("id_diet_type");
+            const meatRelatedFields = document.getElementById("meat-related-fields");
+            const meatCheckboxes = document.querySelectorAll('input[name="meat_type"]');
+            const customMeatField = document.getElementById("custom-meat-field");
+            const otherCheckbox = Array.from(meatCheckboxes).find(checkbox => checkbox.value === "Other");
+    
+            // Function to toggle meat-related fields based on diet type
+            function toggleMeatFields() {
+                if (dietTypeField.value === "Non-vegetarian") {
+                    meatRelatedFields.style.display = "block";
+                } else {
+                    meatRelatedFields.style.display = "none";
+                    resetOtherField(); // Ensure clean state when hidden
+                }
+            }
+    
+            // Function to toggle the "Other" checkbox functionality
+            function toggleOtherField() {
+                if (otherCheckbox.checked) {
+                    meatCheckboxes.forEach(checkbox => {
+                        if (checkbox !== otherCheckbox) {
+                            checkbox.disabled = true;
+                        }
+                    });
+                    customMeatField.style.display = "block";
+                } else {
+                    meatCheckboxes.forEach(checkbox => checkbox.disabled = false);
+                    customMeatField.style.display = "none";
+                }
+            }
+    
+            // Function to reset the "Other" checkbox and field
+            function resetOtherField() {
+                otherCheckbox.checked = false;
+                meatCheckboxes.forEach(checkbox => checkbox.disabled = false);
+                customMeatField.style.display = "none";
+            }
+    
+            // Run toggle functions on page load
+            toggleMeatFields();
+            toggleOtherField();
+    
+            // Add event listeners
+            dietTypeField.addEventListener("change", toggleMeatFields);
+            otherCheckbox.addEventListener("change", toggleOtherField);
+        });
     </script>
+    
 
 
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const meatCheckboxes = document.querySelectorAll('input[name="meat_type"]');
+        const customMeatField = document.getElementById("custom-meat-field");
+        const otherCheckbox = Array.from(meatCheckboxes).find(checkbox => checkbox.value === "Other");
+    
+        otherCheckbox.addEventListener("change", function () {
+            if (this.checked) {
+                // Disable all other checkboxes
+                meatCheckboxes.forEach(checkbox => {
+                    if (checkbox !== otherCheckbox) {
+                        checkbox.disabled = true;
+                    }
+                });
+                // Show custom input field
+                customMeatField.style.display = "block";
+            } else {
+                // Enable all checkboxes
+                meatCheckboxes.forEach(checkbox => checkbox.disabled = false);
+                // Hide custom input field
+                customMeatField.style.display = "none";
+            }
+        });
+    });
+</script>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

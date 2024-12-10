@@ -38,7 +38,7 @@ class SurveyResponse(models.Model):
     mobile_number = models.CharField(max_length=10)
     email = models.EmailField()
     date_of_birth = models.DateField()
-    height_feet = models.CharField(max_length=10)
+    height = models.CharField(max_length=10 , blank=True, null=True)
     # height_inches = models.CharField(max_length=10)
     weight = models.CharField(max_length=10)
     description = models.CharField(max_length=100 , choices=DESCRIPTION_CHOICES)
@@ -413,9 +413,10 @@ class SurveyResponse(models.Model):
         ('Beef', 'Beef'),
         ('Pork', 'Pork'),
         ('Lamb', 'Lamb'),
-        # ('Other', 'Other')
+        ('Other', 'Other')
     ]
     meat_type = models.CharField(max_length=255,null =True , blank = True )
+    other_meat_type = models.CharField(max_length=100,null =True , blank = True )
 
     # Question 28: Frequency of meat consumption
     MEAT_FREQUENCY = [

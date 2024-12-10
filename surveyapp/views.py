@@ -66,15 +66,23 @@ def page1(request):
     
     if request.method == "POST":
         form = Page1Form(request.POST)
+        print("before valid")
         if form.is_valid():
-            data = form.cleaned_data
+            print("isnide fom.is_valid")
+
+            cleaned_data = form.cleaned_data
+            cleaned_data.pop('height_feet', None)  # Remove height_feet
+            cleaned_data.pop('height_inches', None)  # Remove height_inches
+
+            data = cleaned_data
             
             data['date_of_birth'] = data['date_of_birth'].strftime('%Y-%m-%d')  # Serialize date
             
-            request.session['page1'] = form.cleaned_data
+            request.session['page1'] = data
             print(f"sending to second page this data{request.session['page1']}")
             return render(request, "message.html", {"message": "Great! You are two steps away."})
         else:
+            print("not valid")
             # If form is invalid, re-render the form with error messages
             return render(request, 'page1.html', {'form': form})
     else:
@@ -116,8 +124,6 @@ def page3(request):
             request.session['page3'] = form.cleaned_data
             # print(f"last view before submitting\n:{request.session['page3']}")
 
-
-
             # Combine data from all pages and save it to the database
             data = {**request.session['page1'], 
                     **request.session['page2'], 
@@ -128,9 +134,9 @@ def page3(request):
             SurveyResponse.objects.create(**data)
 
              # Clear session after submission
-            request.session.flush()     # clearing session
+            # request.session.flush()     # clearing session
 
-            return render(request, "success.html", {"message": "Thank you for completing the form! We appreciate your time and effort."})
+            return render(request, "success.html")
         else:
             # If form is invalid, re-render the form with error messages
             return render(request, 'page3.html', {'form': form})
