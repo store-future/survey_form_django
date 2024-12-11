@@ -646,7 +646,7 @@
                 </div>
 
                                 
-                <div class="mb-2" id="other_covid_vaccine" style="display:none; ">
+                <div class="mb-2" id="other_covid_vaccine"style="display:none; ">
                     <label for="other_covid_vaccine" class="form-label">60.a.a Specify COVID-19 vaccine(s) ?</label>
                     {{ form.other_covid_vaccine }}
                     
@@ -658,30 +658,63 @@
         </div>
     </div>
 
-    <!-- --------------------Displaying only if COVID-19 Vaccination is Other------------------------- -->
+
+
+
+
+
+
+
+    <!-- --------------------Displaying only if Physical activity is Others------------------------- -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const covidVaccineDropdown = document.getElementById('id_covid_vaccine'); // Dropdown for vaccines
-            const otherCovidVaccineSection = document.getElementById('other_covid_vaccine'); // "Other" input section
-        
-            // Function to toggle the visibility of the "Other" section
-            function toggleOtherVaccineSection() {
-                if (covidVaccineDropdown.value === "Other") {
-                    otherCovidVaccineSection.style.display = 'block'; // Show "Other" input section
-                } else {
-                    otherCovidVaccineSection.style.display = 'none'; // Hide "Other" input section
-                }
+    document.addEventListener("DOMContentLoaded", function() {
+    const physical_activities = document.getElementById('id_physical_activities');
+    const other_physical_activities = document.getElementById('other-physical-activities');  // Adjust the ID here
+
+    // Function to toggle visibility of the other_physical_activities section
+    function togglephysical() {
+        // Show or hide the section based on the value of physical_activities
+        if (physical_activities.value === "Others") {  // Adjust the condition as needed
+            other_physical_activities.style.display = 'block';  // Show the section
+        } else {
+            other_physical_activities.style.display = 'none';  // Hide the section
+        }
+    }
+
+    // Initial call to toggle visibility based on the selected value on page load
+    togglephysical();
+
+    // Add event listener to listen for changes on the physical_activities dropdown
+    physical_activities.addEventListener("change", togglephysical);
+    });
+</script>
+
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const covidVaccineDropdown = document.getElementById('id_covid_vaccine'); // The actual dropdown
+        const otherCovidVaccineSection = document.getElementById('other_covid_vaccine'); // "Other" input section
+    
+        // Function to toggle visibility of the "Other" section
+        function toggleOtherVaccineSection() {
+            if (covidVaccineDropdown.value === "Other") {
+                otherCovidVaccineSection.style.display = 'block'; // Show "Other" input section
+            } else {
+                otherCovidVaccineSection.style.display = 'none'; // Hide "Other" input section
             }
-        
-            // Add event listener to the dropdown
-            covidVaccineDropdown.addEventListener("change", toggleOtherVaccineSection);
-        
-            // Initial visibility check
-            toggleOtherVaccineSection();
-        });
-        </script>
-
-
+        }
+    
+        // Add event listener to the dropdown
+        covidVaccineDropdown.addEventListener("change", toggleOtherVaccineSection);
+    
+        // Initial visibility check
+        toggleOtherVaccineSection();
+    });
+    </script>
+    
     <!-- --------------------Displaying only if COVID-19 Vaccination is yes------------------------- -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {

@@ -454,4 +454,4 @@ class SurveyResponse(models.Model):
 
 
     def __str__(self):
-        return f"Name {self.full_name}"
+        return f"{self.full_name}"

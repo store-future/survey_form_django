@@ -62,8 +62,8 @@ class Page1Form(forms.ModelForm):
             raise forms.ValidationError('* Please enter a valid number for weight.')
 
         # Check if the weight is less than 100
-        if weight_value > 100:
-            raise forms.ValidationError('* Weight must be less than 100.')
+        if weight_value > 120 or weight_value <40:
+            raise forms.ValidationError('* Weight must be between 40 to 120.')
         
         return str(weight_value)    
     
