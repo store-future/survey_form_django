@@ -68,6 +68,7 @@ class SurveyResponse(models.Model):
 
     # Question 2: Autoimmune conditions
     autoimmune_choices = [
+        ('None' , 'None'),
         ('Crohn\'s disease', 'Crohn\'s disease'),
         ('Ulcerative Colitis', 'Ulcerative Colitis'),
         ('Rheumatoid arthritis', 'Rheumatoid arthritis'),
@@ -449,7 +450,7 @@ class SurveyResponse(models.Model):
         ('Other', 'Other')
     ]
     covid_vaccine = models.CharField(max_length=10, choices=COVID_VACCINE , null = True , blank=True)
-
+    other_covid_vaccine = models.CharField(max_length=20 , null = True , blank=True )
 
 
     def __str__(self):

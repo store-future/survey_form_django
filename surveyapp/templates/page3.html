@@ -1,14 +1,3 @@
-
-{% comment %} <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Next</button>
-</form>
-
-
-{% endcomment %}
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -124,15 +113,17 @@
         <!-- Form Div -->
         <div class="form-container">
             <h2>Donor Selection Form</h2>
-            <form method="post" >
+            <form method="post" novalidate>
                 {% csrf_token %}
                 <div class="mb-2">
-                    <label for="id_hair_loss" class="form-label">1. Do you experience hair loss or balding?</label>
+                    
+                    <label for="id_hair_loss" class="form-label">32. Do you experience hair loss or balding?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="hair_loss" id="hair_loss_yes"
                                 value="True" {% if form.hair_loss.value == 'True' %}checked{% endif %}>
-                        </div>
+                            </div>
+
                         <div>
                             <label class="form-check-label" for="hair_loss_yes">Yes</label>
                         </div>
@@ -147,10 +138,18 @@
                             <label class="form-check-label" for="hair_loss_no">No</label>
                         </div>
                     </div>
+                    {% if form.hair_loss.errors %}
+                    <div class="error">
+                        {% for error in form.hair_loss.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
 
+
                 <div class="mb-2">
-                    <label for="id_vision_problems" class="form-label">2. Do you have any vision problems (glasses, contact lenses, etc.)?</label>
+                    <label for="id_vision_problems" class="form-label">33. Do you have any vision problems (glasses, contact lenses, etc.)?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="vision_problems" id="vision_problems_yes"
@@ -170,10 +169,17 @@
                             <label class="form-check-label" for="vision_problems_no">No</label>
                         </div>
                     </div>
+                    {% if form.vision_problems.errors %}
+                    <div class="error">
+                        {% for error in form.vision_problems.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
 
                 <div class="mb-2">
-                    <label for="id_blood_donation" class="form-label">3. Have you ever donated blood before?</label>
+                    <label for="id_blood_donation" class="form-label">34. Have you ever donated blood before?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="blood_donation" id="blood_donation_yes"
@@ -193,21 +199,57 @@
                             <label class="form-check-label" for="blood_donation_no">No</label>
                         </div>
                     </div>
+                    {% if form.blood_donation.errors %}
+                    <div class="error">
+                        {% for error in form.blood_donation.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
+
+
                 <div class="mb-2">
-                    <label for="id_body_fat_percentage" class="form-label">4. Can you guess your body fat percentage...?</label>
+                    <label for="id_body_fat_percentage" class="form-label">35. Can you guess your body fat percentage...?</label>
                     {{ form.body_fat_percentage }}
+                    {% if form.body_fat_percentage.errors %}
+                    <div class="error">
+                        {% for error in form.body_fat_percentage.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
+
+
                 <div class="mb-2">
-                    <label for="id_birth_type" class="form-label">5. How were you born?</label>
+                    <label for="id_birth_type" class="form-label">36. How were you born?</label>
                     {{ form.birth_type }}
+                    {% if form.birth_type.errors %}
+                    <div class="error">
+                        {% for error in form.birth_type.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
+
+
                 <div class="mb-2">
-                    <label for="id_birth_state" class="form-label">6. Your Birth State</label>
+                    <label for="id_birth_state" class="form-label">37. Your Birth State</label>
                     {{ form.birth_state }}
+                    {% if form.birth_state.errors %}
+                    <div class="error">
+                        {% for error in form.birth_state.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
+
+
                 <div class="mb-2">
-                    <label for="id_pin_code" class="form-label">7. What’s the pin code of your current location?</label>
+                    <label for="id_pin_code" class="form-label">38. What’s the pin code of your current location?</label>
                     {{ form.pin_code }}
                     {% if form.pin_code.errors %}
                     <div class="error">
@@ -217,72 +259,187 @@
                     </div>
                     {% endif %}
                 </div>
+
+
                 <div class="mb-2">
-                    <label for="id_current_city" class="form-label">8. What city do you live in currently?</label>
+                    <label for="id_current_city" class="form-label">39. What city do you live in currently?</label>
                     {{ form.current_city }}
+                    {% if form.current_city.errors %}
+                    <div class="error">
+                        {% for error in form.current_city.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
+
+
                 <div class="mb-2">
-                    <label for="id_exercise_hours_per_day" class="form-label">9. How many hours in a day do you usually exercise?</label>
+                    <label for="id_exercise_hours_per_day" class="form-label">40. How many hours in a day do you usually exercise?</label>
                     {{ form.exercise_hours_per_day }}
+                    {% if form.exercise_hours_per_day.errors %}
+                    <div class="error">
+                        {% for error in form.exercise_hours_per_day.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
+
+
                 <div class="mb-2">
-                    <label for="id_exercise_days_per_week" class="form-label">10. How many days in a week do you usually exercise?</label>
+                    <label for="id_exercise_days_per_week" class="form-label">41. How many days in a week do you usually exercise?</label>
                     {{ form.exercise_days_per_week }}
+                    {% if form.exercise_days_per_week.errors %}
+                    <div class="error">
+                        {% for error in form.exercise_days_per_week.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
 
                 <div class="mb-2">
-                    <label for="id_physical_activities" class="form-label">11. What kind of physical activities do you participate in?</label>
+                    <label for="id_physical_activities" class="form-label">42. What kind of physical activities do you participate in?</label>
                     {{ form.physical_activities }}
+                    {% if form.physical_activities.errors %}
+                    <div class="error">
+                        {% for error in form.physical_activities.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
                 
             <!-- -----------------------Displaying only if COVID-19 Vaccination is yes---------------------------- -->
 
                 <div class="mb-2" id="other-physical-activities" style="display:none;">
-                    <label for="id_other_physical_activities" class="form-label">11.a. Specify your other physical activities?</label>
+                    <label for="id_other_physical_activities" class="form-label">42.a. Specify your other physical activities?</label>
                     {{ form.other_physical_activities }}
+                    
                 </div>
     
 
                 
                 <div class="mb-2">
-                    <label for="id_proficiency_level" class="form-label">12. How would you rate your sports or exercise proficiency?</label>
+                    <label for="id_proficiency_level" class="form-label">43. How would you rate your sports or exercise proficiency?</label>
                     {{ form.proficiency_level }}
-                </div>
-                <div class="mb-2">
-                    <label for="id_upbringing" class="form-label">13. How would you describe your upbringing?</label>
-                    {{ form.upbringing }}
-                </div>
-                <div class="mb-2">
-                    <label for="id_blood_group" class="form-label">14. What is your blood group?</label>
-                    {{ form.blood_group }}
-                </div>
-                <div class="mb-2">
-                    <label for="id_smoking" class="form-label">15. Do you smoke?</label>
-                    {{ form.smoking }}
-                </div>
-                <div class="mb-2">
-                    <label for="id_alcohol_consumption" class="form-label">16. Do you consume alcohol?</label>
-                    {{ form.alcohol_consumption }}
-                </div>
-                <div class="mb-2">
-                    <label for="id_breastfeeding" class="form-label">17. Were you breastfed as a child?</label>
-                    {{ form.breastfeeding }}
-                </div>
-                <div class="mb-2">
-                    <label for="id_bowel_movements" class="form-label">18. How would you describe your daily bowel movements?</label>
-                    {{ form.bowel_movements }}
-                </div>
-                <div class="mb-2">
-                    <label for="id_bloating_acidity" class="form-label">19. How often do you experience bloating or acidity?</label>
-                    {{ form.bloating_acidity }}
-                </div>
-                <div class="mb-2">
-                    <label for="id_digestive_issues" class="form-label">20. Have you had constipation or diarrhea...?</label>
-                    {{ form.digestive_issues }}
+                    {% if form.proficiency_level.errors %}
+                    <div class="error">
+                        {% for error in form.proficiency_level.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
 
+
                 <div class="mb-2">
-                    <label for="id_food_intolerances" class="form-label">21. Do you have any food intolerances?</label>
+                    <label for="id_upbringing" class="form-label">44. How would you describe your upbringing?</label>
+                    {{ form.upbringing }}
+                    {% if form.upbringing.errors %}
+                    <div class="error">
+                        {% for error in form.upbringing.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_blood_group" class="form-label">45. What is your blood group?</label>
+                    {{ form.blood_group }}
+                    {% if form.blood_group.errors %}
+                    <div class="error">
+                        {% for error in form.blood_group.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_smoking" class="form-label">46. Do you smoke?</label>
+                    {{ form.smoking }}
+                    {% if form.smoking.errors %}
+                    <div class="error">
+                        {% for error in form.smoking.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_alcohol_consumption" class="form-label">47. Do you consume alcohol?</label>
+                    {{ form.alcohol_consumption }}
+                    {% if form.alcohol_consumption.errors %}
+                    <div class="error">
+                        {% for error in form.alcohol_consumption.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_breastfeeding" class="form-label">48. Were you breastfed as a child?</label>
+                    {{ form.breastfeeding }}
+                    {% if form.breastfeeding.errors %}
+                    <div class="error">
+                        {% for error in form.breastfeeding.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_bowel_movements" class="form-label">49. How would you describe your daily bowel movements?</label>
+                    {{ form.bowel_movements }}
+                    {% if form.bowel_movements.errors %}
+                    <div class="error">
+                        {% for error in form.bowel_movements.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_bloating_acidity" class="form-label">50. How often do you experience bloating or acidity?</label>
+                    {{ form.bloating_acidity }}
+                    {% if form.bloating_acidity.errors %}
+                    <div class="error">
+                        {% for error in form.bloating_acidity.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_digestive_issues" class="form-label">51. Have you had constipation or diarrhea...?</label>
+                    {{ form.digestive_issues }}
+                    {% if form.digestive_issues.errors %}
+                    <div class="error">
+                        {% for error in form.digestive_issues.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="id_food_intolerances" class="form-label">52. Do you have any food intolerances?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="food_intolerances"
@@ -304,23 +461,57 @@
                             <label class="form-check-label" for="food_intolerances_no">No</label>
                         </div>
                     </div>
+                    {% if form.food_intolerances.errors %}
+                    <div class="error">
+                        {% for error in form.food_intolerances.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
 
 
                 <div class="mb-2">
-                    <label for="id_meals_per_day" class="form-label">22. How many meals do you eat in a day?</label>
+                    <label for="id_meals_per_day" class="form-label">53. How many meals do you eat in a day?</label>
                     {{ form.meals_per_day }}
+                    {% if form.meals_per_day.errors %}
+                    <div class="error">
+                        {% for error in form.meals_per_day.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
+
+
                 <div class="mb-2">
-                    <label for="id_snacks_per_day" class="form-label">23. How many snacks do you eat in a day?</label>
+                    <label for="id_snacks_per_day" class="form-label"54. How many snacks do you eat in a day?</label>
                     {{ form.snacks_per_day }}
+                    {% if form.snacks_per_day.errors %}
+                    <div class="error">
+                        {% for error in form.snacks_per_day.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
+
+
                 <div class="mb-2">
-                    <label for="id_home_cooked_meals" class="form-label">24. How many home-cooked meals...?</label>
+                    <label for="id_home_cooked_meals" class="form-label">55. How many home-cooked meals...?</label>
                     {{ form.home_cooked_meals }}
+                    {% if form.home_cooked_meals.errors %}
+                    <div class="error">
+                        {% for error in form.home_cooked_meals.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
+
+
                 <div class="mb-2">
-                    <label for="id_dairy_consumption" class="form-label">25. Do you regularly consume dairy products?</label>
+                    <label for="id_dairy_consumption" class="form-label">56. Do you regularly consume dairy products?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="dairy_consumption"
@@ -342,16 +533,31 @@
                             <label class="form-check-label" for="dairy_consumption_no">No</label>
                         </div>
                     </div>
+                    {% if form.dairy_consumption.errors %}
+                    <div class="error">
+                        {% for error in form.dairy_consumption.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
 
+
                 <div class="mb-2">
-                    <label for="id_diet_type" class="form-label">26. What type of diet do you follow?</label>
+                    <label for="id_diet_type" class="form-label">57. What type of diet do you follow?</label>
                     {{ form.diet_type }}
+                    {% if form.diet_type.errors %}
+                    <div class="error">
+                        {% for error in form.diet_type.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
                 
                 <div id="meat-related-fields" style="display: none;">
                     <div class="mb-2">
-                        <label for="id_meat_type" class="form-label">26.a. What type of meat do you consume?</label>
+                        <label for="id_meat_type" class="form-label">57.a. What type of meat do you consume?</label>
                         {% for checkbox in form.meat_type %}
                         <div class="d-flex  ">
                             <div class="form-check">
@@ -366,23 +572,30 @@
 
                         <!-- Field for custom input -->
                     <div id="custom-meat-field" class="mb-2" style="display: none;">
-                    <label for="id_custom_meat" class="form-label">26.a.a Please specify:</label>
+                    <label for="id_custom_meat" class="form-label">57.a.a Please specify:</label>
                         {{form.other_meat_type}}
                     </div>
                 
                     <div class="mb-2">
-                        <label for="id_meat_frequency" class="form-label">26.b. How often do you eat meat in a week?</label>
+                        <label for="id_meat_frequency" class="form-label">57.b. How often do you eat meat in a week?</label>
                         {{ form.meat_frequency }}
                     </div>
                 </div>
 
                 <div class="mb-2">
-                    <label for="id_local_cuisine" class="form-label">27. What type of local cuisine do you usually eat at home?</label>
+                    <label for="id_local_cuisine" class="form-label">58. What type of local cuisine do you usually eat at home?</label>
                     {{ form.local_cuisine }}
+                    {% if form.local_cuisine.errors %}
+                    <div class="error">
+                        {% for error in form.local_cuisine.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
 
                 <div class="mb-2">
-                    <label for="id_medications_taken" class="form-label">28. Have you taken any medications or supplements in the last one week??</label>
+                    <label for="id_medications_taken" class="form-label">59. Have you taken any medications or supplements in the last one week??</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="medications_taken"
@@ -404,51 +617,95 @@
                             <label class="form-check-label" for="medications_taken_no">No</label>
                         </div>
                     </div>
+                    {% if form.medications_taken.errors %}
+                    <div class="error">
+                        {% for error in form.medications_taken.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
 
 
                 <div class="mb-2">
-                    <label for="id_covid_vaccination" class="form-label">29. Have you received a COVID-19 vaccination?</label>
+                    <label for="id_covid_vaccination" class="form-label">60. Have you received a COVID-19 vaccination?</label>
                     {{ form.covid_vaccination }}
+                    {% if form.covid_vaccination.errors %}
+                    <div class="error">
+                        {% for error in form.covid_vaccination.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
                 
                 <div class="mb-2" id="covid_vaccine_section" style="display:none;">
-                    <label for="id_covid_vaccine" class="form-label">29.a. Which COVID-19 vaccine(s) did you receive?</label>
+                    <label for="id_covid_vaccine" class="form-label">60.a. Which COVID-19 vaccine(s) did you receive?</label>
                     {{ form.covid_vaccine }}
+                    
                 </div>
+
+                                
+                <div class="mb-2" id="other_covid_vaccine" style="display:none; ">
+                    <label for="other_covid_vaccine" class="form-label">60.a.a Specify COVID-19 vaccine(s) ?</label>
+                    {{ form.other_covid_vaccine }}
+                    
+                </div>
+
 
                 <button type="submit">Submit</button>
             </form>
         </div>
     </div>
 
+    <!-- --------------------Displaying only if COVID-19 Vaccination is Other------------------------- -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const covidVaccineDropdown = document.getElementById('id_covid_vaccine'); // Dropdown for vaccines
+            const otherCovidVaccineSection = document.getElementById('other_covid_vaccine'); // "Other" input section
+        
+            // Function to toggle the visibility of the "Other" section
+            function toggleOtherVaccineSection() {
+                if (covidVaccineDropdown.value === "Other") {
+                    otherCovidVaccineSection.style.display = 'block'; // Show "Other" input section
+                } else {
+                    otherCovidVaccineSection.style.display = 'none'; // Hide "Other" input section
+                }
+            }
+        
+            // Add event listener to the dropdown
+            covidVaccineDropdown.addEventListener("change", toggleOtherVaccineSection);
+        
+            // Initial visibility check
+            toggleOtherVaccineSection();
+        });
+        </script>
+
+
     <!-- --------------------Displaying only if COVID-19 Vaccination is yes------------------------- -->
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    const physical_activities = document.getElementById('id_physical_activities');
-    const other_physical_activities = document.getElementById('other-physical-activities');  // Adjust the ID here
-
-    // Function to toggle visibility of the other_physical_activities section
-    function togglephysical() {
-        // Show or hide the section based on the value of physical_activities
-        if (physical_activities.value === "Others") {  // Adjust the condition as needed
-            other_physical_activities.style.display = 'block';  // Show the section
-        } else {
-            other_physical_activities.style.display = 'none';  // Hide the section
-        }
-    }
-
-    // Initial call to toggle visibility based on the selected value on page load
-    togglephysical();
-
-    // Add event listener to listen for changes on the physical_activities dropdown
-    physical_activities.addEventListener("change", togglephysical);
-    });
-</script>
-
-
-
+        document.addEventListener("DOMContentLoaded", function() {
+            const covidVaccinationField = document.getElementById('id_covid_vaccination');
+            const covidVaccineSection = document.getElementById('covid_vaccine_section');
     
+            // Function to toggle visibility of the vaccine section
+            function toggleCovid() {
+                if (covidVaccinationField.value === "Yes") {  // Check if the value is 'Yes'
+                    covidVaccineSection.style.display = 'block';  // Show vaccine section
+                } else {
+                    covidVaccineSection.style.display = 'none';  // Hide vaccine section
+                }
+            }
+    
+            // Run the toggle function on page load to set initial visibility
+            toggleCovid();
+    
+            // Add event listener to the covid vaccination field to listen for changes
+            covidVaccinationField.addEventListener("change", toggleCovid);
+        });
+    </script>
+    
+
     <!-- --------------------Displaying only if COVID-19 Vaccination is yes------------------------- -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
