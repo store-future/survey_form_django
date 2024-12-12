@@ -63,8 +63,8 @@ def page2(request):
     return render(request, "page2.html", {"form": form})
 
 def page3(request):
-    # if 'page1' not in request.session or 'page2' not in request.session:
-    #     return redirect('page1')  # Redirect to page 1 if session data doesn't exist
+    if 'page1' not in request.session or 'page2' not in request.session:
+        return redirect('page1')  # Redirect to page 1 if session data doesn't exist
 
     if request.method == "POST":
         form = Page3Form(request.POST)

@@ -27,14 +27,25 @@
             overflow: hidden;
         }
 
-        .image-container {
+        {% comment %} .image-container {
             width: 100%;
             height: 300px;
             background-image: url('https://cnectgpo.com/wp-content/uploads/2023/04/Blog-Image_AI_-600-x-400_-01.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
+        } {% endcomment %}
+
+
+        .image-container {
+            width: 100%;
+            height: 520px;
+            background-image: url('https://jivanutx.com/images/survery-form-header-image600x400.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center; 
         }
+
 
         .form-container {
             padding: 30px;
@@ -91,7 +102,7 @@
 
         @media (max-width: 768px) {
             .image-container {
-                height: 200px;
+                height: 250px;
             }
 
             .form-container {
@@ -639,8 +650,8 @@
                 </div>
 
 
-                <div class="mb-1">
-                    <label for="id_most_recent_antibiotic_treatment" class="form-label">30. When was your most recent antibiotic treatment?</label>
+                <div class="mb-1" id="most-recent-antibiotic-section" style="display: none;">
+                    <label for="id_most_recent_antibiotic_treatment" class="form-label" >29.a. When was your most recent antibiotic treatment?</label>
                     {{ form.most_recent_antibiotic_treatment }}
                     {% if form.most_recent_antibiotic_treatment.errors %}
                     <div class="error">
@@ -653,7 +664,7 @@
 
 
                 <div class="mb-1">
-                    <label for="id_covid_tested_positive" class="form-label">31. Have you tested positive for COVID-19 in the past month?</label>
+                    <label for="id_covid_tested_positive" class="form-label">30. Have you tested positive for COVID-19 in the past month?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="covid_tested_positive"
@@ -709,7 +720,27 @@
     </script>
     -->
 
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const antibioticsTaken = document.getElementById("id_antibiotics_taken");
+            const mostRecentAntibioticSection = document.getElementById("most-recent-antibiotic-section");
+    
+            // Function to toggle visibility
+            function toggleMostRecentAntibiotic() {
+                if (antibioticsTaken.value === "0") {
+                    mostRecentAntibioticSection.style.display = "none";
+                } else {
+                    mostRecentAntibioticSection.style.display = "block";
+                }
+            }
+    
+            // Initial check on page load
+            toggleMostRecentAntibiotic();
+    
+            // Add event listener to handle changes
+            antibioticsTaken.addEventListener("change", toggleMostRecentAntibiotic);
+        });
+    </script>
 
 
 

@@ -1,5 +1,6 @@
 from django import forms
 from .models import SurveyResponse
+from django.core.validators import RegexValidator
 
 
 class Page1Form(forms.ModelForm):
@@ -120,10 +121,13 @@ class Page2Form(forms.ModelForm):
     heart_blood_pressure_diabetes_medication = forms.ChoiceField(choices=[('', 'Select Medications Taken')] + SurveyResponse.heart_blood_pressure_diabetes_medication_choices, required=True, error_messages={'required': '* This field is required.'})
     mold_exposure = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
     genetic_conditions = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
-    antibiotics_taken = forms.ChoiceField(choices=[('', 'Select Options')] + SurveyResponse.antibiotics_taken_choices, )
-    most_recent_antibiotic_treatment = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Ex -  mm-yyyy or mm/yyyy'}),error_messages={'invalid': 'Enter a valid month and year.'})
+    antibiotics_taken = forms.ChoiceField(choices=[('', 'Select Options')] + SurveyResponse.antibiotics_taken_choices, error_messages={'required': '* This field is required.'})
+    most_recent_antibiotic_treatment = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Ex -  mm-yyyy or mm/yyyy'}),validators=[RegexValidator(regex=r'^(0?[1-9]|1[0-2])[-/](\d{4})$', message='Enter a valid month and year in the format mm-yyyy or mm/yyyy.')], error_messages={'required': '* This field is required.'})
 
     covid_tested_positive = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
+    
+
+
     
     # most_recent_antibiotic_treatment = forms.DateField(
     #     widget=forms.DateInput(attrs={'type': 'month' , }),

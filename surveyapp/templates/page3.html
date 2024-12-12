@@ -27,15 +27,23 @@
             overflow: hidden;
         }
 
-        .image-container {
+        {% comment %} .image-container {
             width: 100%;
             height: 300px;
             background-image: url('https://cnectgpo.com/wp-content/uploads/2023/04/Blog-Image_AI_-600-x-400_-01.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-        }
+        } {% endcomment %}
 
+        .image-container {
+            width: 100%;
+            height: 520px;
+            background-image: url('https://jivanutx.com/images/survery-form-header-image600x400.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center; 
+        }
         .form-container {
             padding: 30px;
         }
@@ -95,7 +103,7 @@
 
         @media (max-width: 768px) {
             .image-container {
-                height: 200px;
+                height: 250px;
             }
 
             .form-container {
@@ -117,7 +125,7 @@
                 {% csrf_token %}
                 <div class="mb-2">
                     
-                    <label for="id_hair_loss" class="form-label">32. Do you experience hair loss or balding?</label>
+                    <label for="id_hair_loss" class="form-label">31. Do you experience hair loss or balding?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="hair_loss" id="hair_loss_yes"
@@ -149,7 +157,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_vision_problems" class="form-label">33. Do you have any vision problems (glasses, contact lenses, etc.)?</label>
+                    <label for="id_vision_problems" class="form-label">32. Do you have any vision problems (glasses, contact lenses, etc.)?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="vision_problems" id="vision_problems_yes"
@@ -179,7 +187,7 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="id_blood_donation" class="form-label">34. Have you ever donated blood before?</label>
+                    <label for="id_blood_donation" class="form-label">33. Have you ever donated blood before?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="blood_donation" id="blood_donation_yes"
@@ -210,7 +218,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_body_fat_percentage" class="form-label">35. Can you guess your body fat percentage...?</label>
+                    <label for="id_body_fat_percentage" class="form-label">34. Can you guess your body fat percentage...?</label>
                     {{ form.body_fat_percentage }}
                     {% if form.body_fat_percentage.errors %}
                     <div class="error">
@@ -223,7 +231,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_birth_type" class="form-label">36. How were you born?</label>
+                    <label for="id_birth_type" class="form-label">35. How were you born?</label>
                     {{ form.birth_type }}
                     {% if form.birth_type.errors %}
                     <div class="error">
@@ -236,7 +244,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_birth_state" class="form-label">37. Your Birth State</label>
+                    <label for="id_birth_state" class="form-label">36. Your Birth State</label>
                     {{ form.birth_state }}
                     {% if form.birth_state.errors %}
                     <div class="error">
@@ -249,7 +257,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_pin_code" class="form-label">38. What’s the pin code of your current location?</label>
+                    <label for="id_pin_code" class="form-label">37. What’s the pin code of your current location?</label>
                     {{ form.pin_code }}
                     {% if form.pin_code.errors %}
                     <div class="error">
@@ -262,7 +270,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_current_city" class="form-label">39. What city do you live in currently?</label>
+                    <label for="id_current_city" class="form-label">38. What city do you live in currently?</label>
                     {{ form.current_city }}
                     {% if form.current_city.errors %}
                     <div class="error">
@@ -275,7 +283,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_exercise_hours_per_day" class="form-label">40. How many hours in a day do you usually exercise?</label>
+                    <label for="id_exercise_hours_per_day" class="form-label">39. How many hours in a day do you usually exercise?</label>
                     {{ form.exercise_hours_per_day }}
                     {% if form.exercise_hours_per_day.errors %}
                     <div class="error">
@@ -288,7 +296,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_exercise_days_per_week" class="form-label">41. How many days in a week do you usually exercise?</label>
+                    <label for="id_exercise_days_per_week" class="form-label">40. How many days in a week do you usually exercise?</label>
                     {{ form.exercise_days_per_week }}
                     {% if form.exercise_days_per_week.errors %}
                     <div class="error">
@@ -300,7 +308,7 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="id_physical_activities" class="form-label">42. What kind of physical activities do you participate in?</label>
+                    <label for="id_physical_activities" class="form-label">41. What kind of physical activities do you participate in?</label>
                     {{ form.physical_activities }}
                     {% if form.physical_activities.errors %}
                     <div class="error">
@@ -314,7 +322,7 @@
             <!-- -----------------------Displaying only if COVID-19 Vaccination is yes---------------------------- -->
 
                 <div class="mb-2" id="other-physical-activities" style="display:none;">
-                    <label for="id_other_physical_activities" class="form-label">42.a. Specify your other physical activities?</label>
+                    <label for="id_other_physical_activities" class="form-label">41.a. Specify your other physical activities?</label>
                     {{ form.other_physical_activities }}
                     
                 </div>
@@ -322,7 +330,7 @@
 
                 
                 <div class="mb-2">
-                    <label for="id_proficiency_level" class="form-label">43. How would you rate your sports or exercise proficiency?</label>
+                    <label for="id_proficiency_level" class="form-label">42. How would you rate your sports or exercise proficiency?</label>
                     {{ form.proficiency_level }}
                     {% if form.proficiency_level.errors %}
                     <div class="error">
@@ -335,7 +343,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_upbringing" class="form-label">44. How would you describe your upbringing?</label>
+                    <label for="id_upbringing" class="form-label">43. How would you describe your upbringing?</label>
                     {{ form.upbringing }}
                     {% if form.upbringing.errors %}
                     <div class="error">
@@ -348,7 +356,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_blood_group" class="form-label">45. What is your blood group?</label>
+                    <label for="id_blood_group" class="form-label">44. What is your blood group?</label>
                     {{ form.blood_group }}
                     {% if form.blood_group.errors %}
                     <div class="error">
@@ -361,7 +369,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_smoking" class="form-label">46. Do you smoke?</label>
+                    <label for="id_smoking" class="form-label">45. Do you smoke?</label>
                     {{ form.smoking }}
                     {% if form.smoking.errors %}
                     <div class="error">
@@ -374,7 +382,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_alcohol_consumption" class="form-label">47. Do you consume alcohol?</label>
+                    <label for="id_alcohol_consumption" class="form-label">46. Do you consume alcohol?</label>
                     {{ form.alcohol_consumption }}
                     {% if form.alcohol_consumption.errors %}
                     <div class="error">
@@ -387,7 +395,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_breastfeeding" class="form-label">48. Were you breastfed as a child?</label>
+                    <label for="id_breastfeeding" class="form-label">47. Were you breastfed as a child?</label>
                     {{ form.breastfeeding }}
                     {% if form.breastfeeding.errors %}
                     <div class="error">
@@ -400,7 +408,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_bowel_movements" class="form-label">49. How would you describe your daily bowel movements?</label>
+                    <label for="id_bowel_movements" class="form-label">48. How would you describe your daily bowel movements?</label>
                     {{ form.bowel_movements }}
                     {% if form.bowel_movements.errors %}
                     <div class="error">
@@ -413,7 +421,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_bloating_acidity" class="form-label">50. How often do you experience bloating or acidity?</label>
+                    <label for="id_bloating_acidity" class="form-label">49. How often do you experience bloating or acidity?</label>
                     {{ form.bloating_acidity }}
                     {% if form.bloating_acidity.errors %}
                     <div class="error">
@@ -426,7 +434,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_digestive_issues" class="form-label">51. Have you had constipation or diarrhea...?</label>
+                    <label for="id_digestive_issues" class="form-label">50. Have you had constipation or diarrhea...?</label>
                     {{ form.digestive_issues }}
                     {% if form.digestive_issues.errors %}
                     <div class="error">
@@ -439,7 +447,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_food_intolerances" class="form-label">52. Do you have any food intolerances?</label>
+                    <label for="id_food_intolerances" class="form-label">51. Do you have any food intolerances?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="food_intolerances"
@@ -472,7 +480,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_meals_per_day" class="form-label">53. How many meals do you eat in a day?</label>
+                    <label for="id_meals_per_day" class="form-label">52. How many meals do you eat in a day?</label>
                     {{ form.meals_per_day }}
                     {% if form.meals_per_day.errors %}
                     <div class="error">
@@ -485,7 +493,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_snacks_per_day" class="form-label"54. How many snacks do you eat in a day?</label>
+                    <label for="id_snacks_per_day" class="form-label"53. How many snacks do you eat in a day?</label>
                     {{ form.snacks_per_day }}
                     {% if form.snacks_per_day.errors %}
                     <div class="error">
@@ -498,7 +506,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_home_cooked_meals" class="form-label">55. How many home-cooked meals...?</label>
+                    <label for="id_home_cooked_meals" class="form-label">54. How many home-cooked meals...?</label>
                     {{ form.home_cooked_meals }}
                     {% if form.home_cooked_meals.errors %}
                     <div class="error">
@@ -511,7 +519,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_dairy_consumption" class="form-label">56. Do you regularly consume dairy products?</label>
+                    <label for="id_dairy_consumption" class="form-label">55. Do you regularly consume dairy products?</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="dairy_consumption"
@@ -544,7 +552,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_diet_type" class="form-label">57. What type of diet do you follow?</label>
+                    <label for="id_diet_type" class="form-label">56. What type of diet do you follow?</label>
                     {{ form.diet_type }}
                     {% if form.diet_type.errors %}
                     <div class="error">
@@ -557,7 +565,7 @@
                 
                 <div id="meat-related-fields" style="display: none;">
                     <div class="mb-2">
-                        <label for="id_meat_type" class="form-label">57.a. What type of meat do you consume?</label>
+                        <label for="id_meat_type" class="form-label">56.a. What type of meat do you consume?</label>
                         {% for checkbox in form.meat_type %}
                         <div class="d-flex  ">
                             <div class="form-check">
@@ -572,18 +580,18 @@
 
                         <!-- Field for custom input -->
                     <div id="custom-meat-field" class="mb-2" style="display: none;">
-                    <label for="id_custom_meat" class="form-label">57.a.a Please specify:</label>
+                    <label for="id_custom_meat" class="form-label">56.a.a Please specify:</label>
                         {{form.other_meat_type}}
                     </div>
                 
                     <div class="mb-2">
-                        <label for="id_meat_frequency" class="form-label">57.b. How often do you eat meat in a week?</label>
+                        <label for="id_meat_frequency" class="form-label">56.b. How often do you eat meat in a week?</label>
                         {{ form.meat_frequency }}
                     </div>
                 </div>
 
                 <div class="mb-2">
-                    <label for="id_local_cuisine" class="form-label">58. What type of local cuisine do you usually eat at home?</label>
+                    <label for="id_local_cuisine" class="form-label">57. What type of local cuisine do you usually eat at home?</label>
                     {{ form.local_cuisine }}
                     {% if form.local_cuisine.errors %}
                     <div class="error">
@@ -595,7 +603,7 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="id_medications_taken" class="form-label">59. Have you taken any medications or supplements in the last one week??</label>
+                    <label for="id_medications_taken" class="form-label">58. Have you taken any medications or supplements in the last one week??</label>
                     <div class="d-flex">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="medications_taken"
@@ -628,7 +636,7 @@
 
 
                 <div class="mb-2">
-                    <label for="id_covid_vaccination" class="form-label">60. Have you received a COVID-19 vaccination?</label>
+                    <label for="id_covid_vaccination" class="form-label">59. Have you received a COVID-19 vaccination?</label>
                     {{ form.covid_vaccination }}
                     {% if form.covid_vaccination.errors %}
                     <div class="error">
@@ -640,14 +648,14 @@
                 </div>
                 
                 <div class="mb-2" id="covid_vaccine_section" style="display:none;">
-                    <label for="id_covid_vaccine" class="form-label">60.a. Which COVID-19 vaccine(s) did you receive?</label>
+                    <label for="id_covid_vaccine" class="form-label">59.a. Which COVID-19 vaccine(s) did you receive?</label>
                     {{ form.covid_vaccine }}
                     
                 </div>
 
                                 
                 <div class="mb-2" id="other_covid_vaccine"style="display:none; ">
-                    <label for="other_covid_vaccine" class="form-label">60.a.a Specify COVID-19 vaccine(s) ?</label>
+                    <label for="other_covid_vaccine" class="form-label">59.a.a Specify COVID-19 vaccine(s) ?</label>
                     {{ form.other_covid_vaccine }}
                     
                 </div>
