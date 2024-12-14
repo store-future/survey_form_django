@@ -121,9 +121,36 @@ class Page2Form(forms.ModelForm):
     heart_blood_pressure_diabetes_medication = forms.ChoiceField(choices=[('', 'Select Medications Taken')] + SurveyResponse.heart_blood_pressure_diabetes_medication_choices, required=True, error_messages={'required': '* This field is required.'})
     mold_exposure = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
     genetic_conditions = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
-    antibiotics_taken = forms.ChoiceField(choices=[('', 'Select Options')] + SurveyResponse.antibiotics_taken_choices, error_messages={'required': '* This field is required.'})
-    most_recent_antibiotic_treatment = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Ex -  mm-yyyy or mm/yyyy'}),validators=[RegexValidator(regex=r'^(0?[1-9]|1[0-2])[-/](\d{4})$', message='Enter a valid month and year in the format mm-yyyy or mm/yyyy.')], error_messages={'required': '* This field is required.'})
+    
+    antibiotics_taken = forms.ChoiceField(choices=[('', 'Select Options')] + SurveyResponse.antibiotics_taken_choices, required=True, error_messages={'required': '* Antibiotic taken field is required.'})
+    most_recent_antibiotic_treatment = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Ex -  mm-yyyy or mm/yyyy'}), required=False)
 
+    def clean(self):
+        cleaned_data = super().clean()
+        antibiotics_taken = cleaned_data.get("antibiotics_taken")
+        most_recent_antibiotic_treatment = cleaned_data.get("most_recent_antibiotic_treatment")
+
+
+        # If '0' is selected for antibiotics_taken, clear most_recent_antibiotic_treatment
+        if antibiotics_taken == '0':
+            cleaned_data['most_recent_antibiotic_treatment'] = ''
+        
+        # If antibiotics were taken and the field is empty, add error
+        if antibiotics_taken != '0' and not most_recent_antibiotic_treatment:
+            self.add_error('most_recent_antibiotic_treatment',"This field is required if you have taken antibiotics.")
+        
+
+         # If the field is not empty, validate its format
+        if most_recent_antibiotic_treatment:
+            regex_validator = RegexValidator(regex=r'^(0?[1-9]|1[0-2])[-/](\d{4})$',
+                                            message='Enter a valid month and year in the format mm-yyyy or mm/yyyy.'
+                                        )
+            try:
+                regex_validator(most_recent_antibiotic_treatment)
+            except forms.ValidationError as e:
+                self.add_error('most_recent_antibiotic_treatment', e.message)
+        return cleaned_data
+    
     covid_tested_positive = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
     
 
@@ -214,11 +241,8 @@ class Page3Form(forms.ModelForm):
     snacks_per_day = forms.ChoiceField(required=True, choices=[('', 'Select snacks per day')] + SurveyResponse.SNAKS_PER_DAY, error_messages={'required': '* Snacks per day are required.'})
     home_cooked_meals = forms.ChoiceField(required=True, choices=[('', 'Select home-cooked meals frequency')] + SurveyResponse.HOME_COOCKED_MEALS, error_messages={'required': '* Home cooked meals frequency is required.'})
     diet_type = forms.ChoiceField(required=True, choices=[('', 'Select diet type')] + SurveyResponse.DIET_TYPE, error_messages={'required': '* Diet type is required.'})
-    meat_type = forms.MultipleChoiceField(
-        required=False,
-        choices=SurveyResponse.MEAT_TYPE,
-        widget=forms.CheckboxSelectMultiple,
-        error_messages={'required': '* Please select at least one meat type.'}
+    meat_type = forms.MultipleChoiceField(required=False,choices=SurveyResponse.MEAT_TYPE,
+                                            widget=forms.CheckboxSelectMultiple,
     )
     
     def clean_meat_type(self):
@@ -226,7 +250,27 @@ class Page3Form(forms.ModelForm):
         selected = self.cleaned_data.get('meat_type', [])
         return ",".join(selected)  # Serialize to a string
 
+    meat_frequency = forms.ChoiceField( required=False, choices=[('', 'Select meat consumption frequency')] + SurveyResponse.MEAT_FREQUENCY)
+    
+
+    def clean(self):
+        cleaned_data = super().clean()
+        diet_type = cleaned_data.get('diet_type')
+        meat_type = cleaned_data.get('meat_type')
+        meat_frequency = cleaned_data.get('meat_frequency')
+
+        if diet_type == 'Vegetarian':
+            cleaned_data['meat_type'] = ''
+            cleaned_data['meat_frequency'] = ''
+
+        # If diet type is Non-Vegetarian, both meat_type and meat_frequency must be filled
+        if diet_type == 'Non-vegetarian':
+            if not meat_type:
+                self.add_error('meat_type', '* This field is required if diet type is Non-Vegetarian.')
+            if not meat_frequency:
+                self.add_error('meat_frequency', '* This field is required if diet type is Non-Vegetarian.')
+
+        return cleaned_data
     local_cuisine = forms.CharField(max_length=100,required=True, error_messages={'required': '* Local cuisine is required.'})
-    meat_frequency = forms.ChoiceField( required=False, choices=[('', 'Select meat consumption frequency')] + SurveyResponse.MEAT_FREQUENCY, error_messages={'required': '* Meat consumption frequency is required.'})
     covid_vaccination = forms.ChoiceField(required=True, choices=[('', 'Select COVID-19 vaccination status')] + SurveyResponse.COVID_VACCINNATION, error_messages={'required': '* COVID-19 vaccination status is required.'})
     covid_vaccine = forms.ChoiceField(required=False, choices=[('', 'Select COVID-19 vaccine received')] + SurveyResponse.COVID_VACCINE, error_messages={'required': '* COVID-19 vaccine is required.'})

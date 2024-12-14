@@ -44,6 +44,7 @@
             background-repeat: no-repeat;
             background-position: center; 
         }
+
         .form-container {
             padding: 30px;
         }
@@ -576,6 +577,13 @@
                             </div>
                         </div>
                         {% endfor %}
+                        {% if form.meat_type.errors %}
+                        <div class="error">
+                            {% for error in form.meat_type.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
                     </div>
 
                         <!-- Field for custom input -->
@@ -587,6 +595,13 @@
                     <div class="mb-2">
                         <label for="id_meat_frequency" class="form-label">56.b. How often do you eat meat in a week?</label>
                         {{ form.meat_frequency }}
+                        {% if form.meat_frequency.errors %}
+                        <div class="error">
+                            {% for error in form.meat_frequency.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -661,6 +676,9 @@
                 </div>
 
 
+                <div class="g-recaptcha mb-4" data-sitekey="6Lervm8oAAAAAJMKl1lYtQVOnzL1EDLytmahIMLQ
+                "></div>
+                
                 <button type="submit">Submit</button>
             </form>
         </div>
@@ -670,8 +688,8 @@
 
 
 
-
-
+    <!-- --------------------Google Captche v2 script------------------------- -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <!-- --------------------Displaying only if Physical activity is Others------------------------- -->
     <script>
