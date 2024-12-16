@@ -148,3 +148,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # SESSION_COOKIE_AGE = 3600  # Optional: Set a timeout for inactivity (e.g., 1 hour)
 
 
+
+# Login Redirect URL
+LOGIN_URL = '/login/'  # Redirect to login if not authenticated
+LOGIN_REDIRECT_URL = '/dashboard/'  # Default redirect after login
+LOGOUT_REDIRECT_URL = '/login/'  # Default redirect after logout

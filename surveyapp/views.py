@@ -7,8 +7,33 @@ import json
 import requests
 
 
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
-# @login_required
+
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)  # Create session
+            return redirect('dashboard')  # Redirect to dashboard
+        else:
+            messages.error(request, 'Invalid username or password')
+
+    return render(request, 'authentication/login.html')
+
+def logout_view(request):
+    logout(request)  # Clear session
+    return redirect('login')  # Redirect to login page
+
+
+@login_required
 def dashboard_view(request):
     data = SurveyResponse.objects.all().values()
 
