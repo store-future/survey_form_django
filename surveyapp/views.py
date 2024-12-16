@@ -1,6 +1,3 @@
-from django.shortcuts import render
-
-# Create your views here.
 from django.shortcuts import render, redirect
 from .forms import Page1Form, Page2Form, Page3Form
 from .models import SurveyResponse
@@ -11,24 +8,15 @@ import requests
 
 
 
-
-
-
-
-
-
-
-
-
-
+# @login_required
 def dashboard_view(request):
     data = SurveyResponse.objects.all().values()
 
-    for response in data:
-        print(f"newline \n{response}\n")
+    # for response in data:
+    #     print(f"newline \n{response}\n")
     return render(request,'dashboard.html',{'data_key' :data})
 
-    
+# @login_required
 def export_to_excel(request):
     # Create an Excel workbook and sheet
     workbook = openpyxl.Workbook()

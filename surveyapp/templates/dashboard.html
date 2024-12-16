@@ -1,4 +1,4 @@
-<!-- dashboard.html -->
+{% comment %} <!-- dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -171,6 +171,222 @@
         </table>
     </div>
 
+
+</body>
+</html> {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- student_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+    <title>Student List</title>
+
+    {% comment %} <style>
+        .centered-heading {
+            text-align: center;      /* Centers the text */
+            font-weight: bold;       /* Makes the text bold */
+            font-size: 2.5em;        /* Adjusts the font size slightly larger */
+        }
+    </style> {% endcomment %}
+</head>
+
+
+<body>
+
+    <div class="card" >
+        <p>Hello, {{ request.user.username }}!</p>
+        {% comment %} <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
+
+
+
+
+        <div class="card-body" >
+            <!-- Export Data button -->
+            <a  href="{% url 'export_to_excel' %}">
+            <button  style="margin-bottom: 15px;">Export Data to Excel</button>
+            </a>
+
+            <h2 class="centered-heading">Survey Dashboard</h2>
+            <table class="table table-hover table-bordered">
+                <thead  class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Gender</th>
+                        <th>Mobile Number</th>
+                        <th>Email</th>
+                        <th>Date of Birth</th>
+                        <th>Height</th>
+                        <th>Weight</th>
+                        <th>Description</th>
+                        <th>Other Description</th>
+                        <th>Category</th>
+                        <th>Other Category</th>
+                        <th>Coach Name</th>
+                        <th>Infections Diagnosed</th>
+                        <th>Autoimmune Condition</th>
+                        <th>Reproductive Urinary Conditions</th>
+                        <th>Cardiovascular Conditions</th>
+                        <th>Nervous/Bone/Muscle Conditions</th>
+                        <th>Sleep Disorder Medications</th>
+                        <th>Allergies/Asthma</th>
+                        <th>Skin Conditions</th>
+                        <th>Acne History</th>
+                        <th>Mental Health Conditions</th>
+                        <th>Blood Transfusion</th>
+                        <th>High Risk Yellow Fever</th>
+                        <th>Hospitalization/Surgery</th>
+                        <th>Contagious Diseases</th>
+                        <th>Multi-Drug Resistant Organisms</th>
+                        <th>Other MDR Organisms</th>
+                        <th>Heart/Blood Pressure/Diabetes Medications</th>
+                        <th>Mold Exposure</th>
+                        <th>Genetic Conditions</th>
+                        <th>Antibiotics Taken</th>
+                        <th>Most Recent Antibiotic Treatment</th>
+                        <th>Covid Tested Positive</th>
+                        <th>Hair Loss</th>
+                        <th>Vision Problems</th>
+                        <th>Blood Donation</th>
+                        <th>Body Fat Percentage</th>
+                        <th>Birth Type</th>
+                        <th>Birth State</th>
+                        <th>Pin Code</th>
+                        <th>Current City</th>
+                        <th>Exercise Hours per Day</th>
+                        <th>Exercise Days per Week</th>
+                        <th>Physical Activities</th>
+                        <th>Other Physical Activities</th>
+                        <th>Proficiency Level</th>
+                        <th>Upbringing</th>
+                        <th>Blood Group</th>
+                        <th>Smoking</th>
+                        <th>Alcohol Consumption</th>
+                        <th>Breastfeeding</th>
+                        <th>Bowel Movements</th>
+                        <th>Bloating/Acidity</th>
+                        <th>Digestive Issues</th>
+                        <th>Food Intolerances</th>
+                        <th>Meals per Day</th>
+                        <th>Snacks per Day</th>
+                        <th>Home Cooked Meals</th>
+                        <th>Dairy Consumption</th>
+                        <th>Diet Type</th>
+                        <th>Meat Type</th>
+                        <th>Other Meat Type</th>
+                        <th>Meat Frequency</th>
+                        <th>Local Cuisine</th>
+                        <th>Medications Taken</th>
+                        <th>Covid Vaccination</th>
+                        <th>Covid Vaccine</th>
+                        <th>Other Covid Vaccine</th>
+                    </tr>
+                </thead>
+               
+                <tbody>
+                    {% for response in data_key %}
+                    <tr>
+                        <td>{{ response.id }}</td>
+                        <td>{{ response.full_name }}</td>
+                        <td>{{ response.gender }}</td>
+                        <td>{{ response.mobile_number }}</td>
+                        <td>{{ response.email }}</td>
+                        <td>{{ response.date_of_birth }}</td>
+                        <td>{{ response.height }}</td>
+                        <td>{{ response.weight }}</td>
+                        <td>{{ response.description }}</td>
+                        <td>{{ response.other_description }}</td>
+                        <td>{{ response.category }}</td>
+                        <td>{{ response.other_category }}</td>
+                        <td>{{ response.coach_name }}</td>
+                        <td>{{ response.infections_diagnosed }}</td>
+                        <td>{{ response.autoimmune_condition }}</td>
+                        <td>{{ response.reproductive_urinary_conditions }}</td>
+                        <td>{{ response.cardiovascular_conditions }}</td>
+                        <td>{{ response.nervous_bone_muscle_conditions }}</td>
+                        <td>{{ response.sleep_disorder_medications }}</td>
+                        <td>{{ response.allergies_asthma }}</td>
+                        <td>{{ response.skin_conditions }}</td>
+                        <td>{{ response.acne_history }}</td>
+                        <td>{{ response.mental_health_conditions }}</td>
+                        <td>{{ response.blood_transfusion }}</td>
+                        <td>{{ response.high_risk_yellow_fever }}</td>
+                        <td>{{ response.hospitalization_surgery }}</td>
+                        <td>{{ response.contagious_diseases }}</td>
+                        <td>{{ response.multi_drug_resistant_organisms }}</td>
+                        <td>{{ response.other_multi_drug_resistant_organisms }}</td>
+                        <td>{{ response.heart_blood_pressure_diabetes_medication }}</td>
+                        <td>{{ response.mold_exposure }}</td>
+                        <td>{{ response.genetic_conditions }}</td>
+                        <td>{{ response.antibiotics_taken }}</td>
+                        <td>{{ response.most_recent_antibiotic_treatment }}</td>
+                        <td>{{ response.covid_tested_positive }}</td>
+                        <td>{{ response.hair_loss }}</td>
+                        <td>{{ response.vision_problems }}</td>
+                        <td>{{ response.blood_donation }}</td>
+                        <td>{{ response.body_fat_percentage }}</td>
+                        <td>{{ response.birth_type }}</td>
+                        <td>{{ response.birth_state }}</td>
+                        <td>{{ response.pin_code }}</td>
+                        <td>{{ response.current_city }}</td>
+                        <td>{{ response.exercise_hours_per_day }}</td>
+                        <td>{{ response.exercise_days_per_week }}</td>
+                        <td>{{ response.physical_activities }}</td>
+                        <td>{{ response.other_physical_activities }}</td>
+                        <td>{{ response.proficiency_level }}</td>
+                        <td>{{ response.upbringing }}</td>
+                        <td>{{ response.blood_group }}</td>
+                        <td>{{ response.smoking }}</td>
+                        <td>{{ response.alcohol_consumption }}</td>
+                        <td>{{ response.breastfeeding }}</td>
+                        <td>{{ response.bowel_movements }}</td>
+                        <td>{{ response.bloating_acidity }}</td>
+                        <td>{{ response.digestive_issues }}</td>
+                        <td>{{ response.food_intolerances }}</td>
+                        <td>{{ response.meals_per_day }}</td>
+                        <td>{{ response.snacks_per_day }}</td>
+                        <td>{{ response.home_cooked_meals }}</td>
+                        <td>{{ response.dairy_consumption }}</td>
+                        <td>{{ response.diet_type }}</td>
+                        <td>{{ response.meat_type }}</td>
+                        <td>{{ response.other_meat_type }}</td>
+                        <td>{{ response.meat_frequency }}</td>
+                        <td>{{ response.local_cuisine }}</td>
+                        <td>{{ response.medications_taken }}</td>
+                        <td>{{ response.covid_vaccination }}</td>
+                        <td>{{ response.covid_vaccine }}</td>
+                        <td>{{ response.other_covid_vaccine }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
 </body>
 </html>
