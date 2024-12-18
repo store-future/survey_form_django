@@ -101,7 +101,24 @@
         }
 
 
+        /* Footer Styles */
+        footer {
+            {% comment %} background-color: rgb(53 124 134); {% endcomment %}
+            background-color: rgb(50 139 151);
+            color: white;
 
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        footer p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        
         @media (max-width: 768px) {
             .image-container {
                 height: 250px;
@@ -109,6 +126,10 @@
 
             .form-container {
                 padding: 20px;
+            }
+
+            footer p {
+                font-size: 14px; /* Smaller font size for smaller screens */
             }
         }
     </style>
@@ -685,7 +706,11 @@
     </div>
 
 
-
+<!-- Footer Section -->
+<footer>
+    <p>Powered by Winline Technologies Private Limited</p>
+    <p>Contact us at: <a href="https://www.winlinetech.com/" target="_blank" style="color: #fff;">www.winlinetech.com</a></p>
+</footer>
 
 
     <!-- --------------------Google Captche v2 script------------------------- -->

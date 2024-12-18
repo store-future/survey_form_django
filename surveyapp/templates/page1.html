@@ -86,6 +86,24 @@
             margin-top: 5px; /* Adds some space between the field and error message */
         }
 
+        /* Footer Styles */
+        footer {
+            {% comment %} background-color: rgb(53 124 134); {% endcomment %}
+            background-color: rgb(50 139 151);
+            color: white;
+
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        footer p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        
 
         @media (max-width: 768px) {
             .image-container {
@@ -95,6 +113,9 @@
             .form-container {
                 padding: 20px;
             }
+
+            footer p {
+                font-size: 14px; /* Smaller font size for smaller screens */
         }
     </style>
 </head>
@@ -270,8 +291,17 @@
                 
                 <button type="submit" class="btn btn-primary">Next</button>
             </form>
+
         </div>
+                    
+<!-- Footer Section -->
+<footer>
+    <p>Powered by Winline Technologies Private Limited</p>
+    <p>Contact us at: <a href="https://www.winlinetech.com/" target="_blank" style="color: #fff;">www.winlinetech.com</a></p>
+</footer>
     </div>
+
+
 
 <!-- JavaScript to render other Description field-->
     <script>

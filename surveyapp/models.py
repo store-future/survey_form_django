@@ -141,7 +141,7 @@ class SurveyResponse(models.Model):
         ('Diabetes', 'Diabetes'),
         ('Cholesterol', 'Cholesterol')
     ]
-    heart_blood_pressure_diabetes_medication = models.CharField(max_length=15, choices=heart_blood_pressure_diabetes_medication_choices)
+    heart_blood_pressure_diabetes_medication = models.CharField(max_length=100)
 
     # Question 17: Exposure to mold
     mold_exposure = models.BooleanField(default=False)  # No=False, Yes=True

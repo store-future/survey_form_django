@@ -100,6 +100,25 @@
         }
 
 
+
+        /* Footer Styles */
+        footer {
+            {% comment %} background-color: rgb(53 124 134); {% endcomment %}
+            background-color: rgb(50 139 151);
+            color: white;
+
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        footer p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        
         @media (max-width: 768px) {
             .image-container {
                 height: 250px;
@@ -107,6 +126,10 @@
 
             .form-container {
                 padding: 20px;
+            }
+
+            footer p {
+                font-size: 14px; /* Smaller font size for smaller screens */
             }
         }
     </style>
@@ -562,7 +585,7 @@
                 </div>                
 
                 
-                <div class="mb-1">
+                {% comment %} <div class="mb-1">
                     <label for="id_heart_blood_pressure_diabetes_medication" class="form-label">26. Are you currently taking any medications for heart issues, blood pressure, or diabetes?</label>
                     {{ form.heart_blood_pressure_diabetes_medication }}
                     {% if form.heart_blood_pressure_diabetes_medication.errors %}
@@ -572,7 +595,30 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-                </div>
+                </div> {% endcomment %}
+
+
+                    <div class="mb-1">
+                        <label for="id_heart_blood_pressure_diabetes_medication" class="form-label">26. Are you currently taking any medications for heart issues, blood pressure, or diabetes?</label>
+                        {% for checkbox in form.heart_blood_pressure_diabetes_medication %}
+                        <div class="d-flex  ">
+                            <div class="form-check">
+                                {{ checkbox.tag }} <!-- Render the checkbox -->
+                            </div>
+                            <div class="ms-2">
+                                <label for="{{ checkbox.id_for_label }}">{{ checkbox.choice_label }}</label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% if form.heart_blood_pressure_diabetes_medication.errors %}
+                        <div class="error">
+                            {% for error in form.heart_blood_pressure_diabetes_medication.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+
 
 
                 <div class="mb-1">
@@ -701,7 +747,40 @@
         </div>
     </div>
 
-
+<!-- Footer Section -->
+<footer>
+    <p>Powered by Winline Technologies Private Limited</p>
+    <p>Contact us at: <a href="https://www.winlinetech.com/" target="_blank" style="color: #fff;">www.winlinetech.com</a></p>
+</footer>
+    <!--Disable checkbox button if  heart_blood_pressure_diabetes_medication value is None -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Select all checkboxes for the given field
+            const heartissueCheckboxes = document.querySelectorAll('input[name="heart_blood_pressure_diabetes_medication"]');
+    
+            // Find the "None" checkbox
+            const noneCheckbox = Array.from(heartissueCheckboxes).find(checkbox => checkbox.value === "None");
+    
+            // Ensure the "None" checkbox exists before attaching an event listener
+            if (noneCheckbox) {
+                noneCheckbox.addEventListener("change", function () {
+                    if (this.checked) {
+                        // Disable all other checkboxes
+                        heartissueCheckboxes.forEach(checkbox => {
+                            if (checkbox !== noneCheckbox) {
+                                checkbox.disabled = true;
+                                checkbox.checked = false; // Uncheck others if "None" is selected
+                            }
+                        });
+                    } else {
+                        // Enable all checkboxes
+                        heartissueCheckboxes.forEach(checkbox => checkbox.disabled = false);
+                    }
+                });
+            }
+        });
+    </script>
+    
 
 
     <!-- Add the Flatpickr CSS and JS -- >
@@ -758,3 +837,9 @@
 </body>
 
 </html>
+
+
+
+
+
+

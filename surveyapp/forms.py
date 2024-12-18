@@ -118,7 +118,17 @@ class Page2Form(forms.ModelForm):
     multi_drug_resistant_organisms = forms.ChoiceField(choices=[('', 'Select Resistant Organisms ')] + SurveyResponse.multi_drug_resistant_organisms_choices, required=True, error_messages={'required': '* This field is required.'})
     other_multi_drug_resistant_organisms = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Specify Your multi drug resistant organisms'}))
 
-    heart_blood_pressure_diabetes_medication = forms.ChoiceField(choices=[('', 'Select Medications Taken')] + SurveyResponse.heart_blood_pressure_diabetes_medication_choices, required=True, error_messages={'required': '* This field is required.'})
+    # heart_blood_pressure_diabetes_medication = forms.ChoiceField(choices=[('', 'Select Medications Taken')] + SurveyResponse.heart_blood_pressure_diabetes_medication_choices, required=True, error_messages={'required': '* This field is required.'})
+    heart_blood_pressure_diabetes_medication = forms.MultipleChoiceField(required=True,choices= SurveyResponse.heart_blood_pressure_diabetes_medication_choices,
+                                            error_messages={'required': '* This field is required.'}, widget=forms.CheckboxSelectMultiple,
+    )
+
+    def clean_heart_blood_pressure_diabetes_medication(self):
+        """Convert the list of selected values into a comma-separated string."""
+        selected = self.cleaned_data.get('heart_blood_pressure_diabetes_medication', [])
+        print(f"inside form{selected}")
+        return ",".join(selected)  # Serialize to a string
+        
     mold_exposure = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
     genetic_conditions = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* This field is required.'})
     
@@ -241,10 +251,9 @@ class Page3Form(forms.ModelForm):
     snacks_per_day = forms.ChoiceField(required=True, choices=[('', 'Select snacks per day')] + SurveyResponse.SNAKS_PER_DAY, error_messages={'required': '* Snacks per day are required.'})
     home_cooked_meals = forms.ChoiceField(required=True, choices=[('', 'Select home-cooked meals frequency')] + SurveyResponse.HOME_COOCKED_MEALS, error_messages={'required': '* Home cooked meals frequency is required.'})
     diet_type = forms.ChoiceField(required=True, choices=[('', 'Select diet type')] + SurveyResponse.DIET_TYPE, error_messages={'required': '* Diet type is required.'})
-    meat_type = forms.MultipleChoiceField(required=False,choices=SurveyResponse.MEAT_TYPE,
-                                            widget=forms.CheckboxSelectMultiple,
-    )
+    meat_type = forms.MultipleChoiceField(required=False,choices=SurveyResponse.MEAT_TYPE,widget=forms.CheckboxSelectMultiple,)
     
+
     def clean_meat_type(self):
         """Convert the list of selected values into a comma-separated string."""
         selected = self.cleaned_data.get('meat_type', [])
