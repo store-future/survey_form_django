@@ -394,6 +394,7 @@
                         <th>Covid Vaccination</th>
                         <th>Covid Vaccine</th>
                         <th>Other Covid Vaccine</th>
+                        <th>Form Created At</th>
                     </tr>
                 </thead>
                
@@ -470,6 +471,7 @@
                         <td>{{ response.covid_vaccination }}</td>
                         <td>{{ response.covid_vaccine }}</td>
                         <td>{{ response.other_covid_vaccine }}</td>
+                        <td>{{ response.created_at }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -484,7 +486,8 @@
 <div class="pagination">
     <span class="step-links">
       {% if page_obj.has_previous %}
-        <a href="?page=1">&laquo; first</a>
+      <a href="?page=1">&laquo; first</a>
+        {% comment %} <a href="?page=1">&laquo; first</a> {% endcomment %}
         <a href="?page={{ page_obj.previous_page_number }}">previous</a>
       {% endif %}
       

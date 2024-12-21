@@ -451,6 +451,7 @@ class SurveyResponse(models.Model):
     ]
     covid_vaccine = models.CharField(max_length=10, choices=COVID_VACCINE , null = True , blank=True)
     other_covid_vaccine = models.CharField(max_length=20 , null = True , blank=True )
+    created_at = models.DateTimeField(auto_now_add=True , null = True)  # Set only on creation
 
 
     def __str__(self):

@@ -76,24 +76,25 @@ WSGI_APPLICATION = 'survey_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'surveyform',        # Replace with your database name
-        'USER': 'root',                # Replace with your RDS username
-        'PASSWORD': 'admin',   # Replace with your RDS password
-        # 'HOST': 'loan-database.cheqgcwkw5jq.eu-north-1.rds.amazonaws.com',    
-        'HOST': 'localhost',                  # Or the server IP if not local
-        'PORT': '3306',                 # Default MySQL port
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'surveyform',        # Replace with your database name
+#         'USER': 'root',                # Replace with your RDS username
+#         'PASSWORD': 'admin',   # Replace with your RDS password
+#         # 'HOST': 'loan-database.cheqgcwkw5jq.eu-north-1.rds.amazonaws.com',    
+#         'HOST': 'localhost',                  # Or the server IP if not local
+#         'PORT': '3306',                 # Default MySQL port
 #     }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 
@@ -121,11 +122,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_TZ = True
+TIME_ZONE = 'Asia/Kolkata'  # Set your timezone (use 'Asia/Kolkata' for Indian Standard Time)
+
+
 
 
 # Static files (CSS, JavaScript, Images)
