@@ -65,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',  # Add this
+
             ],
         },
     },
@@ -131,23 +133,27 @@ TIME_ZONE = 'Asia/Kolkata'  # Set your timezone (use 'Asia/Kolkata' for Indian S
 
 
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-STATIC_URL = '/static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
 
 # -----------------------------------------------------------------------------------------
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR , 'static')
+STATICFILES_DIRS = [
+    BASE_DIR,"staticfiles"
+]
+
+
+
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # SESSION_COOKIE_AGE = 3600  # Optional: Set a timeout for inactivity (e.g., 1 hour)
 

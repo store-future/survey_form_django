@@ -834,6 +834,17 @@
         }
     });
 </script>
+
+<!-- JavaScript to focus on error field-->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const errorField = document.querySelector('.error');
+        if (errorField) {
+            errorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    });
+</script>
+
 </body>
 
 </html>
