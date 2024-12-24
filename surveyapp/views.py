@@ -241,11 +241,11 @@ def page3(request):
     return render(request, "page3.html", {"form": form})
 
 
+def styles(request):
+   response = render(request, "styles.css", content_type='text/css; charset=utf-8')
 
-
-
-
-
+   return response
+    
 
 
 
