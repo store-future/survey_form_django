@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+:root {
+    --bg: 155, 155, 155;
+    --primary: 50, 139, 151;
+    --error: 220, 53, 69;
+    --card-bg: 255, 255, 255;
+    --fonts: "Poppins"
+}
+
+body {
+    margin: 0;
+    padding-top: 2rem;
+    background: rgb(var(--primary), 0.2);
+    font-family: var(--fonts), serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background: rgb(var(--card-bg));
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    max-width: 800px;
+    margin-top: 5px;
+    overflow: hidden;
+    padding-bottom: 2rem;
+}
+
+.image-container img {
+    width: 100%;
+    height: 200px;
+    aspect-ratio: 1/1;
+}
+
+
+.form-container {
+    padding: 30px;
+}
+
+.form-container form {
+    display: grid;
+    gap: 2rem;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 0;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 2px 1px 8px #9998;
+}
+
+input:focus {
+    border-color: rgb(var(--primary));
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    width: 100%;
+    margin-top: 1rem;
+    padding: .5rem 2rem;
+    font-size: larger;
+    font-weight: bold;
+    background-color: rgb(var(--primary));
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: .9;
+}
+
+button:active {
+    scale: 0.99;
+}
+
+
+
+input[type="radio"] {
+    margin-right: 10px;
+    aspect-ratio: 1/1;
+}
+
+.error p {
+    margin: 4px 0 0 0;
+    padding: 0;
+    color: rgb(var(--error));
+    /* Change the color of the error message */
+    font-size: 14px;
+    /* Change the font size */
+}
+
+
+
+/* Footer Styles */
+footer {
+    margin-top: 2rem;
+    background-color: rgb(53 124 134);
+    background-color: rgb(50 139 151);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .image-container {
+        height: 250px;
+    }
+
+    .form-container {
+        padding: 10px;
+    }
+
+    footer p {
+        font-size: 14px;
+        /* Smaller font size for smaller screens */
+    }
+}

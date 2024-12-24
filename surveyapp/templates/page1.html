@@ -2,21 +2,22 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href ="{% static 'all.css' %}">
+    <link rel="stylesheet" href="/styles.css">
     <title>Donor Selection Form</title>
+
 </head>
+
 <body>
     <div class="container">
         <!-- Image Div -->
-        <div class="image-container"></div>
-            {% comment %} <img src = "https://jivanutx.com/images/survery-form-header-image600x400.jpg"
-            /> {% endcomment %}
-            {% comment %} <img src="{{ MEDIA_URL }}img1.jpg" alt="Survey Image" /> {% endcomment %}
-            <img src="/media/img2.jpg" alt="Survey Image" />
+        <div class="image-container">
+            <img src="" alt="hero-image" />
+        </div>
 
         <!-- Form Div -->
         <div class="form-container">
@@ -30,24 +31,24 @@
                     {% comment %} <input type="text" name="full_name" class="form-control"  font-size: 18px;" id="id_full_name"> {% endcomment %}
 
                     {% if form.full_name.errors %}
-                        <div class="error">
-                            {% for error in form.full_name.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
+                    <div class="error">
+                        {% for error in form.full_name.errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
                     {% endif %}
                 </div>
-                
-                
+
+
                 <div class="mb-1">
                     <label for="id_gender" class="form-label">2. What is your gender?</label>
                     {{ form.gender }}
                     {% if form.gender.errors %}
-                        <div class="error">
-                            {% for error in form.gender.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
+                    <div class="error">
+                        {% for error in form.gender.errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
                     {% endif %}
                 </div>
 
@@ -57,7 +58,7 @@
                     {% if form.mobile_number.errors %}
                     <div class="error">
                         {% for error in form.mobile_number.errors %}
-                            <p>{{ error }}</p>
+                        <p>{{ error }}</p>
                         {% endfor %}
                     </div>
                     {% endif %}
@@ -69,11 +70,11 @@
                     {% if form.email.errors %}
                     <div class="error">
                         {% for error in form.email.errors %}
-                            <p>{{ error }}</p>
+                        <p>{{ error }}</p>
                         {% endfor %}
                     </div>
                     {% endif %}
-                    
+
                 </div>
 
                 <div class="mb-1">
@@ -82,7 +83,7 @@
                     {% if form.date_of_birth.errors %}
                     <div class="error">
                         {% for error in form.date_of_birth.errors %}
-                            <p>{{ error }}</p>
+                        <p>{{ error }}</p>
                         {% endfor %}
                     </div>
                     {% endif %}
@@ -93,11 +94,11 @@
                     <label for="id_height_feet" class="form-label">6. How tall are you?</label>
                     <div class="d-flex">
                         <!-- Feet input -->
-                        <div class="me-2" style="margin-left: 20px;">
+                        <div class="me-2">
                             <label for="id_height_feet">Feet</label>
                             {{ form.height_feet }}
                         </div>
-                
+
                         <!-- Inches input -->
                         <div>
                             <label for="id_height_inches">Inches</label>
@@ -107,7 +108,7 @@
                     {% if form.height_feet.errors %}
                     <div class="error">
                         {% for error in form.height_feet.errors %}
-                            <p>{{ error }}</p>
+                        <p>{{ error }}</p>
                         {% endfor %}
                     </div>
                     {% endif %}
@@ -115,20 +116,20 @@
                     {% if form.height_inches.errors %}
                     <div class="error">
                         {% for error in form.height_inches.errors %}
-                            <p>{{ error }}</p>
+                        <p>{{ error }}</p>
                         {% endfor %}
                     </div>
                     {% endif %}
                 </div>
 
-                
+
                 <div class="mb-1">
                     <label for="id_weight" class="form-label">7. What is your current weight? (in kg)</label>
                     {{ form.weight }}
                     {% if form.weight.errors %}
                     <div class="error">
                         {% for error in form.weight.errors %}
-                            <p>{{ error }}</p>
+                        <p>{{ error }}</p>
                         {% endfor %}
                     </div>
                     {% endif %}
@@ -140,7 +141,7 @@
                     {% if form.description.errors %}
                     <div class="error">
                         {% for error in form.description.errors %}
-                            <p>{{ error }}</p>
+                        <p>{{ error }}</p>
                         {% endfor %}
                     </div>
                     {% endif %}
@@ -150,7 +151,7 @@
                 <div class="mb-1" id="other_description" style="display: none;">
                     <label for="id_other_category" class="form-label">8.a. Specify your describes</label>
                     {{ form.other_description }}
-                </div>                
+                </div>
 
 
                 <div class="mb-1">
@@ -159,7 +160,7 @@
                     {% if form.category.errors %}
                     <div class="error">
                         {% for error in form.category.errors %}
-                            <p>{{ error }}</p>
+                        <p>{{ error }}</p>
                         {% endfor %}
                     </div>
                     {% endif %}
@@ -170,7 +171,7 @@
                     <label for="id_other_category" class="form-label">9.a. Specify Category</label>
                     {{ form.other_category }}
                 </div>
-                
+
 
                 <div class="mb-1">
                     <label for="id_coach_name" class="form-label">10. Name of your Coach/Trainer</label>
@@ -178,32 +179,37 @@
                     {% if form.coach_name.errors %}
                     <div class="error">
                         {% for error in form.coach_name.errors %}
-                            <p>{{ error }}</p>
+                        <p>{{ error }}</p>
                         {% endfor %}
                     </div>
                     {% endif %}
                 </div>
 
-                
-                <button type="submit" class="btn btn-primary">Next</button>
+                <div class="footer">
+                    <button type="submit" class="primary">Next</button>
+                </div>
             </form>
 
         </div>
-                    
-<!-- Footer Section -->
-<footer>
-    <p>Powered by Winline Technologies Private Limited</p>
-    <p>Contact us at: <a href="https://www.winlinetech.com/" target="_blank" style="color: #fff;">www.winlinetech.com</a></p>
-</footer>
-    </div>
-    
 
-<!-- JavaScript to render other Description field-->
+        <!-- Footer Section -->
+
+    </div>
+
+
+    <footer>
+        <p>Powered by Winline Technologies Private Limited</p>
+        <p>Contact us at: <a href="https://www.winlinetech.com/" target="_blank"
+                style="color: #fff;">www.winlinetech.com</a></p>
+    </footer>
+
+    
+    <!-- JavaScript to render other Description field-->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const descriptionField = document.getElementById('id_description');
             const otherDescriptionInput = document.getElementById('other_description');
-            
+
             function toggleOtherDescription() {
                 if (descriptionField.value === 'Other') {
                     otherDescriptionInput.style.display = 'block';
@@ -211,35 +217,35 @@
                     otherDescriptionInput.style.display = 'none';
                 }
             }
-    
+
             descriptionField.addEventListener('change', toggleOtherDescription);
             toggleOtherDescription();  // Initialize on page load
         });
     </script>
 
-<!-- JavaScript to render other category field-->
-<script>
-    document.getElementById('id_category').addEventListener('change', function() {
-        var otherCategoryInput = document.getElementById('other_category_input');
-        if (this.value === 'Other Sports') {
-            otherCategoryInput.style.display = 'block';  // Show the text input when 'Others' is selected
-        } else {
-            otherCategoryInput.style.display = 'none';   // Hide the text input when 'Others' is not selected
-        }
-    });
-</script>
+    <!-- JavaScript to render other category field-->
+    <script>
+        document.getElementById('id_category').addEventListener('change', function () {
+            var otherCategoryInput = document.getElementById('other_category_input');
+            if (this.value === 'Other Sports') {
+                otherCategoryInput.style.display = 'block';  // Show the text input when 'Others' is selected
+            } else {
+                otherCategoryInput.style.display = 'none';   // Hide the text input when 'Others' is not selected
+            }
+        });
+    </script>
 
-<!-- JavaScript to restrict future dates fir Date Of Birth Field-->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const dateField = document.querySelector('#id_date_of_birth');  // Select the date input
-        if (dateField) {
-            const today = new Date().toISOString().split('T')[0]; 
-            console.log(today) // Get today's date in YYYY-MM-DD format
-            dateField.setAttribute('max', today);  // Set the max attribute to today's date
-        }
-    });
-</script>
+    <!-- JavaScript to restrict future dates fir Date Of Birth Field-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dateField = document.querySelector('#id_date_of_birth');  // Select the date input
+            if (dateField) {
+                const today = new Date().toISOString().split('T')[0];
+                console.log(today) // Get today's date in YYYY-MM-DD format
+                dateField.setAttribute('max', today);  // Set the max attribute to today's date
+            }
+        });
+    </script>
 
 
     <!-- JavaScript to focus on error field-->
@@ -258,4 +264,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
