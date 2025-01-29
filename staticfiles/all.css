@@ -19,13 +19,17 @@ body {
     overflow: hidden;
 }
 
-.image-container {
+
+
+.image-container img{
     width: 100%;
-    {% comment %} height: 520px; {% endcomment %}
+    height: auto; 
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center; 
-}
+} 
+ 
+
 
 .form-container {
     padding: 30px;

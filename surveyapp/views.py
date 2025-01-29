@@ -33,6 +33,7 @@ def logout_view(request):
     logout(request)  # Clear session
     return redirect('login')  # Redirect to login page
 
+from django.forms.models import model_to_dict
 
 @login_required
 def dashboard_view(request):
@@ -40,16 +41,23 @@ def dashboard_view(request):
     
     # Create a Paginator object
     paginator = Paginator(items, 10)  # 10 items per page
-    
+    # print(paginator)
+    # print(paginator.num_pages)
+
     # Get the current page number from the request
     page_number = request.GET.get('page')
-    
+    print(f"page_number{page_number}")
+
     # Get the page object based on the current page number
     page_obj = paginator.get_page(page_number)
+    print(f"page_obj{page_obj}")
     
+    print("Items in the current page:")
+    for item in page_obj:
+        print(model_to_dict(item))
+        print(" ")  # This will use the __str__ method of the model
+        
     return render(request, 'dashboard.html', {'page_obj': page_obj})
-
-
 
 
 
@@ -135,7 +143,6 @@ def page1(request):
         form = Page1Form(request.POST)
 
         if form.is_valid():
-
             # cleaning data
             cleaned_data = form.cleaned_data
             cleaned_data.pop('height_feet', None)  # Remove height_feet
@@ -188,6 +195,10 @@ def page3(request):
    # if 'page1' not in request.session or 'page2' not in request.session:
     #    return redirect('page1')  # Redirect to page 1 if session data doesn't exist
 
+    # gender = request.session.get('page1')['gender']
+    gender = 'Male'
+    gender = request.session.get('page1', {}).get('gender', None)  # Fetch gender from session
+    print("\n\n\ngender")
     if request.method == "POST":
         form = Page3Form(request.POST)
 
@@ -235,10 +246,10 @@ def page3(request):
    
         else:
             # If form is invalid, re-render the form with error messages
-            return render(request, 'page3.html', {'form': form})
+            return render(request, 'page3.html', {'form': form,"gender":gender})
     else:
         form = Page3Form()
-    return render(request, "page3.html", {"form": form})
+    return render(request, "page3.html", {"form": form, "gender":gender})
 
 
 def styles(request):

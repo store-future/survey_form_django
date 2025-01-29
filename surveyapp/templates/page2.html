@@ -1,3 +1,6 @@
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="{% static 'all.css' %}">
     <title>Donor Survey Form</title>
 </head>
 
@@ -626,6 +629,62 @@
     <p>Powered by Winline Technologies Private Limited</p>
     <p>Contact us at: <a href="https://www.winlinetech.com/" target="_blank" style="color: #fff;">www.winlinetech.com</a></p>
 </footer>
+
+
+
+<!-- Hide errors at real time when user fill the value inside a field -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const formFields = document.querySelectorAll(".mb-1");
+
+        formFields.forEach(function(field) {
+            // Collecting the details from the whole element
+            const errorContainer = field.querySelector('.error');
+            const inputField = field.querySelector('input, select, textarea');
+            const radioButtons = field.querySelectorAll('input[type="radio"]');
+            const checkboxes = field.querySelectorAll('input[type="checkbox"]');
+            
+            // Check if errorContainer exists, then log details
+            if (errorContainer) {
+                //console.log(`Error Container: ${errorContainer}`);
+
+                // Handle radio buttons
+                if (radioButtons.length > 0) {
+                    // Check if any radio button is selected
+                    radioButtons.forEach(function(radioButton) {
+                        radioButton.addEventListener('change', function() {
+                                // Hide the error message when a radio button is selected
+                                errorContainer.style.display = 'none';                          
+                        });
+                    });
+                }
+
+                // Handle checkboxes
+                if (checkboxes.length >0) {
+                    checkboxes.forEach(function(checkbox){
+                        checkbox.addEventListener('change', function(){
+                                errorContainer.style.display = 'none'; // Hide error message when checkbox is checked/unchecked
+                        });
+                    });
+                }
+
+                // Handle input and selection fields
+                if (inputField){
+                    inputField.addEventListener('input', function(){
+                        if (inputField.value.trim() !== '')
+                            {
+                                errorContainer.style.display = 'none';
+                            }
+                    });
+                }
+            }
+        });
+    });
+</script>
+
+
+
+
     <!--Disable checkbox button if  heart_blood_pressure_diabetes_medication value is None -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {

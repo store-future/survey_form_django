@@ -13,7 +13,6 @@ class Page1Form(forms.ModelForm):
             'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
             
         }
-
     full_name = forms.CharField(required=True, error_messages={'required': '* Full Name field cannot be empty.'})
     gender = forms.ChoiceField(choices=[('', 'Select Gender')] + SurveyResponse.GENDER_CHOICES, required=True, error_messages={'required': '* This field cannot be empty.'})
     mobile_number = forms.CharField(required=True, error_messages={'required': '* Mobile number is required.'})

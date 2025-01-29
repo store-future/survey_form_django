@@ -7,16 +7,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css">
+    {% comment %} <link rel="stylesheet" href="/styles.css"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'all.css' %}">
     <title>Donor Selection Form</title>
-
 </head>
+
 
 <body>
     <div class="container">
         <!-- Image Div -->
         <div class="image-container">
-            <img src="/media/img2.jpg" alt="hero-image" />
+            <img src="/media/img1.jpg" alt="image" />
         </div>
 
         <!-- Form Div -->
@@ -90,7 +91,7 @@
                 </div>
 
 
-                <div class="mb-1">
+                <div class="mb-2">
                     <label for="id_height_feet" class="form-label">6. How tall are you?</label>
                     <div class="d-flex">
                         <!-- Feet input -->
@@ -203,7 +204,106 @@
                 style="color: #fff;">www.winlinetech.com</a></p>
     </footer>
 
+
+<!-- Hide errors at real time when user fill the value inside a field -->
+<script>
+    document.addEventListener('DOMContentLoaded',function() {
+        const formFields = document.querySelectorAll(".mb-1");
+        //console.log(`formFields: ${Array.from(formFields)}`);
+
+        formFields.forEach(function(field){
+            //console.log(`Each Field detail: ${field.innerHTML}`);  // gives the all attribute inside each object
+            const errorContainer = field.querySelector('.error')
+            const inputField = field.querySelector('input, select, textarea'); // Find input, select, or textarea inside the div
+            
+           if (errorContainer){
+                inputField.addEventListener('input', function(){
+                    if (inputField.value.trim() !== '')
+                        {
+                            errorContainer.style.display = 'none';
+                        }
+                });
+            }
+        });
+    });
+</script>  
+
+<!-- Manually handling height inch and height feet errors to Hide errors at real time when user fill the value inside a field -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const formFields = document.querySelector(".mb-2");
+        //console.log(`whole div element: ${formFields.innerHTML}`);
+
+        inputHeight =formFields.querySelector("#id_height_feet");
+        inputInch =formFields.querySelector("#id_height_inches");
+        //console.log(`Height Feet: ${inputHeight.value}, Height Inches: ${inputInch.value}`);
+        
+        const errorInputField = formFields.querySelectorAll(".error p");
+        //console.log(`Height Feet: ${ errorInputField[0].innerHTML}, Height Inches: ${errorInputField[1].innerHTML}`);
+        
+        if (errorInputField[0].innerHTML !== '' || errorInputField[1].innerHTML !== ''){
+            inputHeight.addEventListener('input', function(){
+                errorInputField[0].style.display = 'none';
+            });
+            inputInch.addEventListener('input', function(){
+                errorInputField[1].style.display = 'none';
+            });
+        }    
+    });
+</script>
+
+
+
+
+    <!-- JavaScript to restrict typing more than 10 digits and accepting only digit in mobile no field -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileNumberInput = document.getElementById("id_mobile_number");
+        
+            // Attach an input event listener to the mobile number field
+            mobileNumberInput.addEventListener("input", function(event) {
+                // Remove any non-numeric characters
+                let sanitizedValue = this.value.replace(/[^0-9]/g, "");
+        
+                // Update the input field with sanitized value
+                this.value = sanitizedValue;
+        
+                // If the length exceeds 10, truncate it to 10 digits
+                if (sanitizedValue.length > 10) {
+                    this.value = sanitizedValue.slice(0, 10);
+                }
+            });
+        });
+    </script>
+
+    <!-- JavaScript to restrict dates last 15 year from the reference to current date-->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const dateField = document.querySelector('#id_date_of_birth');  // Select the date input
+                if (dateField) {
+                    {% comment %} const today = new Date().toISOString().split('T')[0]; {% endcomment %}
+                    const today = new Date();
+                    const fifteenYearsAgo = new Date(today.getFullYear() - 15, today.getMonth(), today.getDate());
+                    maxdate = fifteenYearsAgo.toISOString().split('T')[0];
+                    console.log(`Max date ${maxdate}`);
+                    
+                    dateField.setAttribute('max', maxdate);  // Set the max attribute to today's date
+                }
+            });
+        </script>
     
+
+
+    <!-- JavaScript to focus on error field-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const errorField = document.querySelector('.error');
+            if (errorField) {
+                errorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+    </script>
+
     <!-- JavaScript to render other Description field-->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -235,28 +335,6 @@
         });
     </script>
 
-    <!-- JavaScript to restrict future dates fir Date Of Birth Field-->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const dateField = document.querySelector('#id_date_of_birth');  // Select the date input
-            if (dateField) {
-                const today = new Date().toISOString().split('T')[0];
-                console.log(today) // Get today's date in YYYY-MM-DD format
-                dateField.setAttribute('max', today);  // Set the max attribute to today's date
-            }
-        });
-    </script>
-
-
-    <!-- JavaScript to focus on error field-->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const errorField = document.querySelector('.error');
-            if (errorField) {
-                errorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        });
-    </script>
 
 <!-- Add Flatpickr CSS and JS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">

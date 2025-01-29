@@ -301,7 +301,7 @@
 <body>
   <div class="navbar">
     <div class="navbar-left">
-        <span class="username">Welcome {{ request.user.username }}</span>
+        <span class="username">Welcome {{ request.user.first_name}}</span>
     </div>
     <div class="navbar-right">
       <a  href="{% url 'export_to_excel' %}"><button class="btn export-btn">Export to Excel</button></a>
