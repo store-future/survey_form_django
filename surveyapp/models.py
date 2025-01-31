@@ -4,7 +4,6 @@ class SurveyResponse(models.Model):
     GENDER_CHOICES = [
         ('Male', 'Male'),
         ('Female', 'Female'),
-        ('Other', 'Other')
     ]
 
     CATEGORY_CHOICES = [
