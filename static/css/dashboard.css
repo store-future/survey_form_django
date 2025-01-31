@@ -1,0 +1,71 @@
+.centered-heading {
+    text-align: center;      /* Centers the text */
+    font-weight: bold;       /* Makes the text bold */
+    font-size: 2em;        /* Adjusts the font size slightly larger */
+}
+
+/* Navbar container */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Align left and right sections */
+    align-items: center; /* Vertically center items */
+    padding: 17px 20px;
+    background-color:rgb(0, 0, 0); /* Green background */
+    color: white; /* White text */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Left section (username text) */
+.navbar-left .username {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* Right section (buttons) */
+.navbar-right {
+    display: flex;
+    gap: 16px; /* Space between buttons */
+}
+
+/* Buttons style */
+.navbar-right .btn {
+    background-color: white; /* White background */
+    color:rgb(0, 0, 0); /* Green text */
+    border: 1px solidrgb(0, 0, 0);
+    border-radius: 4px;
+    {% comment %} padding: 8px 12px; {% endcomment %}
+    padding: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover effect for buttons */
+.navbar-right .btn:hover {
+    background-color: #45a049; /* Darker green */
+    color: white; /* White text */
+}
+
+
+.export-btn {
+    background-color: #f0f0f0; 
+    color: #4CAF50;
+} 
+.export-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.table thead th {
+
+  border: 1px solid #ffffff; 
+  padding:0 40px;
+  text-align: center ;
+  vertical-align: middle;       
+ }
+
+.table tbody td{
+  text-align: center;       /* Horizontally center text */
+  vertical-align: middle;   /* Vertically center text */
+
+ } 
+

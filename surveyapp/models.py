@@ -178,27 +178,29 @@ class SurveyResponse(models.Model):
     blood_donation = models.BooleanField(default=False)  # False for No, True for Yes
 
     # Question 4: Body fat percentage
-    BODY_FAT_PERCENTAGE = [
-        ('10-12%', '10-12%'),
-        ('15-17%', '15-17%'),
-        ('20-22%', '20-22%'),
-        ('25%', '25%'),
-        ('30%', '30%'),
-        ('35%', '35%'),
-        ('40%', '40%'),
-        ('45%', '45%'),
-        ('50%', '50%'),
-        ('3-4%', '3-4%'),
-        ('6-7%', '6-7%'),
-        ('10-12%', '10-12%'),
+    BODY_FAT_MALE_CHOICES = [
+        ('8%', '8%'),
+        ('10%', '10%'),
         ('15%', '15%'),
         ('20%', '20%'),
         ('25%', '25%'),
         ('30%', '30%'),
         ('35%', '35%'),
-        ('40%', '40%')
+        ('45% & above%', '45% & above'),
     ]
-    body_fat_percentage = models.CharField(max_length=15, choices=BODY_FAT_PERCENTAGE)
+
+    BODY_FAT_FEMALE_CHOICES = [
+        ('12%', '12%'),
+        ('15%', '15%'),
+        ('20%', '20%'),
+        ('25%', '25%'),
+        ('30%', '30%'),
+        ('35%', '35%'),
+        ('40%', '40%'),
+        ('45% & above%', '45% & above'),
+    ]
+    
+    body_fat_percentage = models.CharField(max_length=50 )  # Default Male Choices
 
     # Question 5: Birth type
     BIRTH_TYPE = [

@@ -78,18 +78,30 @@ WSGI_APPLICATION = 'survey_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
+# aws database
+# DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.mysql',
+#          'NAME': 'donorsurveyapp',        # Replace with your database name
+#          'USER': 'admin',                # Replace with your RDS username
+#          'PASSWORD': 'Loan99Par',   # Replace with your RDS password
+#          'HOST': 'loan-database.cheqgcwkw5jq.eu-north-1.rds.amazonaws.com',    
+#          'PORT': '3306',                 # Default MySQL port
+#      }
+# }
+
+#local database
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'surveyform',        # Replace with your database name
 #         'USER': 'root',                # Replace with your RDS username
 #         'PASSWORD': 'admin',   # Replace with your RDS password
-#         # 'HOST': 'loan-database.cheqgcwkw5jq.eu-north-1.rds.amazonaws.com',    
 #         'HOST': 'localhost',                  # Or the server IP if not local
 #         'PORT': '3306',                 # Default MySQL port
 #     }
 # }
-
 
 DATABASES = {
     'default': {
@@ -138,8 +150,6 @@ TIME_ZONE = 'Asia/Kolkata'  # Set your timezone (use 'Asia/Kolkata' for Indian S
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
 
 # -----------------------------------------------------------------------------------------
 
@@ -147,13 +157,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR , 'static')
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Collected static files go here
 STATICFILES_DIRS = [
-    BASE_DIR,"staticfiles"
+    os.path.join(BASE_DIR, 'static'),  # This is your main static folder
 ]
 
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # SESSION_COOKIE_AGE = 3600  # Optional: Set a timeout for inactivity (e.g., 1 hour)

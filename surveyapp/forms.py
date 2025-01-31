@@ -231,7 +231,32 @@ class Page3Form(forms.ModelForm):
     dairy_consumption = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* Dairy consumption field is required.'})
     medications_taken = forms.ChoiceField(choices=[(True, 'Yes'), (False, 'No')], required=True, error_messages={'required': '* Medications taken field is required.'})
 
-    body_fat_percentage = forms.ChoiceField(required=True, choices=[('', 'Select body fat percentage')] + SurveyResponse.BODY_FAT_PERCENTAGE, error_messages={'required': '* Body fat percentage is required.'})
+    # body_fat_percentage = forms.ChoiceField(required=True, choices=[('', 'Select body fat percentage')] + SurveyResponse.BODY_FAT_PERCENTAGE, error_messages={'required': '* Body fat percentage is required.'})
+    body_fat_percentage = forms.ChoiceField(required=True, choices=[])
+
+    def __init__(self, *args, **kwargs):
+        gender = kwargs.pop('gender', None)  # Get gender
+        super().__init__(*args, **kwargs)
+
+        # Set dynamic choices based on gender
+        if gender == "Male":
+            self.fields['body_fat_percentage'].choices = [('', 'Select body fat percentage')] + SurveyResponse.BODY_FAT_MALE_CHOICES
+        elif gender == "Female":
+            self.fields['body_fat_percentage'].choices = [('', 'Select body fat percentage')] + SurveyResponse.BODY_FAT_FEMALE_CHOICES
+        else:
+            self.fields['body_fat_percentage'].choices = [('', 'Select body fat percentage')]  # default case
+
+    def clean_body_fat_percentage(self):
+        # Get the value from the form field
+        value = self.cleaned_data.get('body_fat_percentage')
+        # Check if the selected value is a valid choice
+        valid_choices = dict(self.fields['body_fat_percentage'].choices).keys()
+        if value not in valid_choices:
+            raise forms.ValidationError('Invalid body fat percentage selected.')
+        print(f"inside clean_body_fat_percetage {value} {type(value)}")
+        return value
+    
+
     birth_type = forms.ChoiceField(required=True, choices=[('', 'Select birth type')] + SurveyResponse.BIRTH_TYPE, error_messages={'required': '* Birth type is required.'})
     birth_state = forms.ChoiceField(required=True, choices=[('', 'Select birth state')] + SurveyResponse.BIRTH_STATE, error_messages={'required': '* Birth state is required.'})
     exercise_hours_per_day = forms.ChoiceField(required=True, choices=[('', 'Select hours of exercise per day')] + SurveyResponse.EXERCISE_HOURS_PER_DAY, error_messages={'required': '* Exercise hours per day is required.'})

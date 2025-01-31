@@ -191,16 +191,83 @@ def page2(request):
 
 
 
+# def page3(request):
+#    # if 'page1' not in request.session or 'page2' not in request.session:
+#     #    return redirect('page1')  # Redirect to page 1 if session data doesn't exist
+
+#     if request.method == "POST":
+#         form = Page3Form(request.POST)
+
+#         if form.is_valid():
+            
+#             # saving data into session 
+#             request.session['page3'] = form.cleaned_data
+
+#             # Combine data from all pages and save it to the database
+            
+#             data = {**request.session['page1'], 
+#                     **request.session['page2'], 
+#                     **request.session['page3']    
+#                   }
+            
+#             #print(f"last view of whole data before submitting\n:{data}")
+          
+          
+#             #captche verification for google-reCaptche
+#             clientkey = request.POST['g-recaptcha-response']
+#             secretkey = '6Lervm8oAAAAAAQ9K0mO-MRd6y-wdfSiV_xFiCLX'
+#             CaptcheData = {
+#                 'secret' : secretkey,
+#                 'response' : clientkey
+#                 }
+#             r = requests.post('https://www.google.com/recaptcha/api/siteverify' , data=CaptcheData)
+            
+#             response = json.loads(r.text)
+#             verify = response['success']
+#             #print(f"capcthe verification{verify}")
+      
+      
+#             #saving obj into database only if captche verification success
+#             if verify:
+#                 # data before submitting
+#                 print(f"last view of whole data before submitting\n:{data}")
+
+#                 # saving obj into database
+#                 SurveyResponse.objects.create(**data)
+                
+#                 #  Clear session after submission
+#                 request.session.flush()     # clearing session
+
+#                 return render(request, "success.html")
+   
+#         else:
+#             # If form is invalid, re-render the form with error messages
+#             return render(request, 'page3.html', {'form': form})
+#     else:
+#         form = Page3Form()
+#     return render(request, "page3.html", {"form": form})
+
+
+def styles(request):
+   response = render(request, "styles.css", content_type='text/css; charset=utf-8')
+
+   return response
+    
+
+
+
+
+
+
 def page3(request):
    # if 'page1' not in request.session or 'page2' not in request.session:
     #    return redirect('page1')  # Redirect to page 1 if session data doesn't exist
 
-    # gender = request.session.get('page1')['gender']
-    gender = 'Male'
+    # fetching out gender data from session
+    # gender = 'Female'
     gender = request.session.get('page1', {}).get('gender', None)  # Fetch gender from session
-    print("\n\n\ngender")
     if request.method == "POST":
-        form = Page3Form(request.POST)
+        form = Page3Form(request.POST,gender=gender)
 
         if form.is_valid():
             
@@ -248,20 +315,8 @@ def page3(request):
             # If form is invalid, re-render the form with error messages
             return render(request, 'page3.html', {'form': form,"gender":gender})
     else:
-        form = Page3Form()
+        form = Page3Form(gender=gender)
     return render(request, "page3.html", {"form": form, "gender":gender})
-
-
-def styles(request):
-   response = render(request, "styles.css", content_type='text/css; charset=utf-8')
-
-   return response
-    
-
-
-
-
-
 
 
 
